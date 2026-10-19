@@ -1,0 +1,129 @@
+[
+  {
+    "id": "image-classification",
+    "name": "Clasificador de imágenes",
+    "category": "Visión por computadora",
+    "description": "API de clasificación con ResNet50 preentrenada. Streamlit permite cargar imágenes y Redis coordina el procesamiento de las predicciones.",
+    "result": null,
+    "resultLabel": null,
+    "stack": [
+      "Python",
+      "FastAPI",
+      "Streamlit",
+      "TensorFlow / Keras",
+      "Redis",
+      "Docker Compose"
+    ],
+    "technicalNotes": [
+      "Separación de la interfaz, la API y el worker de inferencia en servicios con Docker Compose.",
+      "El worker recibe trabajos desde una cola Redis y guarda la clase predicha y su puntuación con el identificador del trabajo.",
+      "Las imágenes se redimensionan a 224 × 224 píxeles y se preprocesan para ResNet50. Se devuelve la categoría con mayor puntuación entre las clases de ImageNet.",
+      "El alcance es integrar un modelo preentrenado con una API y una interfaz de carga; las categorías disponibles son las de ImageNet."
+    ],
+    "repositoryUrl": "https://github.com/Franc0-1/AnyOne_AI_Sprint_3_Project/tree/master/Sprint_3-Franco_Gutierrez",
+    "image": {
+      "src": "./assets/ml/image-classifier.png",
+      "type": "interface",
+      "alt": "Interfaz Streamlit del clasificador con la imagen de un tucán y la predicción toucan.",
+      "width": 1252,
+      "height": 1580,
+      "caption": "Interfaz del proyecto · Ejemplo de inferencia con un tucán",
+      "previewLabel": "Ampliar interfaz del Clasificador de imágenes"
+    },
+    "en": {
+      "name": "Image Classifier",
+      "category": "Computer vision",
+      "description": "Classification API with a pretrained ResNet50. Streamlit lets users upload images and Redis coordinates the prediction processing.",
+      "technicalNotes": [
+        "The interface, the API and the inference worker run as separate services with Docker Compose.",
+        "The worker takes jobs from a Redis queue and stores the predicted class and its score under the job ID.",
+        "Images are resized to 224 × 224 pixels and preprocessed for ResNet50. The top-scoring ImageNet class is returned.",
+        "The scope is integrating a pretrained model with an API and an upload interface; the available categories are those of ImageNet."
+      ],
+      "image": {
+        "alt": "Streamlit interface of the classifier with an image of a toucan and the prediction toucan.",
+        "caption": "Project interface · Inference example with a toucan",
+        "previewLabel": "Enlarge Image Classifier interface"
+      }
+    }
+  },
+  {
+    "id": "home-credit",
+    "name": "Home Credit Risk Analysis",
+    "displayName": "Home Credit: riesgo crediticio",
+    "category": "Modelos predictivos",
+    "description": "Análisis de 307.511 solicitudes de crédito y comparación de regresión logística, Random Forest y LightGBM para estimar el riesgo de dificultades de pago.",
+    "result": "0,7551",
+    "resultLabel": "ROC AUC · Validación",
+    "resultContext": "LightGBM · 49.202 solicitudes en validación.",
+    "stack": [
+      "Logistic Regression",
+      "Random Forest",
+      "LightGBM"
+    ],
+    "technicalNotes": [
+      "Dataset: 246.008 solicitudes para entrenamiento y 61.503 para test. Del conjunto de entrenamiento se reserva un 20% para validación: 196.806 para entrenar y 49.202 para evaluar, con semilla 42.",
+      "ROC AUC en validación: 0,6772 con la regresión logística inicial, 0,7465 al integrarla en un pipeline, 0,7323 con Random Forest ajustado y 0,7551 con LightGBM.",
+      "LightGBM usa early stopping y alcanza su mejor iteración en la ronda 218. El resultado corresponde a la validación usada durante el ajuste, no al conjunto de test.",
+      "Métricas de las salidas guardadas en el notebook; el experimento no se volvió a ejecutar para este portfolio."
+    ],
+    "evaluationUrl": "https://github.com/Franc0-1/Sprint2-Project/blob/b05a0547fe5134da07ef6b91d1f806c87198dacb/AnyoneAI%20-%20Sprint%20Project%2002.ipynb",
+    "repositoryUrl": "https://github.com/Franc0-1/Sprint2-Project",
+    "image": {
+      "src": "./assets/ml/home-credit-distribution.png",
+      "alt": "Gráfico del notebook: distribución de las 246.008 solicitudes de entrenamiento, con 8,03% de casos con dificultades de pago.",
+      "width": 1090,
+      "height": 489,
+      "caption": "Exploración del dataset de entrenamiento · 8,03% con dificultades de pago",
+      "previewLabel": "Ampliar gráfico de distribución de Home Credit"
+    },
+    "en": {
+      "displayName": "Home Credit: credit risk",
+      "category": "Predictive models",
+      "description": "Analysis of 307,511 loan applications and comparison of logistic regression, Random Forest and LightGBM to estimate the risk of payment difficulties.",
+      "result": "0.7551",
+      "resultLabel": "ROC AUC · Validation",
+      "resultContext": "LightGBM · 49,202 applications in validation.",
+      "technicalNotes": [
+        "Dataset: 246,008 applications for training and 61,503 for test. 20% of the training set is held out for validation: 196,806 to train and 49,202 to evaluate, with seed 42.",
+        "Validation ROC AUC: 0.6772 with the initial logistic regression, 0.7465 inside a pipeline, 0.7323 with a tuned Random Forest and 0.7551 with LightGBM.",
+        "LightGBM uses early stopping and reaches its best iteration at round 218. The result corresponds to the validation set used during tuning, not to the test set.",
+        "Metrics come from the outputs saved in the notebook; the experiment was not rerun for this portfolio."
+      ],
+      "image": {
+        "alt": "Notebook chart: distribution of the 246,008 training applications, with 8.03% of cases with payment difficulties.",
+        "caption": "Training dataset exploration · 8.03% with payment difficulties",
+        "previewLabel": "Enlarge Home Credit distribution chart"
+      }
+    }
+  },
+  {
+    "id": "revenue-delivery",
+    "name": "Revenue and Delivery Trend Analysis",
+    "displayName": "Ingresos y tiempos de entrega",
+    "category": "Ingeniería y análisis de datos",
+    "description": "Pipeline ELT para analizar ingresos y tiempos de entrega, segmentar por estados y categorías y visualizar tendencias del negocio.",
+    "result": null,
+    "resultLabel": null,
+    "stack": [
+      "Python",
+      "Pandas",
+      "SQLite",
+      "SQL"
+    ],
+    "technicalNotes": [
+      "Extracción, carga y transformación de datos para su consulta en SQLite mediante SQL.",
+      "Análisis de ingresos y tiempos de entrega con segmentación por estados y categorías, y visualización de resultados."
+    ],
+    "repositoryUrl": "https://github.com/Franc0-1/AnyOneProject-Sprint-1",
+    "en": {
+      "displayName": "Revenue and delivery times",
+      "category": "Data engineering and analysis",
+      "description": "ELT pipeline to analyze revenue and delivery times, segment by state and category and visualize business trends.",
+      "technicalNotes": [
+        "Extraction, loading and transformation of data for querying in SQLite with SQL.",
+        "Analysis of revenue and delivery times segmented by state and category, with visualization of the results."
+      ]
+    }
+  }
+]

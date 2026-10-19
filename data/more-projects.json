@@ -1,0 +1,43 @@
+[
+  {
+    "name": "Gestor de Ingresos",
+    "description": "Finanzas personales: ingresos, gastos, transferencias y dashboard por cuenta y moneda.",
+    "stack": [
+      "Go",
+      "React",
+      "TypeScript"
+    ],
+    "repositoryUrl": "https://github.com/Franc0-1/Gestor-de-Ingresos",
+    "en": {
+      "name": "Income Manager",
+      "description": "Personal finance: income, expenses, transfers and a dashboard by account and currency."
+    }
+  },
+  {
+    "name": "Gestión de pizzería",
+    "description": "Proyecto académico full-stack: pedidos, roles, carrito y reportes en Excel y PDF.",
+    "stack": [
+      "Laravel",
+      "React",
+      "Inertia",
+      "MySQL"
+    ],
+    "repositoryUrl": "https://github.com/Franc0-1/Lab3ProjectoFinal",
+    "en": {
+      "name": "Pizzeria management",
+      "description": "Full-stack academic project: orders, roles, shopping cart and Excel and PDF reports."
+    }
+  },
+  {
+    "name": "Gestión de zoológico",
+    "description": "Aplicación de consola orientada a objetos. Proyecto de formación.",
+    "stack": [
+      "C#"
+    ],
+    "repositoryUrl": "https://github.com/Franc0-1/LabPorjectZoo",
+    "en": {
+      "name": "Zoo management",
+      "description": "Object-oriented console application. Training project."
+    }
+  }
+]

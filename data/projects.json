@@ -1,0 +1,187 @@
+[
+  {
+    "id": "inventario",
+    "name": "Sistema de Inventario",
+    "category": "Herramientas internas",
+    "context": "Pasantía · Casa de Gobierno de la Provincia del Chaco",
+    "headline": "Del Excel a SQL Server, con gestión web del inventario.",
+    "contribution": "Desarrollo individual.",
+    "scope": "Backend en Go con SQL Server para equipos, insumos, préstamos e historial de movimientos. Importa y exporta Excel para migrar y respaldar datos.",
+    "status": "En desarrollo avanzado.",
+    "statusTone": "progress",
+    "description": "Aplicación interna en Go para administrar equipos, stock de insumos, préstamos e historial de movimientos desde una interfaz web, con resumen y reportes.",
+    "problem": "La búsqueda y administración manual del inventario en Excel dificultaba acceder a la información y gestionar los dispositivos.",
+    "solution": "Una API REST en Go con interfaz web: CRUD, búsqueda, filtros, orden y paginación. Los datos viven en SQL Server; Excel queda para importar y exportar.",
+    "challenge": "El inventario se buscaba y administraba a mano en planillas de Excel.",
+    "result": "Gestión web con SQL Server: búsqueda, filtros, préstamos e historial de movimientos.",
+    "stack": [
+      "Go",
+      "SQL Server",
+      "excelize",
+      "Docker Compose"
+    ],
+    "technicalNotes": [
+      "Capas separadas: handlers HTTP, servicios con la lógica de negocio y repositorios intercambiables (SQL Server o Excel) detrás de una misma interfaz.",
+      "Migraciones SQL y herramientas de línea de comandos para preparar la base y migrar los datos desde las planillas.",
+      "Movimientos de stock (entrada, salida, ajuste y transferencia), préstamos con vencimiento al cierre de la jornada, resumen y reportes.",
+      "Docker Compose con un contenedor endurecido: sistema de archivos de solo lectura, sin privilegios adicionales y logs rotados.",
+      "Tests en Go para handlers, servicios y repositorios, y tests del frontend."
+    ],
+    "repositoryUrl": "https://github.com/Franc0-1/Sistema_Inventario_GO",
+    "repositoryPrivate": true,
+    "demoUrl": null,
+    "image": {
+      "src": "./assets/screenshots/inventory-light.png",
+      "darkSrc": "./assets/screenshots/inventory-dark.png",
+      "alt": "Captura real de Sistema de Inventario con datos de ejemplo.",
+      "width": 1440,
+      "height": 960,
+      "caption": "Interfaz real · Datos de ejemplo"
+    },
+    "en": {
+      "name": "Inventory System",
+      "category": "Internal tools",
+      "context": "Internship · Government House of the Province of Chaco",
+      "headline": "From Excel to SQL Server, with web-based inventory management.",
+      "contribution": "Solo development.",
+      "scope": "Go backend with SQL Server for equipment, supplies, loans and movement history. Imports and exports Excel to migrate and back up data.",
+      "status": "In advanced development.",
+      "description": "Internal Go application to manage equipment, supply stock, loans and movement history from a web interface, with a summary and reports.",
+      "problem": "Searching and managing the inventory by hand in Excel made it hard to access the information and manage the devices.",
+      "solution": "A Go REST API with a web interface: CRUD, search, filters, sorting and pagination. Data lives in SQL Server; Excel remains for import and export.",
+      "challenge": "The inventory was searched and managed by hand in Excel spreadsheets.",
+      "result": "Web-based management with SQL Server: search, filters, loans and movement history.",
+      "technicalNotes": [
+        "Separate layers: HTTP handlers, services with the business logic and interchangeable repositories (SQL Server or Excel) behind the same interface.",
+        "SQL migrations and command-line tools to set up the database and migrate the data from the spreadsheets.",
+        "Stock movements (in, out, adjustment and transfer), loans that expire at the end of the workday, summary and reports.",
+        "Docker Compose with a hardened container: read-only file system, no extra privileges and rotated logs.",
+        "Go tests for handlers, services and repositories, plus frontend tests."
+      ],
+      "image": {
+        "alt": "Real screenshot of the Inventory System with sample data.",
+        "caption": "Real interface · Sample data",
+        "previewLabel": "Enlarge Inventory System screenshot"
+      }
+    }
+  },
+  {
+    "id": "actas",
+    "name": "Generador de Actas",
+    "category": "Automatización administrativa",
+    "context": "Pasantía · Casa de Gobierno de la Provincia del Chaco",
+    "headline": "Documentos administrativos, generados desde la web.",
+    "contribution": "Desarrollo individual.",
+    "scope": "API HTTP e interfaz web para generar DOCX y convertirlos a PDF con LibreOffice.",
+    "status": "Terminado.",
+    "statusTone": "done",
+    "description": "Sistema en Go que genera actas dinámicas en DOCX y automatiza su conversión a PDF con LibreOffice headless.",
+    "problem": "La preparación de actas administrativas requiere completar información, validar los datos y producir documentos en los formatos necesarios.",
+    "solution": "Una interfaz web conectada a una API HTTP genera los documentos, asigna nombres automáticos a los archivos y los convierte de DOCX a PDF.",
+    "challenge": "Cada acta requiere completar datos, validarlos y producir el documento en el formato correcto.",
+    "result": "Un formulario web genera el acta en DOCX y PDF, con nombre de archivo automático.",
+    "stack": [
+      "Go",
+      "LibreOffice",
+      "Docker Compose",
+      "Proxmox"
+    ],
+    "technicalNotes": [
+      "API HTTP en Go e interfaz web para la carga de datos y generación de actas.",
+      "LibreOffice en modo headless para automatizar la conversión de DOCX a PDF.",
+      "Docker y Docker Compose para ejecutar el servicio desplegado en Proxmox."
+    ],
+    "repositoryUrl": "https://github.com/Franc0-1/Gen-Actas-Entrega",
+    "repositoryPrivate": true,
+    "demoUrl": null,
+    "image": {
+      "src": "./assets/screenshots/actas-light.png",
+      "darkSrc": "./assets/screenshots/actas-dark.png",
+      "alt": "Captura real de Generador de Actas con datos de ejemplo.",
+      "width": 820,
+      "height": 899,
+      "caption": "Interfaz real · Datos de ejemplo"
+    },
+    "en": {
+      "name": "Records Generator",
+      "category": "Administrative automation",
+      "context": "Internship · Government House of the Province of Chaco",
+      "headline": "Administrative documents, generated from the web.",
+      "contribution": "Solo development.",
+      "scope": "HTTP API and web interface that generate DOCX files and convert them to PDF with LibreOffice.",
+      "status": "Completed.",
+      "description": "Go system that generates dynamic administrative records as DOCX and automates their conversion to PDF with headless LibreOffice.",
+      "problem": "Preparing administrative records requires filling in information, validating the data and producing documents in the required formats.",
+      "solution": "A web interface connected to an HTTP API generates the documents, names the files automatically and converts them from DOCX to PDF.",
+      "challenge": "Each record requires filling in data, validating it and producing the document in the right format.",
+      "result": "A web form generates the record as DOCX and PDF, with an automatic file name.",
+      "technicalNotes": [
+        "Go HTTP API and web interface to enter data and generate records.",
+        "LibreOffice in headless mode to automate the DOCX to PDF conversion.",
+        "Docker and Docker Compose to run the service deployed on Proxmox."
+      ],
+      "image": {
+        "alt": "Real screenshot of the Records Generator with sample data.",
+        "caption": "Real interface · Sample data",
+        "previewLabel": "Enlarge Records Generator screenshot"
+      }
+    }
+  },
+  {
+    "id": "horizonte-global",
+    "name": "Horizonte Global",
+    "category": "Frontend / Demo visual",
+    "context": "Proyecto freelance",
+    "headline": "Landing y CRM para una agencia de viajes.",
+    "scope": "Landing multilingüe y CRM navegable en React con datos simulados; sin backend ni base de datos.",
+    "status": "Demo frontend.",
+    "statusTone": "demo",
+    "description": "Prototipo frontend para una agencia de viajes y movilidad internacional. Incluye una landing multilingüe y un CRM con clientes, casos, documentos, calendario y equipo, usando datos simulados.",
+    "problem": "Presentar la propuesta de la agencia y explorar visualmente cómo organizar clientes y procesos migratorios en una misma interfaz.",
+    "solution": "Una landing y un dashboard navegables en React. El alcance es una demo visual: no incluye backend, base de datos ni integración real con APIs.",
+    "challenge": "Presentar la agencia y organizar clientes y trámites migratorios en una misma interfaz.",
+    "result": "Landing multilingüe y CRM navegable en React, como demo visual con datos simulados.",
+    "stack": [
+      "React",
+      "React Router",
+      "Tailwind CSS",
+      "Vite"
+    ],
+    "technicalNotes": [
+      "Componentes para landing y dashboard, con navegación mediante React Router.",
+      "Tailwind CSS, Framer Motion y Lucide para estilos, transiciones e iconos.",
+      "Datos simulados en el propio frontend. El repositorio no contiene backend ni base de datos."
+    ],
+    "repositoryUrl": "https://github.com/Franc0-1/Agencia-de-Viajes-proyecto",
+    "demoUrl": null,
+    "image": {
+      "src": "./assets/screenshots/horizonte-global-light.png",
+      "alt": "Captura del dashboard original de Horizonte Global, demo frontend con datos simulados.",
+      "width": 1440,
+      "height": 960,
+      "caption": "Demo frontend · Datos simulados"
+    },
+    "en": {
+      "category": "Frontend / Visual demo",
+      "context": "Freelance project",
+      "headline": "Landing page and CRM for a travel agency.",
+      "scope": "Multilingual landing page and navigable CRM in React with mock data; no backend or database.",
+      "status": "Frontend demo.",
+      "description": "Frontend prototype for a travel and international mobility agency. It includes a multilingual landing page and a CRM with clients, cases, documents, calendar and team, using mock data.",
+      "problem": "Presenting the agency and visually exploring how to organize clients and immigration processes in a single interface.",
+      "solution": "A navigable landing page and dashboard in React. The scope is a visual demo: no backend, database or real API integration.",
+      "challenge": "Present the agency and organize clients and immigration procedures in a single interface.",
+      "result": "Multilingual landing page and navigable CRM in React, as a visual demo with mock data.",
+      "technicalNotes": [
+        "Components for the landing page and dashboard, with navigation through React Router.",
+        "Tailwind CSS, Framer Motion and Lucide for styles, transitions and icons.",
+        "Mock data inside the frontend itself. The repository has no backend or database."
+      ],
+      "image": {
+        "alt": "Screenshot of the original Horizonte Global dashboard, a frontend demo with mock data.",
+        "caption": "Frontend demo · Mock data",
+        "previewLabel": "Enlarge Horizonte Global screenshot"
+      }
+    }
+  }
+]

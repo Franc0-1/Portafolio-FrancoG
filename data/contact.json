@@ -1,0 +1,17 @@
+{
+  "email": "ffrancc0gtl@gmail.com",
+  "linkedinUrl": "https://www.linkedin.com/in/franco-gutierrez-tech",
+  "whatsapp": "5493624669203",
+  "cv": [
+    {
+      "label": "Español",
+      "lang": "es",
+      "file": "./assets/cv/Franco-Gutierrez-CV-Desarrollador-de-Software-ES.pdf"
+    },
+    {
+      "label": "English",
+      "lang": "en",
+      "file": "./assets/cv/Franco-Gutierrez-CV-Software-Developer-EN.pdf"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" fill="#dfe5ed"/>
+  <circle cx="605" cy="365" r="263" fill="#cad5e3"/>
+  <path d="M0 579H1200" stroke="#b8c6d8"/>
+  <g transform="translate(245 180) rotate(-8 260 200)" stroke="#3d536e" stroke-width="3" stroke-linejoin="round">
+    <path d="M0 75V18Q0 0 18 0H167L209 45H481Q500 45 500 64V360H0Z" fill="#7e95b0"/>
+    <path d="M38 8H434V307H38Z" fill="#f2f4f6"/>
+    <path d="M65 40H286M65 62H381M65 84H355" stroke="#b1bece" stroke-width="6"/>
+    <path d="M0 110H500L468 385H-24Z" fill="#bac9da"/>
+    <rect x="35" y="164" width="170" height="48" rx="3" fill="#eaf0f6"/>
+    <text x="54" y="195" font-family="Arial,sans-serif" font-size="18" letter-spacing="3" fill="#3d536e" stroke="none">CASOS</text>
+    <path d="M38 255H203M38 279H152" stroke="#7e95b0" stroke-width="6"/>
+  </g>
+  <g transform="translate(742 260) rotate(8 110 160)" stroke="#3d536e" stroke-width="3">
+    <rect width="220" height="306" rx="7" fill="#f2f4f6"/>
+    <path d="M35 55H184M35 82H155" stroke="#b1bece" stroke-width="7"/>
+    <circle cx="46" cy="143" r="12" fill="#3d536e"/>
+    <path d="M41 143 45 147 52 138" stroke="#f2f4f6" stroke-width="2"/>
+    <path d="M73 143H183M73 195H183M73 247H164" stroke="#b1bece" stroke-width="6"/>
+    <circle cx="46" cy="195" r="12"/>
+    <circle cx="46" cy="247" r="12"/>
+  </g>
+  <text x="48" y="703" fill="#3d536e" font-family="Arial,sans-serif" font-size="12" letter-spacing="3">CLIENTES / CASOS / DOCUMENTOS</text>
+</svg>

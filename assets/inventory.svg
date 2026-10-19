@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" fill="#dfe8dd"/>
+  <path d="M0 572H1200M180 0V750M1020 0V750" stroke="#c5d2c3"/>
+  <circle cx="628" cy="351" r="265" fill="#ceddc9"/>
+  <g stroke="#284b39" stroke-width="3" stroke-linejoin="round">
+    <path d="M775 479 922 397 1064 479 919 565Z" fill="#a5b99e"/>
+    <path d="M775 479V596L919 680V565ZM919 565V680L1064 596V479" fill="#c4d2b8"/>
+    <path d="M848 438 992 521V555L965 571V537L821 454Z" fill="#edf1e7"/>
+    <path d="M810 571 860 600M810 584 845 605" stroke-width="5"/>
+    <rect x="245" y="158" width="518" height="328" rx="17" fill="#284b39"/>
+    <rect x="263" y="178" width="482" height="286" rx="6" fill="#f2f5eb"/>
+    <path d="M245 486 169 557Q165 564 178 568H824Q837 564 831 557L763 486Z" fill="#c7d6c1"/>
+    <path d="M174 568V579Q174 588 187 588H814Q826 588 826 579V568Z" fill="#a5b99e"/>
+    <path d="M433 520H581L595 545H419Z" fill="#dfe8dd"/>
+    <rect x="296" y="207" width="68" height="226" rx="5" fill="#dfe8dd" stroke="none"/>
+    <path d="M312 232H347M312 256H337M312 280H347M312 304H332" stroke="#7d9c79" stroke-width="5"/>
+    <rect x="390" y="207" width="328" height="43" rx="4" fill="#284b39" stroke="none"/>
+    <path d="M410 228H500" stroke="#dfe8dd" stroke-width="6"/>
+    <rect x="390" y="271" width="97" height="62" rx="4" fill="#c4d5bc" stroke="none"/>
+    <rect x="503" y="271" width="97" height="62" rx="4" fill="#e5eadc" stroke="none"/>
+    <rect x="616" y="271" width="102" height="62" rx="4" fill="#e5eadc" stroke="none"/>
+    <path d="M390 357H718M390 382H718M390 407H718M446 345V431M644 345V431" stroke="#b8c8b1" stroke-width="2"/>
+  </g>
+  <g transform="translate(778 147) rotate(10)">
+    <rect width="204" height="104" rx="4" fill="#f4f5ed" stroke="#284b39" stroke-width="2"/>
+    <g stroke="#284b39"><path d="M26 23V66M34 23V66M42 23V66M56 23V66M65 23V66M80 23V66M89 23V66M97 23V66M110 23V66M124 23V66M132 23V66M145 23V66M158 23V66M174 23V66" stroke-width="4"/></g>
+    <text x="26" y="87" fill="#284b39" font-family="monospace" font-size="10" letter-spacing="4">INVENTARIO</text>
+  </g>
+  <text x="48" y="703" fill="#54725a" font-family="Arial,sans-serif" font-size="12" letter-spacing="3">DISPOSITIVOS / STOCK / MOVIMIENTOS</text>
+</svg>

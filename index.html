@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f5f0e6" />
+    <title>Franco Sebastian Gutierrez — Software Developer</title>
+    <meta name="description" content="Franco Sebastian Gutierrez. Software Developer en desarrollo web, backend y machine learning: APIs y herramientas internas en Go, modelos y servicios de inferencia en Python." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:title" content="Franco Sebastian Gutierrez — Software Developer" />
+    <meta property="og:description" content="Desarrollo web, backend y machine learning: APIs y herramientas internas en Go, modelos y servicios de inferencia en Python." />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="preload" href="./assets/fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./scripts/theme-init.js"></script>
+    <script src="./scripts/main.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="wordmark" href="#inicio" aria-label="Franco Gutierrez, inicio"><span class="brand-symbol" aria-hidden="true">fg.</span><span class="wordmark-text">Franco Gutierrez<small>Software Developer</small></span></a>
+        <nav class="site-nav" aria-label="Navegación principal">
+          <a class="nav-link" href="#proyectos">Software</a>
+          <a class="nav-link" href="#machine-learning">ML & Data</a>
+          <a class="nav-link" href="#servicios">Servicios</a>
+          <a class="nav-link" href="#perfil">Perfil</a>
+          <a class="nav-link" href="#contacto">Contacto</a>
+        </nav>
+        <div class="lang-switch"><span class="lang-current" aria-current="true">ES</span><a class="lang-link" href="./en/" hreflang="en" lang="en" data-lang-switch><span class="sr-only">English version: </span>EN</a></div>
+        <button class="theme-toggle" type="button" aria-label="Modo oscuro" aria-pressed="false" hidden>
+          <svg class="theme-icon theme-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.6 13.3A8.7 8.7 0 0 1 10.7 3.4a8.7 8.7 0 1 0 9.9 9.9Z" /></svg>
+          <svg class="theme-icon theme-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" /><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" /></svg>
+          <span class="sr-only">Modo oscuro</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="container">
+          <div class="hero-panel">
+            <div class="hero-intro">
+              <p class="hero-kicker"><span class="hero-dot" aria-hidden="true"></span>Franco Sebastian Gutierrez · Software Developer · Chaco, Argentina · Remoto</p>
+              <h1 id="hero-title">Web, backend y <span>machine learning.</span></h1>
+              <p class="hero-lead">Construyo APIs, herramientas internas y aplicaciones web con Go y React. Analizo datos, entreno y evalúo modelos con Python, e integro modelos en servicios con FastAPI y Docker.</p>
+              <div class="hero-actions">
+                <a class="btn btn--primary" href="#proyectos">Ver proyectos <span class="arrow arrow--down" aria-hidden="true">↓</span></a>
+                <!-- contact-action:start -->
+                <a class="btn btn--ghost-ink" href="#contacto">Contactarme</a><a class="hero-cv link-arrow" href="./assets/cv/Franco-Gutierrez-CV-Desarrollador-de-Software-ES.pdf" download hreflang="es">Descargar CV <span class="arrow arrow--down" aria-hidden="true">↓</span></a>
+                <!-- contact-action:end -->
+                <a class="hero-github link-arrow" href="https://github.com/Franc0-1">GitHub <span class="arrow" aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+            <nav class="hero-index" aria-labelledby="index-title">
+              <p class="index-title" id="index-title">Índice de proyectos</p>
+              <!-- project-index:start -->
+              <div class="index-group"><p class="index-label">Software</p><ol><li><a href="#inventario"><span class="index-num">01</span><span class="index-name">Sistema de Inventario<small>Go · SQL Server · excelize</small></span><span class="state state--progress">En desarrollo avanzado</span></a></li><li><a href="#actas"><span class="index-num">02</span><span class="index-name">Generador de Actas<small>Go · LibreOffice · Docker Compose</small></span><span class="state state--done">Terminado</span></a></li><li><a href="#horizonte-global"><span class="index-num">03</span><span class="index-name">Horizonte Global<small>React · React Router · Tailwind CSS</small></span><span class="state state--demo">Demo frontend</span></a></li></ol></div>
+          <div class="index-group"><p class="index-label">ML & Data</p><ol start="4"><li><a href="#image-classification"><span class="index-num">04</span><span class="index-name">Clasificador de imágenes<small>Python · FastAPI · Streamlit</small></span></a></li><li><a href="#home-credit"><span class="index-num">05</span><span class="index-name">Home Credit: riesgo crediticio<small>Logistic Regression · Random Forest · LightGBM</small></span><span class="state state--metric">AUC 0,7551</span></a></li><li><a href="#revenue-delivery"><span class="index-num">06</span><span class="index-name">Ingresos y tiempos de entrega<small>Python · Pandas · SQLite</small></span></a></li></ol></div>
+              <!-- project-index:end -->
+            </nav>
+            <dl class="hero-profile">
+              <div><dt>Web & backend</dt><dd>Go · FastAPI · React · SQL Server</dd></div>
+              <div><dt>Machine learning</dt><dd>Scikit-learn · LightGBM · TensorFlow</dd></div>
+              <div><dt>Datos & infraestructura</dt><dd>Pandas · Redis · Docker · Linux</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- projects:start -->
+      <section class="section projects-section" id="proyectos" aria-labelledby="projects-title">
+      <div class="container">
+        <header class="section-head" data-reveal><p class="section-label"><span>01</span> Software</p><div><h2 id="projects-title">Herramientas internas y aplicaciones web.</h2><p>Dos sistemas en Go que automatizan trabajo administrativo, inventario y actas, y una demo frontend en React.</p></div></header>
+        <div class="project-list">
+    <article class="project project--feature" id="inventario" aria-labelledby="inventario-title" data-reveal>
+      <header class="project-head">
+        <p class="item-meta"><span class="item-num">01</span><span>Herramientas internas</span></p>
+        <h3 id="inventario-title">Sistema de Inventario</h3>
+        <p class="project-headline">Del Excel a SQL Server, con gestión web del inventario.</p>
+        <p class="project-context">Pasantía · Casa de Gobierno de la Provincia del Chaco</p>
+      </header>
+      <div class="project-media"><figure class="frame">
+        <figcaption class="frame-bar">Interfaz real · Datos de ejemplo</figcaption>
+        <a class="frame-link" href="./assets/screenshots/inventory-light.png" target="_blank" rel="noopener" data-project-preview data-project-name="Sistema de Inventario" data-caption="Interfaz real · Datos de ejemplo" data-light-src="./assets/screenshots/inventory-light.png" data-dark-src="./assets/screenshots/inventory-dark.png" aria-label="Ampliar captura de Sistema de Inventario"><picture data-theme-picture><source media="(prefers-color-scheme: dark)" srcset="./assets/screenshots/inventory-dark.webp" /><img src="./assets/screenshots/inventory-light.webp" alt="Captura real de Sistema de Inventario con datos de ejemplo." loading="lazy" decoding="async" width="1440" height="960" /></picture><span class="frame-zoom" aria-hidden="true">Ampliar ↗</span></a>
+      </figure></div>
+      <div class="project-body">
+        <dl class="outcome"><div><dt>Desafío</dt><dd>El inventario se buscaba y administraba a mano en planillas de Excel.</dd></div><div><dt>Resultado</dt><dd>Gestión web con SQL Server: búsqueda, filtros, préstamos e historial de movimientos.</dd></div></dl>
+        <dl class="spec"><div class="spec-row"><dt>Mi aporte</dt><dd>Desarrollo individual</dd></div><div class="spec-row"><dt>Estado</dt><dd><span class="state state--progress">En desarrollo avanzado</span></dd></div><div class="spec-row spec-row--wide"><dt>Alcance</dt><dd>Backend en Go con SQL Server para equipos, insumos, préstamos e historial de movimientos. Importa y exporta Excel para migrar y respaldar datos.</dd></div><div class="spec-row spec-row--wide"><dt>Stack</dt><dd><ul class="tags" aria-label="Tecnologías de Sistema de Inventario"><li>Go</li><li>SQL Server</li><li>excelize</li><li>Docker Compose</li></ul></dd></div></dl>
+        <div class="project-actions"><span class="private-note">Código privado · herramienta interna</span></div>
+        <details class="disclosure"><summary aria-label="Más detalles de Sistema de Inventario">Más detalles<span class="disclosure-icon" aria-hidden="true"></span></summary>
+          <div class="disclosure-body">
+            <p>Aplicación interna en Go para administrar equipos, stock de insumos, préstamos e historial de movimientos desde una interfaz web, con resumen y reportes.</p>
+            <dl class="context"><div><dt>Problema</dt><dd>La búsqueda y administración manual del inventario en Excel dificultaba acceder a la información y gestionar los dispositivos.</dd></div><div><dt>Solución</dt><dd>Una API REST en Go con interfaz web: CRUD, búsqueda, filtros, orden y paginación. Los datos viven en SQL Server; Excel queda para importar y exportar.</dd></div></dl>
+            <ul><li>Capas separadas: handlers HTTP, servicios con la lógica de negocio y repositorios intercambiables (SQL Server o Excel) detrás de una misma interfaz.</li><li>Migraciones SQL y herramientas de línea de comandos para preparar la base y migrar los datos desde las planillas.</li><li>Movimientos de stock (entrada, salida, ajuste y transferencia), préstamos con vencimiento al cierre de la jornada, resumen y reportes.</li><li>Docker Compose con un contenedor endurecido: sistema de archivos de solo lectura, sin privilegios adicionales y logs rotados.</li><li>Tests en Go para handlers, servicios y repositorios, y tests del frontend.</li></ul>
+          </div>
+        </details>
+      </div>
+    </article>
+    <article class="project project--split" id="actas" aria-labelledby="actas-title" data-reveal>
+      <header class="project-head">
+        <p class="item-meta"><span class="item-num">02</span><span>Automatización administrativa</span></p>
+        <h3 id="actas-title">Generador de Actas</h3>
+        <p class="project-headline">Documentos administrativos, generados desde la web.</p>
+        <p class="project-context">Pasantía · Casa de Gobierno de la Provincia del Chaco</p>
+      </header>
+      <div class="project-media"><figure class="frame">
+        <figcaption class="frame-bar">Interfaz real · Datos de ejemplo</figcaption>
+        <a class="frame-link" href="./assets/screenshots/actas-light.png" target="_blank" rel="noopener" data-project-preview data-project-name="Generador de Actas" data-caption="Interfaz real · Datos de ejemplo" data-light-src="./assets/screenshots/actas-light.png" data-dark-src="./assets/screenshots/actas-dark.png" aria-label="Ampliar captura de Generador de Actas"><picture data-theme-picture><source media="(prefers-color-scheme: dark)" srcset="./assets/screenshots/actas-dark.webp" /><img src="./assets/screenshots/actas-light.webp" alt="Captura real de Generador de Actas con datos de ejemplo." loading="lazy" decoding="async" width="820" height="899" /></picture><span class="frame-zoom" aria-hidden="true">Ampliar ↗</span></a>
+      </figure></div>
+      <div class="project-body">
+        <dl class="outcome"><div><dt>Desafío</dt><dd>Cada acta requiere completar datos, validarlos y producir el documento en el formato correcto.</dd></div><div><dt>Resultado</dt><dd>Un formulario web genera el acta en DOCX y PDF, con nombre de archivo automático.</dd></div></dl>
+        <dl class="spec"><div class="spec-row"><dt>Mi aporte</dt><dd>Desarrollo individual</dd></div><div class="spec-row"><dt>Estado</dt><dd><span class="state state--done">Terminado</span></dd></div><div class="spec-row spec-row--wide"><dt>Alcance</dt><dd>API HTTP e interfaz web para generar DOCX y convertirlos a PDF con LibreOffice.</dd></div><div class="spec-row spec-row--wide"><dt>Stack</dt><dd><ul class="tags" aria-label="Tecnologías de Generador de Actas"><li>Go</li><li>LibreOffice</li><li>Docker Compose</li><li>Proxmox</li></ul></dd></div></dl>
+        <div class="project-actions"><span class="private-note">Código privado · herramienta interna</span></div>
+        <details class="disclosure"><summary aria-label="Más detalles de Generador de Actas">Más detalles<span class="disclosure-icon" aria-hidden="true"></span></summary>
+          <div class="disclosure-body">
+            <p>Sistema en Go que genera actas dinámicas en DOCX y automatiza su conversión a PDF con LibreOffice headless.</p>
+            <dl class="context"><div><dt>Problema</dt><dd>La preparación de actas administrativas requiere completar información, validar los datos y producir documentos en los formatos necesarios.</dd></div><div><dt>Solución</dt><dd>Una interfaz web conectada a una API HTTP genera los documentos, asigna nombres automáticos a los archivos y los convierte de DOCX a PDF.</dd></div></dl>
+            <ul><li>API HTTP en Go e interfaz web para la carga de datos y generación de actas.</li><li>LibreOffice en modo headless para automatizar la conversión de DOCX a PDF.</li><li>Docker y Docker Compose para ejecutar el servicio desplegado en Proxmox.</li></ul>
+          </div>
+        </details>
+      </div>
+    </article>
+    <article class="project project--compact" id="horizonte-global" aria-labelledby="horizonte-global-title" data-reveal>
+      <header class="project-head">
+        <p class="item-meta"><span class="item-num">03</span><span>Frontend / Demo visual</span></p>
+        <h3 id="horizonte-global-title">Horizonte Global</h3>
+        <p class="project-headline">Landing y CRM para una agencia de viajes.</p>
+        <p class="project-context">Proyecto freelance</p>
+      </header>
+      <div class="project-media"><figure class="frame">
+        <figcaption class="frame-bar">Demo frontend · Datos simulados</figcaption>
+        <a class="frame-link" href="./assets/screenshots/horizonte-global-light.png" target="_blank" rel="noopener" data-project-preview data-project-name="Horizonte Global" data-caption="Demo frontend · Datos simulados" data-light-src="./assets/screenshots/horizonte-global-light.png" aria-label="Ampliar captura de Horizonte Global"><picture><img src="./assets/screenshots/horizonte-global-light.webp" alt="Captura del dashboard original de Horizonte Global, demo frontend con datos simulados." loading="lazy" decoding="async" width="1440" height="960" /></picture><span class="frame-zoom" aria-hidden="true">Ampliar ↗</span></a>
+      </figure></div>
+      <div class="project-body">
+        <dl class="outcome"><div><dt>Desafío</dt><dd>Presentar la agencia y organizar clientes y trámites migratorios en una misma interfaz.</dd></div><div><dt>Resultado</dt><dd>Landing multilingüe y CRM navegable en React, como demo visual con datos simulados.</dd></div></dl>
+        <dl class="spec"><div class="spec-row spec-row--wide"><dt>Estado</dt><dd><span class="state state--demo">Demo frontend</span></dd></div><div class="spec-row spec-row--wide"><dt>Alcance</dt><dd>Landing multilingüe y CRM navegable en React con datos simulados; sin backend ni base de datos.</dd></div><div class="spec-row spec-row--wide"><dt>Stack</dt><dd><ul class="tags" aria-label="Tecnologías de Horizonte Global"><li>React</li><li>React Router</li><li>Tailwind CSS</li><li>Vite</li></ul></dd></div></dl>
+        <div class="project-actions"><a class="btn btn--outline btn--sm" href="https://github.com/Franc0-1/Agencia-de-Viajes-proyecto" aria-label="Repositorio de Horizonte Global">Ver repositorio <span class="arrow" aria-hidden="true">↗</span></a></div>
+        <details class="disclosure"><summary aria-label="Más detalles de Horizonte Global">Más detalles<span class="disclosure-icon" aria-hidden="true"></span></summary>
+          <div class="disclosure-body">
+            <p>Prototipo frontend para una agencia de viajes y movilidad internacional. Incluye una landing multilingüe y un CRM con clientes, casos, documentos, calendario y equipo, usando datos simulados.</p>
+            <dl class="context"><div><dt>Problema</dt><dd>Presentar la propuesta de la agencia y explorar visualmente cómo organizar clientes y procesos migratorios en una misma interfaz.</dd></div><div><dt>Solución</dt><dd>Una landing y un dashboard navegables en React. El alcance es una demo visual: no incluye backend, base de datos ni integración real con APIs.</dd></div></dl>
+            <ul><li>Componentes para landing y dashboard, con navegación mediante React Router.</li><li>Tailwind CSS, Framer Motion y Lucide para estilos, transiciones e iconos.</li><li>Datos simulados en el propio frontend. El repositorio no contiene backend ni base de datos.</li></ul>
+          </div>
+        </details>
+      </div>
+    </article>
+        </div>
+        <aside class="more" aria-labelledby="more-title" data-reveal><h3 id="more-title" class="more-title">También en GitHub</h3><ul class="more-list"><li><a class="more-link" href="https://github.com/Franc0-1/Gestor-de-Ingresos" aria-label="Repositorio de Gestor de Ingresos"><span class="more-name">Gestor de Ingresos</span><span class="more-desc">Finanzas personales: ingresos, gastos, transferencias y dashboard por cuenta y moneda.</span><span class="more-stack">Go · React · TypeScript</span><span class="arrow" aria-hidden="true">↗</span></a></li><li><a class="more-link" href="https://github.com/Franc0-1/Lab3ProjectoFinal" aria-label="Repositorio de Gestión de pizzería"><span class="more-name">Gestión de pizzería</span><span class="more-desc">Proyecto académico full-stack: pedidos, roles, carrito y reportes en Excel y PDF.</span><span class="more-stack">Laravel · React · Inertia · MySQL</span><span class="arrow" aria-hidden="true">↗</span></a></li><li><a class="more-link" href="https://github.com/Franc0-1/LabPorjectZoo" aria-label="Repositorio de Gestión de zoológico"><span class="more-name">Gestión de zoológico</span><span class="more-desc">Aplicación de consola orientada a objetos. Proyecto de formación.</span><span class="more-stack">C#</span><span class="arrow" aria-hidden="true">↗</span></a></li></ul></aside>
+      </div>
+    </section>
+    <section class="section ml-section" id="machine-learning" aria-labelledby="ml-title">
+      <div class="container">
+        <header class="section-head" data-reveal><p class="section-label"><span>02</span> ML & Data</p><div><h2 id="ml-title">Modelos, inferencia y análisis de datos.</h2><p>Tres proyectos de AnyoneAI: un servicio de clasificación de imágenes, la comparación de modelos de riesgo crediticio y un pipeline ELT.</p></div></header>
+        <div class="ml-list">
+    <article class="ml-row" id="image-classification" aria-labelledby="image-classification-title" data-reveal>
+      <header class="ml-head">
+        <p class="item-meta"><span class="item-num">04</span><span>Visión por computadora</span></p>
+        <h3 id="image-classification-title">Clasificador de imágenes</h3>
+      </header>
+      <div class="ml-copy">
+        <p>API de clasificación con ResNet50 preentrenada. Streamlit permite cargar imágenes y Redis coordina el procesamiento de las predicciones.</p>
+        
+        <ul class="tags" aria-label="Tecnologías de Clasificador de imágenes"><li>Python</li><li>FastAPI</li><li>Streamlit</li><li>TensorFlow / Keras</li><li>Redis</li><li>Docker Compose</li></ul>
+        <div class="project-actions"><a class="btn btn--outline btn--sm" href="https://github.com/Franc0-1/AnyOne_AI_Sprint_3_Project/tree/master/Sprint_3-Franco_Gutierrez" aria-label="Repositorio de Clasificador de imágenes">Ver repositorio <span class="arrow" aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="ml-media"><figure class="frame frame--crop">
+        <figcaption class="frame-bar">Interfaz del proyecto · Ejemplo de inferencia con un tucán</figcaption>
+        <a class="frame-link" href="./assets/ml/image-classifier.png" target="_blank" rel="noopener" data-project-preview data-project-name="Clasificador de imágenes" data-caption="Interfaz del proyecto · Ejemplo de inferencia con un tucán" data-light-src="./assets/ml/image-classifier.png" aria-label="Ampliar interfaz del Clasificador de imágenes"><picture><img src="./assets/ml/image-classifier.webp" alt="Interfaz Streamlit del clasificador con la imagen de un tucán y la predicción toucan." loading="lazy" decoding="async" width="1252" height="1580" /></picture><span class="frame-zoom" aria-hidden="true">Ampliar ↗</span></a>
+      </figure></div>
+      <details class="disclosure ml-details"><summary aria-label="Enfoque técnico de Clasificador de imágenes">Enfoque técnico<span class="disclosure-icon" aria-hidden="true"></span></summary><div class="disclosure-body"><ul><li>Separación de la interfaz, la API y el worker de inferencia en servicios con Docker Compose.</li><li>El worker recibe trabajos desde una cola Redis y guarda la clase predicha y su puntuación con el identificador del trabajo.</li><li>Las imágenes se redimensionan a 224 × 224 píxeles y se preprocesan para ResNet50. Se devuelve la categoría con mayor puntuación entre las clases de ImageNet.</li><li>El alcance es integrar un modelo preentrenado con una API y una interfaz de carga; las categorías disponibles son las de ImageNet.</li></ul></div></details>
+    </article>
+    <article class="ml-row" id="home-credit" aria-labelledby="home-credit-title" data-reveal>
+      <header class="ml-head">
+        <p class="item-meta"><span class="item-num">05</span><span>Modelos predictivos</span></p>
+        <h3 id="home-credit-title">Home Credit: riesgo crediticio</h3>
+      </header>
+      <div class="ml-copy">
+        <p>Análisis de 307.511 solicitudes de crédito y comparación de regresión logística, Random Forest y LightGBM para estimar el riesgo de dificultades de pago.</p>
+        <p class="metric"><strong class="metric-value">0,7551</strong><span class="metric-label">ROC AUC · Validación</span><span class="metric-context">LightGBM · 49.202 solicitudes en validación.</span></p>
+        <ul class="tags" aria-label="Tecnologías de Home Credit Risk Analysis"><li>Logistic Regression</li><li>Random Forest</li><li>LightGBM</li></ul>
+        <div class="project-actions"><a class="btn btn--outline btn--sm" href="https://github.com/Franc0-1/Sprint2-Project" aria-label="Repositorio de Home Credit Risk Analysis">Ver repositorio <span class="arrow" aria-hidden="true">↗</span></a><a class="link-arrow" href="https://github.com/Franc0-1/Sprint2-Project/blob/b05a0547fe5134da07ef6b91d1f806c87198dacb/AnyoneAI%20-%20Sprint%20Project%2002.ipynb" aria-label="Ver evaluación de Home Credit Risk Analysis">Ver evaluación <span class="arrow" aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="ml-media"><figure class="frame">
+        <figcaption class="frame-bar">Exploración del dataset de entrenamiento · 8,03% con dificultades de pago</figcaption>
+        <a class="frame-link" href="./assets/ml/home-credit-distribution.png" target="_blank" rel="noopener" data-project-preview data-project-name="Home Credit Risk Analysis" data-caption="Exploración del dataset de entrenamiento · 8,03% con dificultades de pago" data-light-src="./assets/ml/home-credit-distribution.png" aria-label="Ampliar gráfico de distribución de Home Credit"><picture><img src="./assets/ml/home-credit-distribution.webp" alt="Gráfico del notebook: distribución de las 246.008 solicitudes de entrenamiento, con 8,03% de casos con dificultades de pago." loading="lazy" decoding="async" width="1090" height="489" /></picture><span class="frame-zoom" aria-hidden="true">Ampliar ↗</span></a>
+      </figure></div>
+      <details class="disclosure ml-details"><summary aria-label="Enfoque técnico de Home Credit Risk Analysis">Enfoque técnico<span class="disclosure-icon" aria-hidden="true"></span></summary><div class="disclosure-body"><ul><li>Dataset: 246.008 solicitudes para entrenamiento y 61.503 para test. Del conjunto de entrenamiento se reserva un 20% para validación: 196.806 para entrenar y 49.202 para evaluar, con semilla 42.</li><li>ROC AUC en validación: 0,6772 con la regresión logística inicial, 0,7465 al integrarla en un pipeline, 0,7323 con Random Forest ajustado y 0,7551 con LightGBM.</li><li>LightGBM usa early stopping y alcanza su mejor iteración en la ronda 218. El resultado corresponde a la validación usada durante el ajuste, no al conjunto de test.</li><li>Métricas de las salidas guardadas en el notebook; el experimento no se volvió a ejecutar para este portfolio.</li></ul></div></details>
+    </article>
+    <article class="ml-row ml-row--text" id="revenue-delivery" aria-labelledby="revenue-delivery-title" data-reveal>
+      <header class="ml-head">
+        <p class="item-meta"><span class="item-num">06</span><span>Ingeniería y análisis de datos</span></p>
+        <h3 id="revenue-delivery-title">Ingresos y tiempos de entrega</h3>
+      </header>
+      <div class="ml-copy">
+        <p>Pipeline ELT para analizar ingresos y tiempos de entrega, segmentar por estados y categorías y visualizar tendencias del negocio.</p>
+        
+        <ul class="tags" aria-label="Tecnologías de Revenue and Delivery Trend Analysis"><li>Python</li><li>Pandas</li><li>SQLite</li><li>SQL</li></ul>
+        <div class="project-actions"><a class="btn btn--outline btn--sm" href="https://github.com/Franc0-1/AnyOneProject-Sprint-1" aria-label="Repositorio de Revenue and Delivery Trend Analysis">Ver repositorio <span class="arrow" aria-hidden="true">↗</span></a></div>
+      </div>
+      
+      <details class="disclosure ml-details"><summary aria-label="Enfoque técnico de Revenue and Delivery Trend Analysis">Enfoque técnico<span class="disclosure-icon" aria-hidden="true"></span></summary><div class="disclosure-body"><ul><li>Extracción, carga y transformación de datos para su consulta en SQLite mediante SQL.</li><li>Análisis de ingresos y tiempos de entrega con segmentación por estados y categorías, y visualización de resultados.</li></ul></div></details>
+    </article>
+        </div>
+      </div>
+    </section>
+      <!-- projects:end -->
+
+      <section class="section services-section" id="servicios" aria-labelledby="services-title">
+        <div class="container">
+          <header class="section-head" data-reveal><p class="section-label"><span>03</span> Servicios</p><div><h2 id="services-title" class="title-wide">¿En qué puedo ayudarte?</h2><p>Trabajo de forma remota con equipos y clientes de Argentina y otros países, en desarrollo de software y en machine learning.</p></div></header>
+          <div class="services" data-reveal>
+            <div class="service-group">
+              <h3 class="service-group-title">Software</h3>
+              <ul class="service-list">
+                <li class="service"><h4>Herramientas internas a medida</h4><p>Sistemas web para gestionar inventario, stock, préstamos u otros procesos que hoy viven en planillas, con base de datos y acceso desde el navegador.</p><a class="service-proof" href="#inventario">Ejemplo: Sistema de Inventario</a></li>
+                <li class="service"><h4>Automatización de documentos</h4><p>Actas, informes o formularios generados en DOCX y PDF a partir de datos cargados en una web, sin copiar y pegar.</p><a class="service-proof" href="#actas">Ejemplo: Generador de Actas</a></li>
+                <li class="service"><h4>Sitios y aplicaciones web</h4><p>Landings y paneles en React para presentar un negocio u organizar clientes y procesos.</p><a class="service-proof" href="#horizonte-global">Ejemplo: Horizonte Global</a></li>
+              </ul>
+            </div>
+            <div class="service-group">
+              <h3 class="service-group-title">ML & Data</h3>
+              <ul class="service-list">
+                <li class="service"><h4>Análisis de datos</h4><p>Limpieza, exploración y consultas sobre tus datos para entender ventas, tiempos o tendencias del negocio.</p><a class="service-proof" href="#revenue-delivery">Ejemplo: Ingresos y tiempos de entrega</a></li>
+                <li class="service"><h4>Modelos predictivos</h4><p>Comparación de modelos y métricas de validación para estimar riesgos o resultados a partir de datos históricos.</p><a class="service-proof" href="#home-credit">Ejemplo: Home Credit</a></li>
+                <li class="service"><h4>Integración de modelos en tu sistema</h4><p>Modelos servidos a través de una API para clasificar imágenes o datos dentro de una aplicación.</p><a class="service-proof" href="#image-classification">Ejemplo: Clasificador de imágenes</a></li>
+              </ul>
+            </div>
+            <div class="services-cta"><a class="btn btn--ink" href="#contacto">Contame tu proyecto</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section about-section" id="perfil" aria-labelledby="about-title">
+        <div class="container">
+          <header class="section-head" data-reveal><p class="section-label"><span>04</span> Perfil</p><div><h2 id="about-title" class="title-wide">Tan cómodo construyendo una API como entrenando un modelo.</h2></div></header>
+          <div class="about-grid">
+            <div class="about-copy" data-reveal>
+              <p class="about-lead">Soy Franco, desarrollador de software. Trabajo en dos frentes con la misma dedicación: el desarrollo web y backend, y el machine learning.</p>
+              <p>En web construyo APIs, herramientas internas e interfaces con Go, Python y React, y me ocupo de cómo se despliegan con Docker y Linux.</p>
+              <p>En machine learning, con formación en AnyoneAI, analizo datos, entreno y comparo modelos con Scikit-learn y LightGBM, e integro modelos en servicios con FastAPI y Redis.</p>
+              <p>Puedo sumarme a un equipo desde cualquiera de los dos lados y aprovecho los proyectos que necesitan ambos.</p>
+              <a class="link-arrow" href="https://github.com/Franc0-1">Ver mi perfil de GitHub <span class="arrow" aria-hidden="true">↗</span></a>
+            </div>
+            <dl class="about-facts" data-reveal>
+              <div><dt>Rol</dt><dd>Desarrollo web, backend y ML</dd></div>
+              <div><dt>Lenguajes principales</dt><dd>Go · Python · JavaScript</dd></div>
+              <div><dt>Ubicación</dt><dd>Chaco, Argentina · trabajo remoto</dd></div>
+              <div><dt>Idiomas</dt><dd>Español nativo · inglés avanzado</dd></div>
+              <div><dt>Disponible para</dt><dd>Empleo y freelance, Argentina y exterior</dd></div>
+            </dl>
+            <div class="experience" data-reveal>
+              <h3 class="stack-title">Experiencia y formación</h3>
+              <ol class="experience-list">
+                <li class="experience-item"><p class="experience-kind">Pasantía</p><div><p class="experience-role">Desarrollo de software</p><p class="experience-org">Casa de Gobierno de la Provincia del Chaco · desde abril de 2026</p></div><p class="experience-detail">Herramientas internas en Go: <a href="#inventario">Sistema de Inventario</a> con SQL Server y <a href="#actas">Generador de Actas</a>, desplegados con Docker en Proxmox.</p></li>
+                <li class="experience-item"><p class="experience-kind">Freelance</p><div><p class="experience-role">Desarrollo web</p><p class="experience-org">Proyectos para clientes</p></div><p class="experience-detail"><a href="#horizonte-global">Horizonte Global</a>: landing multilingüe y CRM en React para una agencia de viajes.</p></li>
+                <li class="experience-item"><p class="experience-kind">Formación</p><div><p class="experience-role">Machine Learning</p><p class="experience-org">AnyoneAI</p></div><p class="experience-detail"><a href="#image-classification">Clasificador de imágenes</a>, <a href="#home-credit">Home Credit</a> y <a href="#revenue-delivery">pipeline ELT</a> de ingresos y entregas.</p></li>
+                <li class="experience-item"><p class="experience-kind">Estudios</p><div><p class="experience-role">Tecnicatura Universitaria en Programación</p><p class="experience-org">UTN · Facultad Regional Resistencia</p></div><p class="experience-detail">En curso desde 2022.</p></li>
+              </ol>
+            </div>
+            <div class="stack" data-reveal>
+              <h3 class="stack-title">Herramientas y dónde se usan</h3>
+              <dl class="stack-list">
+                <div class="stack-row"><dt>Backend</dt><dd class="stack-tech">Go · Python · FastAPI</dd><dd class="stack-proof"><a href="#inventario">Inventario</a>, <a href="#actas">Actas</a>, <a href="#image-classification">Clasificador</a></dd></div>
+                <div class="stack-row"><dt>Frontend</dt><dd class="stack-tech">React · TypeScript · JavaScript · HTML · CSS</dd><dd class="stack-proof"><a href="#horizonte-global">Horizonte Global</a>, <a href="#actas">Actas</a>, <a href="#more-title">Gestor de Ingresos</a></dd></div>
+                <div class="stack-row"><dt>Datos</dt><dd class="stack-tech">SQL Server · PostgreSQL · SQLite · SQL · Redis · Excel / excelize</dd><dd class="stack-proof"><a href="#revenue-delivery">Ingresos</a>, <a href="#image-classification">Clasificador</a>, <a href="#inventario">Inventario</a></dd></div>
+                <div class="stack-row"><dt>Infraestructura</dt><dd class="stack-tech">Docker · Docker Compose · Linux · Proxmox</dd><dd class="stack-proof"><a href="#actas">Actas</a>, <a href="#image-classification">Clasificador</a></dd></div>
+                <div class="stack-row"><dt>Data & ML</dt><dd class="stack-tech">Pandas · Scikit-learn · TensorFlow / Keras · LightGBM</dd><dd class="stack-proof"><a href="#home-credit">Home Credit</a>, <a href="#image-classification">Clasificador</a></dd></div>
+                <div class="stack-row stack-row--other"><dt>También trabajé con</dt><dd class="stack-tech">Django / DRF · PHP / Laravel · Java · C · C#</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- contact:start -->
+      <section class="section contact-section" id="contacto" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-panel" data-reveal>
+          <div class="contact-copy"><p class="section-label"><span>05</span> Contacto</p><h2 id="contact-title">¿Tenés un puesto para cubrir o un proyecto en mente?</h2><p>Estoy disponible para oportunidades laborales y proyectos freelance, en Argentina y otros países. Escribime por el canal que te quede más cómodo.</p></div>
+          <ul class="channels"><li class="channel-item"><a class="channel" href="https://www.linkedin.com/in/franco-gutierrez-tech"><span class="channel-name">LinkedIn</span><span class="channel-purpose">Empleo y propuestas</span><span class="channel-value">linkedin.com/in/franco-gutierrez-tech <span class="arrow" aria-hidden="true">↗</span></span></a></li><li class="channel-item"><a class="channel" href="mailto:ffrancc0gtl@gmail.com"><span class="channel-name">Email</span><span class="channel-purpose">Empleo, freelance y consultas</span><span class="channel-value">ffrancc0gtl@gmail.com <span class="arrow" aria-hidden="true">↗</span></span></a><button class="channel-copy" type="button" data-copy="ffrancc0gtl@gmail.com" hidden><span data-copy-label>Copiar</span><span class="sr-only"> email</span></button></li><li class="channel-item"><a class="channel" href="https://wa.me/5493624669203?text=Hola%20Franco%2C%20vi%20tu%20portfolio%20y%20quer%C3%ADa%20consultarte%20por%20un%20proyecto."><span class="channel-name">WhatsApp</span><span class="channel-purpose">Proyectos freelance, Argentina y exterior</span><span class="channel-value">Escribir por WhatsApp <span class="arrow" aria-hidden="true">↗</span></span></a></li><li class="channel-item"><div class="channel channel--files"><span class="channel-name">CV</span><span class="channel-purpose">Desarrollador de software · PDF</span><span class="channel-value"><a class="cv-link" href="./assets/cv/Franco-Gutierrez-CV-Desarrollador-de-Software-ES.pdf" download hreflang="es">Español <span class="arrow arrow--down" aria-hidden="true">↓</span></a><a class="cv-link" href="./assets/cv/Franco-Gutierrez-CV-Software-Developer-EN.pdf" download hreflang="en">English <span class="arrow arrow--down" aria-hidden="true">↓</span></a></span></div></li><li class="channel-item"><a class="channel" href="https://github.com/Franc0-1"><span class="channel-name">GitHub</span><span class="channel-purpose">Código y repositorios</span><span class="channel-value">github.com/Franc0-1 <span class="arrow" aria-hidden="true">↗</span></span></a></li></ul>
+        </div>
+      </div>
+    </section>
+      <!-- contact:end -->
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="footer-name"><span class="brand-symbol brand-symbol--sm" aria-hidden="true">fg.</span>Franco Sebastian Gutierrez</p>
+        <p class="footer-note">Hecho con HTML, CSS y JavaScript nativo. Sin dependencias.</p>
+        <a class="link-arrow footer-top" href="#inicio">Volver arriba <span class="arrow arrow--up" aria-hidden="true">↑</span></a>
+      </div>
+    </footer>
+
+    <dialog class="project-preview" id="project-preview" aria-labelledby="preview-title">
+      <header><h2 id="preview-title">Captura del proyecto</h2><button type="button" data-preview-close aria-label="Cerrar captura" autofocus>×</button></header>
+      <div class="preview-image" data-preview-image></div>
+      <p>Interfaz real de la aplicación · Datos de ejemplo</p>
+    </dialog>
+  </body>
+</html>
