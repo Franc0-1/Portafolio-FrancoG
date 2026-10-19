@@ -39,7 +39,7 @@ const UI = {
       single: (name) => `${name} es el canal más directo.`, multiple: 'Escribime por el canal que te quede más cómodo.',
     },
     linkedin: 'Empleo y propuestas', email: 'Empleo, freelance y consultas', whatsapp: 'Proyectos freelance, Argentina y exterior',
-    whatsappDisplay: 'Escribir por WhatsApp', whatsappMessage: 'Hola Franco, vi tu portfolio y quería consultarte por un proyecto.',
+    whatsappDisplay: 'Escribir por WhatsApp', whatsappMessage: 'Hola Franco, vi tu portafolio y quería consultarte por un proyecto.',
     github: 'Código y repositorios', cv: 'Desarrollador de software · PDF', copy: 'Copiar',
     privateRepo: 'Código privado · herramienta interna',
     contactMe: 'Contactarme', downloadCv: 'Descargar CV',
