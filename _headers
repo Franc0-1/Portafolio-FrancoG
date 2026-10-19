@@ -1,0 +1,21 @@
+# Response headers for Cloudflare static assets. dist.mjs copies this file to the root of dist/.
+# The CSP allows only same-origin resources: adding a third-party script (analytics, embeds) needs its origin here.
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+
+# Font files never change under the same name: rename them when replacing a font.
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/screenshots/*
+  Cache-Control: public, max-age=604800
+
+/assets/ml/*
+  Cache-Control: public, max-age=604800
+
+/assets/og/*
+  Cache-Control: public, max-age=604800

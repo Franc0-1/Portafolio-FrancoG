@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
-const PUBLIC_FILES = ['index.html', 'en/index.html', '404.html', 'styles.css', 'scripts/main.js', 'scripts/theme-init.js', 'assets/favicon.svg', 'assets/favicon-32.png', 'assets/apple-touch-icon.png', 'robots.txt', 'sitemap.xml'];
+const PUBLIC_FILES = ['index.html', 'en/index.html', '404.html', 'styles.css', 'scripts/main.js', 'scripts/theme-init.js', 'assets/favicon.svg', 'assets/favicon-32.png', 'assets/apple-touch-icon.png', 'robots.txt', 'sitemap.xml', '_headers'];
 const PUBLIC_DIRS = { 'assets/fonts': ['.woff2'], 'assets/cv': ['.pdf'], 'assets/screenshots': ['.png', '.webp'], 'assets/ml': ['.png', '.webp'], 'assets/og': ['.png'] };
 
 if (relative(root, dist) !== 'dist') throw new Error('Refusing to clean an unexpected dist path.');

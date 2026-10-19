@@ -24,7 +24,10 @@ Abrir http://localhost:5173. También funciona abriendo `index.html` directament
 | `scripts/build.mjs` | Genera los bloques de proyectos, índice y contacto de ambas páginas a partir de `data/`. |
 | `scripts/dist.mjs` | Arma `dist/` con solo los archivos del sitio, listo para publicar. |
 | `data/` | Contenido de proyectos, repositorios adicionales y contacto. |
-| `assets/` | Fuentes (Archivo e IBM Plex Mono, licencia SIL OFL), capturas en PNG y WebP, CV en PDF y favicon. |
+| `assets/` | Fuentes (Archivo e IBM Plex Mono, licencia SIL OFL), capturas en PNG y WebP, CV en PDF, imágenes OpenGraph y favicon. |
+| `404.html`, `robots.txt`, `sitemap.xml` | Página de error y archivos para buscadores. |
+| `_headers` | Encabezados de seguridad (CSP) y caché que Cloudflare aplica a cada respuesta. |
+| `wrangler.jsonc` | Configuración del Worker de Cloudflare que sirve `dist/` en el dominio. |
 
 Las capturas muestran las aplicaciones reales con datos de ejemplo o simulados; no contienen información de usuarios.
 
@@ -62,9 +65,16 @@ node scripts/build.mjs
 node scripts/dist.mjs
 ```
 
-`dist/` contiene solo lo que el sitio necesita (incluida `404.html`, que Cloudflare Pages y Netlify muestran para cualquier dirección inexistente) y verifica que cada recurso enlazado exista. Subir esa carpeta al hosting (Netlify, Cloudflare Pages, GitHub Pages, etc.). No subir la carpeta del proyecto completa.
+`dist/` contiene solo lo que el sitio necesita y el script verifica que cada recurso enlazado exista.
 
-Pendiente al tener dominio: URL canónica, etiquetas `hreflang` con URLs absolutas e imagen OpenGraph.
+El sitio está publicado en https://francosgutierrez.dev con Cloudflare Workers. Cada push a `main` dispara el build configurado en Cloudflare:
+
+- Build: `node scripts/build.mjs && node scripts/dist.mjs`
+- Deploy: `npx wrangler deploy`
+
+`wrangler.jsonc` sirve `dist/` como archivos estáticos, muestra `404.html` para cualquier dirección inexistente y conecta el dominio con y sin `www`. Las URLs canónicas, `hreflang`, el sitemap y las imágenes OpenGraph apuntan a ese dominio; al cambiarlo, actualizar esos archivos.
+
+La política de seguridad de `_headers` solo permite recursos del propio sitio. Si se agrega un script externo (por ejemplo, estadísticas), hay que sumar su origen a la CSP.
 
 ## Accesibilidad y rendimiento
 
