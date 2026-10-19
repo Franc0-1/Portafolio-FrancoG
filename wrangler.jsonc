@@ -1,0 +1,15 @@
+// Cloudflare Worker that serves the static site built into dist/.
+// Build command: node scripts/build.mjs && node scripts/dist.mjs · Deploy command: npx wrangler deploy
+{
+  "name": "portafolio-francog",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "francosgutierrez.dev", "custom_domain": true },
+    { "pattern": "www.francosgutierrez.dev", "custom_domain": true }
+  ],
+  "workers_dev": true
+}

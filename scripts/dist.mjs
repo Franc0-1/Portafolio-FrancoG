@@ -6,8 +6,8 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
-const PUBLIC_FILES = ['index.html', 'en/index.html', 'styles.css', 'scripts/main.js', 'scripts/theme-init.js', 'assets/favicon.svg'];
-const PUBLIC_DIRS = { 'assets/fonts': ['.woff2'], 'assets/cv': ['.pdf'], 'assets/screenshots': ['.png', '.webp'], 'assets/ml': ['.png', '.webp'] };
+const PUBLIC_FILES = ['index.html', 'en/index.html', '404.html', 'styles.css', 'scripts/main.js', 'scripts/theme-init.js', 'assets/favicon.svg', 'assets/favicon-32.png', 'assets/apple-touch-icon.png', 'robots.txt', 'sitemap.xml'];
+const PUBLIC_DIRS = { 'assets/fonts': ['.woff2'], 'assets/cv': ['.pdf'], 'assets/screenshots': ['.png', '.webp'], 'assets/ml': ['.png', '.webp'], 'assets/og': ['.png'] };
 
 if (relative(root, dist) !== 'dist') throw new Error('Refusing to clean an unexpected dist path.');
 await rm(dist, { recursive: true, force: true });
@@ -31,7 +31,7 @@ const check = (from, ref) => {
   const file = target.endsWith('/') || target.endsWith('\\') ? join(target, 'index.html') : target;
   if (!existsSync(file)) missing.push(`${from} → ${ref}`);
 };
-for (const page of ['index.html', 'en/index.html']) {
+for (const page of ['index.html', 'en/index.html', '404.html']) {
   const html = await readFile(join(dist, page), 'utf8');
   for (const [, ref] of html.matchAll(/(?:href|src|srcset|data-(?:light|dark)-src)="([^"]+)"/g)) check(page, ref);
 }

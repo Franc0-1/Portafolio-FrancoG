@@ -93,9 +93,32 @@ document.querySelectorAll('[data-lang-switch]').forEach((link) => {
 
 // The header gains a divider once the page scrolls under it.
 const header = document.querySelector('.site-header');
-const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+// On phones the header slides away while scrolling down and returns when scrolling up.
+const compactHeader = window.matchMedia('(max-width: 640px)');
+let lastScrollY = window.scrollY;
+let ignoreScrollUntil = 0;
+const updateHeader = () => {
+  const y = window.scrollY;
+  header.classList.toggle('is-scrolled', y > 8);
+  if (!compactHeader.matches || y < 120) {
+    header.classList.remove('is-hidden');
+  } else if (performance.now() > ignoreScrollUntil) {
+    if (y > lastScrollY + 6) header.classList.add('is-hidden');
+    else if (y < lastScrollY - 6) header.classList.remove('is-hidden');
+  }
+  lastScrollY = y;
+};
 updateHeader();
 window.addEventListener('scroll', updateHeader, { passive: true });
+compactHeader.addEventListener('change', updateHeader);
+// After jumping to a section the header stays out of the way so it does not cover the heading.
+document.addEventListener('click', (event) => {
+  const link = event.target.closest('a[href^="#"]');
+  if (!link || !compactHeader.matches || link.hash.length < 2) return;
+  header.classList.add('is-hidden');
+  ignoreScrollUntil = performance.now() + 1200;
+});
+header.addEventListener('focusin', () => header.classList.remove('is-hidden'));
 
 if ('IntersectionObserver' in window) {
   // Mark the navigation link of the section crossing the middle of the viewport.

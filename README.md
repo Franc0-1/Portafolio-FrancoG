@@ -62,7 +62,7 @@ node scripts/build.mjs
 node scripts/dist.mjs
 ```
 
-`dist/` contiene solo lo que el sitio necesita y verifica que cada recurso enlazado exista. Subir esa carpeta al hosting (Netlify, Cloudflare Pages, GitHub Pages, etc.). No subir la carpeta del proyecto completa.
+`dist/` contiene solo lo que el sitio necesita (incluida `404.html`, que Cloudflare Pages y Netlify muestran para cualquier dirección inexistente) y verifica que cada recurso enlazado exista. Subir esa carpeta al hosting (Netlify, Cloudflare Pages, GitHub Pages, etc.). No subir la carpeta del proyecto completa.
 
 Pendiente al tener dominio: URL canónica, etiquetas `hreflang` con URLs absolutas e imagen OpenGraph.
 
@@ -72,3 +72,4 @@ Pendiente al tener dominio: URL canónica, etiquetas `hreflang` con URLs absolut
 - Contraste WCAG AA o superior en ambos temas; el tema respeta la preferencia del sistema hasta que se elige uno.
 - `prefers-reduced-motion` desactiva las animaciones. Sin JavaScript, todo el contenido es visible.
 - Fuentes autoalojadas en subconjunto latino, imágenes WebP con carga diferida y sin solicitudes a terceros.
+- Los colores se declaran con `light-dark()`. Para navegadores sin soporte (Safari anterior a 17.5), `build.mjs` genera en `styles.css` un bloque equivalente con valores fijos; no editarlo a mano.
