@@ -123,15 +123,17 @@ header.addEventListener('focusin', () => header.classList.remove('is-hidden'));
 if ('IntersectionObserver' in window) {
   // Mark the navigation link of the section crossing the middle of the viewport.
   const navLinks = new Map([...document.querySelectorAll('.nav-link')].map((link) => [link.hash.slice(1), link]));
+  // Fast jumps can report several sections at once, so exactly one link is marked from the current set.
+  const sectionsInBand = new Set();
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      const link = navLinks.get(entry.target.id);
-      if (entry.isIntersecting) {
-        navLinks.forEach((other) => other.removeAttribute('aria-current'));
-        link.setAttribute('aria-current', 'true');
-      } else if (link.hasAttribute('aria-current')) {
-        link.removeAttribute('aria-current');
-      }
+      if (entry.isIntersecting) sectionsInBand.add(entry.target.id);
+      else sectionsInBand.delete(entry.target.id);
+    });
+    const activeId = [...navLinks.keys()].find((id) => sectionsInBand.has(id));
+    navLinks.forEach((link, id) => {
+      if (id === activeId) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
   navLinks.forEach((_, id) => {

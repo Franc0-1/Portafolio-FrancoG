@@ -69,13 +69,18 @@
     ],
     "evaluationUrl": "https://github.com/Franc0-1/Sprint2-Project/blob/b05a0547fe5134da07ef6b91d1f806c87198dacb/AnyoneAI%20-%20Sprint%20Project%2002.ipynb",
     "repositoryUrl": "https://github.com/Franc0-1/Sprint2-Project",
-    "image": {
-      "src": "./assets/ml/home-credit-distribution.png",
-      "alt": "Gráfico del notebook: distribución de las 246.008 solicitudes de entrenamiento, con 8,03% de casos con dificultades de pago.",
-      "width": 1090,
-      "height": 489,
+    "chart": {
       "caption": "Exploración del dataset de entrenamiento · 8,03% con dificultades de pago",
-      "previewLabel": "Ampliar gráfico de distribución de Home Credit"
+      "label": "Variable objetivo · 246.008 solicitudes",
+      "labels": [
+        "Sin dificultades de pago",
+        "Con dificultades de pago"
+      ],
+      "counts": [
+        226257,
+        19751
+      ],
+      "source": "Redibujado con los valores de la salida del notebook."
     },
     "en": {
       "displayName": "Home Credit: credit risk",
@@ -90,10 +95,14 @@
         "LightGBM uses early stopping and reaches its best iteration at round 218. The result corresponds to the validation set used during tuning, not to the test set.",
         "Metrics come from the outputs saved in the notebook; the experiment was not rerun for this portfolio."
       ],
-      "image": {
-        "alt": "Notebook chart: distribution of the 246,008 training applications, with 8.03% of cases with payment difficulties.",
+      "chart": {
         "caption": "Training dataset exploration · 8.03% with payment difficulties",
-        "previewLabel": "Enlarge Home Credit distribution chart"
+        "label": "Target variable · 246,008 applications",
+        "labels": [
+          "No payment difficulties",
+          "Payment difficulties"
+        ],
+        "source": "Redrawn from the values in the notebook output."
       }
     }
   },

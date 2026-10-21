@@ -71,7 +71,11 @@ function localize(item, lang) {
   const { en, ...base } = item;
   if (lang === 'es') return base;
   if (!en) throw new Error(`Missing "${lang}" translation: ${item.id || item.name}`);
-  return { ...base, ...en, ...(base.image ? { image: { ...base.image, ...en.image } } : {}) };
+  return {
+    ...base, ...en,
+    ...(base.image ? { image: { ...base.image, ...en.image } } : {}),
+    ...(base.chart ? { chart: { ...base.chart, ...en.chart } } : {}),
+  };
 }
 
 function checkedUrl(url) {
@@ -106,6 +110,26 @@ function renderPage({ lang, base }) {
     return `<figure class="frame${image.type === 'interface' ? ' frame--crop' : ''}">
         <figcaption class="frame-bar">${caption}</figcaption>
         <a class="frame-link" href="${asset(image.src)}" target="_blank" rel="noopener" data-project-preview data-project-name="${escapeHtml(project.name)}" data-caption="${caption}" data-light-src="${asset(image.src)}"${image.darkSrc ? ` data-dark-src="${asset(image.darkSrc)}"` : ''} aria-label="${escapeHtml(image.previewLabel || t.zoomAria(project.name))}"><picture${image.darkSrc ? ' data-theme-picture' : ''}>${darkSource}<img src="${asset(inlineSource(image.src))}" alt="${escapeHtml(image.alt)}" loading="lazy" decoding="async" width="${Number(image.width)}" height="${Number(image.height)}" /></picture><span class="frame-zoom" aria-hidden="true">${t.zoom} ↗</span></a>
+      </figure>`;
+  }
+
+  // Data charts are drawn in HTML so they use the page's type and theme colors. Bars are inline SVG
+  // with presentation attributes because the CSP does not allow inline styles.
+  function renderChart(project) {
+    const chart = project.chart;
+    if (!chart.labels?.length || chart.labels.length !== chart.counts?.length) throw new Error(`Invalid chart: ${project.id}`);
+    const locale = lang === 'es' ? 'es-AR' : 'en-US';
+    const count = new Intl.NumberFormat(locale);
+    const share = new Intl.NumberFormat(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const total = chart.counts.reduce((sum, value) => sum + value, 0);
+    const rows = chart.labels.map((label, i) => {
+      const ratio = chart.counts[i] / total;
+      const tone = i === chart.labels.length - 1 ? 'accent' : 'base';
+      return `<div class="chart-row chart-row--${tone}"><dt>${escapeHtml(label)}</dt><dd class="chart-value"><strong>${share.format(ratio * 100)}%</strong> ${count.format(chart.counts[i])}</dd><dd class="chart-bar"><svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect class="chart-track" width="100" height="10" /><rect class="chart-fill" width="${(ratio * 100).toFixed(2)}" height="10" /></svg></dd></div>`;
+    }).join('');
+    return `<figure class="frame chart">
+        <figcaption class="frame-bar">${escapeHtml(chart.caption)}</figcaption>
+        <div class="chart-body"><p class="chart-label">${escapeHtml(chart.label)}</p><dl class="chart-rows">${rows}</dl>${chart.source ? `<p class="chart-source">${escapeHtml(chart.source)}</p>` : ''}</div>
       </figure>`;
   }
 
@@ -158,7 +182,8 @@ function renderPage({ lang, base }) {
 
   function renderMlProject(project, index) {
     const result = project.result ? `<p class="metric"><strong class="metric-value">${escapeHtml(project.result)}</strong><span class="metric-label">${escapeHtml(project.resultLabel)}</span>${project.resultContext ? `<span class="metric-context">${escapeHtml(project.resultContext)}</span>` : ''}</p>` : '';
-    return `<article class="ml-row${project.image ? '' : ' ml-row--text'}" id="${escapeHtml(project.id)}" aria-labelledby="${escapeHtml(project.id)}-title" data-reveal>
+    const media = project.image ? renderFigure(project) : project.chart ? renderChart(project) : '';
+    return `<article class="ml-row${media ? '' : ' ml-row--text'}" id="${escapeHtml(project.id)}" aria-labelledby="${escapeHtml(project.id)}-title" data-reveal>
       <header class="ml-head">
         ${meta(index, project.category)}
         <h3 id="${escapeHtml(project.id)}-title">${escapeHtml(project.displayName || project.name)}</h3>
@@ -169,7 +194,7 @@ function renderPage({ lang, base }) {
         ${tags(project)}
         <div class="project-actions">${externalLink(project.repositoryUrl, t.repo, t.repoAria(project.name), 'btn btn--outline btn--sm')}${externalLink(project.evaluationUrl, t.evaluation, t.evaluationAria(project.name))}</div>
       </div>
-      ${project.image ? `<div class="ml-media">${renderFigure(project)}</div>` : ''}
+      ${media ? `<div class="ml-media">${media}</div>` : ''}
       <details class="disclosure ml-details"><summary aria-label="${escapeHtml(t.technicalAria(project.name))}">${t.technical}<span class="disclosure-icon" aria-hidden="true"></span></summary><div class="disclosure-body"><ul>${project.technicalNotes.map((note) => `<li>${escapeHtml(note)}</li>`).join('')}</ul></div></details>
     </article>`;
   }
