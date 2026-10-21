@@ -28,15 +28,15 @@ const UI = {
     contribution: 'Mi aporte', status: 'Estado', scope: 'Alcance', stack: 'Stack', challenge: 'Desafío', result: 'Resultado',
     problem: 'Problema', solution: 'Solución', repo: 'Ver repositorio', demo: 'Ver demo', evaluation: 'Ver evaluación',
     moreDetails: 'Más detalles', technical: 'Enfoque técnico', zoom: 'Ampliar', alsoOnGithub: 'También en GitHub',
-    repoAria: (n) => `Repositorio de ${n}`, demoAria: (n) => `Demo de ${n}`, evaluationAria: (n) => `Ver evaluación de ${n}`,
+    repoAria: (n) => `Ver repositorio de ${n}`, demoAria: (n) => `Ver demo de ${n}`, evaluationAria: (n) => `Ver evaluación de ${n}`,
     moreAria: (n) => `Más detalles de ${n}`, technicalAria: (n) => `Enfoque técnico de ${n}`, zoomAria: (n) => `Ampliar captura de ${n}`,
     tagsAria: (n) => `Tecnologías de ${n}`,
     projectsSection: { label: 'Software', title: 'Herramientas internas y aplicaciones web.', lead: 'Dos sistemas en Go que automatizan trabajo administrativo, inventario y actas, y una demo frontend en React.' },
     mlSection: { label: 'ML & Data', title: 'Modelos, inferencia y análisis de datos.', lead: 'Tres proyectos de AnyoneAI: un servicio de clasificación de imágenes, la comparación de modelos de riesgo crediticio y un pipeline ELT.' },
     contactSection: {
-      label: 'Contacto', title: '¿Tenés un puesto para cubrir o un proyecto en mente?',
-      lead: 'Estoy disponible para oportunidades laborales y proyectos freelance, en Argentina y otros países.',
-      single: (name) => `${name} es el canal más directo.`, multiple: 'Escribime por el canal que te quede más cómodo.',
+      label: 'Contacto', title: '¿Tenés un proyecto en mente o un puesto para cubrir?',
+      lead: 'Estoy disponible para proyectos freelance y oportunidades laborales, en Argentina y otros países.',
+      single: (name) => `${name} es el canal más directo.`, multiple: 'Contame en pocas líneas qué necesitás resolver, por el canal que te quede más cómodo.',
     },
     linkedin: 'Empleo y propuestas', email: 'Empleo, freelance y consultas', whatsapp: 'Proyectos freelance, Argentina y exterior',
     whatsappDisplay: 'Escribir por WhatsApp', whatsappMessage: 'Hola Franco, vi tu portafolio y quería consultarte por un proyecto.',
@@ -48,15 +48,15 @@ const UI = {
     contribution: 'My role', status: 'Status', scope: 'Scope', stack: 'Stack', challenge: 'Challenge', result: 'Result',
     problem: 'Problem', solution: 'Solution', repo: 'View repository', demo: 'View demo', evaluation: 'View evaluation',
     moreDetails: 'More details', technical: 'Technical approach', zoom: 'Enlarge', alsoOnGithub: 'Also on GitHub',
-    repoAria: (n) => `${n} repository`, demoAria: (n) => `${n} demo`, evaluationAria: (n) => `View ${n} evaluation`,
+    repoAria: (n) => `View repository of ${n}`, demoAria: (n) => `View demo of ${n}`, evaluationAria: (n) => `View ${n} evaluation`,
     moreAria: (n) => `More details about ${n}`, technicalAria: (n) => `Technical approach of ${n}`, zoomAria: (n) => `Enlarge ${n} screenshot`,
     tagsAria: (n) => `${n} technologies`,
     projectsSection: { label: 'Software', title: 'Internal tools and web applications.', lead: 'Two Go systems that automate administrative work, inventory and records, plus a React frontend demo.' },
     mlSection: { label: 'ML & Data', title: 'Models, inference and data analysis.', lead: 'Three AnyoneAI projects: an image classification service, a comparison of credit risk models and an ELT pipeline.' },
     contactSection: {
-      label: 'Contact', title: 'Have a position to fill or a project in mind?',
-      lead: 'I’m available for job opportunities and freelance projects, in Argentina and abroad.',
-      single: (name) => `${name} is the most direct channel.`, multiple: 'Reach out through whichever channel suits you best.',
+      label: 'Contact', title: 'Have a project in mind or a position to fill?',
+      lead: 'I’m available for freelance projects and job opportunities, in Argentina and abroad.',
+      single: (name) => `${name} is the most direct channel.`, multiple: 'Tell me in a few lines what you need to solve, through whichever channel suits you best.',
     },
     linkedin: 'Jobs and proposals', email: 'Jobs, freelance and inquiries', whatsapp: 'Freelance projects, Argentina and abroad',
     whatsappDisplay: 'Message on WhatsApp', whatsappMessage: 'Hi Franco, I saw your portfolio and would like to ask about a project.',
@@ -204,20 +204,21 @@ function renderPage({ lang, base }) {
     </section>`;
 
   const channels = [];
-  if (contact.linkedinUrl) {
-    const url = new URL(contact.linkedinUrl);
-    if (url.protocol !== 'https:' || !['linkedin.com', 'www.linkedin.com'].includes(url.hostname)) throw new Error('Invalid LinkedIn contact URL');
-    channels.push({ name: 'LinkedIn', purpose: t.linkedin, href: contact.linkedinUrl, display: `${url.hostname.replace(/^www\./, '')}${url.pathname.replace(/\/$/, '')}` });
-  }
-  if (contact.email) {
-    if (!/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(contact.email)) throw new Error('Invalid contact email');
-    channels.push({ name: 'Email', purpose: t.email, href: `mailto:${contact.email}`, display: contact.email, copy: contact.email });
-  }
+  // Freelance clients usually write first: direct channels lead, LinkedIn follows.
   if (contact.whatsapp) {
     // International format without symbols, e.g. 5491112345678.
     const digits = String(contact.whatsapp).replace(/\D/g, '');
     if (!/^\d{8,15}$/.test(digits)) throw new Error('Invalid WhatsApp number');
     channels.push({ name: 'WhatsApp', purpose: t.whatsapp, href: `https://wa.me/${digits}?text=${encodeURIComponent(t.whatsappMessage)}`, display: t.whatsappDisplay });
+  }
+  if (contact.email) {
+    if (!/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(contact.email)) throw new Error('Invalid contact email');
+    channels.push({ name: 'Email', purpose: t.email, href: `mailto:${contact.email}`, display: contact.email, copy: contact.email });
+  }
+  if (contact.linkedinUrl) {
+    const url = new URL(contact.linkedinUrl);
+    if (url.protocol !== 'https:' || !['linkedin.com', 'www.linkedin.com'].includes(url.hostname)) throw new Error('Invalid LinkedIn contact URL');
+    channels.push({ name: 'LinkedIn', purpose: t.linkedin, href: contact.linkedinUrl, display: `${url.hostname.replace(/^www\./, '')}${url.pathname.replace(/\/$/, '')}` });
   }
   // The page's own language comes first, both in Contact and in the hero download link.
   const cvFiles = (contact.cv || []).map((cv) => {
