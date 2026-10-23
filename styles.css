@@ -329,7 +329,7 @@ a:hover > .arrow--up { transform: translateY(-2px); }
 /* ---------- Projects ---------- */
 /* Cards: one per project, each leading to its own page. Software opens with a wide feature card. */
 .cards { display: grid; gap: var(--s-8) var(--s-6); }
-.cards--software { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cards--software { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-7) var(--s-5); }
 .cards--ml { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-7) var(--s-5); }
 .card { position: relative; display: flex; flex-direction: column; gap: var(--s-4); }
 .card--feature { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: center; column-gap: clamp(28px, 4vw, 64px); padding-bottom: var(--s-8); border-bottom: 1px solid var(--line); }

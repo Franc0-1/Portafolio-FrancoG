@@ -36,7 +36,7 @@ const UI = {
     repoAria: (n) => `Ver repositorio de ${n}`, demoAria: (n) => `Ver demo de ${n}`, evaluationAria: (n) => `Ver evaluación de ${n}`,
     moreAria: (n) => `Más detalles de ${n}`, technicalAria: (n) => `Enfoque técnico de ${n}`, zoomAria: (n) => `Ampliar captura de ${n}`,
     tagsAria: (n) => `Tecnologías de ${n}`,
-    projectsSection: { label: 'Software', title: 'Herramientas internas y aplicaciones web.', lead: 'Dos sistemas en Go que automatizan trabajo administrativo, inventario y actas, dos demos frontend en React para proyectos freelance y una app personal.' },
+    projectsSection: { label: 'Software', title: 'Herramientas internas y aplicaciones web.', lead: 'Dos sistemas en Go que automatizan trabajo administrativo, inventario y actas, una demo frontend en React para un proyecto freelance y una app personal.' },
     mlSection: { label: 'ML & Data', title: 'Modelos, inferencia y análisis de datos.', lead: 'Tres proyectos de AnyoneAI: un servicio de clasificación de imágenes, la comparación de modelos de riesgo crediticio y un pipeline ELT.' },
     contactSection: {
       label: 'Contacto', title: '¿Tenés un proyecto en mente o un puesto para cubrir?',
@@ -59,7 +59,7 @@ const UI = {
     repoAria: (n) => `View repository of ${n}`, demoAria: (n) => `View demo of ${n}`, evaluationAria: (n) => `View ${n} evaluation`,
     moreAria: (n) => `More details about ${n}`, technicalAria: (n) => `Technical approach of ${n}`, zoomAria: (n) => `Enlarge ${n} screenshot`,
     tagsAria: (n) => `${n} technologies`,
-    projectsSection: { label: 'Software', title: 'Internal tools and web applications.', lead: 'Two Go systems that automate administrative work, inventory and records, two React frontend demos for freelance projects and a personal app.' },
+    projectsSection: { label: 'Software', title: 'Internal tools and web applications.', lead: 'Two Go systems that automate administrative work, inventory and records, a React frontend demo for a freelance project and a personal app.' },
     mlSection: { label: 'ML & Data', title: 'Models, inference and data analysis.', lead: 'Three AnyoneAI projects: an image classification service, a comparison of credit risk models and an ELT pipeline.' },
     contactSection: {
       label: 'Contact', title: 'Have a project in mind or a position to fill?',
