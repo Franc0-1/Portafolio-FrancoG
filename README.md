@@ -18,10 +18,11 @@ Abrir http://localhost:5173. También funciona abriendo `index.html` directament
 | Ruta | Contenido |
 | --- | --- |
 | `index.html`, `en/index.html` | Páginas en español e inglés. Comparten los IDs de sección; las rutas de la versión inglesa usan `../`. |
+| `proyectos/<id>/`, `en/projects/<id>/` | Página de cada proyecto, generada por `scripts/build.mjs` desde `data/`. No se editan a mano. |
 | `styles.css` | Tokens de diseño (color con `light-dark()`, tipografía, espaciado), componentes y responsive. |
 | `scripts/theme-init.js` | Aplica el tema guardado antes del primer render. |
 | `scripts/main.js` | Tema claro/oscuro, ampliación de capturas, navegación activa, copiar mail, selector de idioma y apariciones al hacer scroll. |
-| `scripts/build.mjs` | Genera los bloques de proyectos, índice y contacto de ambas páginas a partir de `data/`. |
+| `scripts/build.mjs` | Genera las tarjetas de proyectos y el contacto de ambas páginas, una página por proyecto y `sitemap.xml`, a partir de `data/`. |
 | `scripts/dist.mjs` | Arma `dist/` con solo los archivos del sitio, listo para publicar. |
 | `data/` | Contenido de proyectos, repositorios adicionales y contacto. |
 | `assets/` | Fuentes (Archivo e IBM Plex Mono, licencia SIL OFL), capturas en PNG y WebP, CV en PDF, imágenes OpenGraph y favicon. |

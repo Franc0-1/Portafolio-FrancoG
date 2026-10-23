@@ -66,6 +66,72 @@
     }
   },
   {
+    "id": "veta-muebles",
+    "name": "Veta Muebles",
+    "category": "Sitio web comercial / Demo de propuesta",
+    "context": "Proyecto freelance · Marca ficticia",
+    "headline": "Catálogo, configurador y presupuesto para una carpintería a medida.",
+    "scope": "Demo frontend en React con datos simulados: landing, catálogo, configurador con precio estimado, presupuesto por WhatsApp y panel de gestión; sin backend.",
+    "status": "Demo de propuesta.",
+    "statusTone": "demo",
+    "description": "Demo navegable preparada como propuesta comercial para una carpintería de muebles a medida. Se presenta con una marca ficticia para preservar la identidad del cliente. Incluye tres versiones del sitio (Básico, Estándar y Premium) y un panel de gestión demostrativo.",
+    "problem": "Los presupuestos de muebles a medida dependen de medidas, materiales y herrajes, y se arman a mano en cada consulta.",
+    "solution": "Un configurador calcula un precio estimado mientras el cliente elige medidas y materiales, suma varios muebles a un presupuesto y lo envía por WhatsApp. El panel muestra cómo el taller seguiría solicitudes, producción, catálogo y precios.",
+    "challenge": "Cotizar muebles a medida exige medir, elegir materiales y calcular cada pedido a mano.",
+    "result": "El cliente configura su mueble, ve un precio estimado al instante y envía el presupuesto por WhatsApp.",
+    "stack": [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Vite",
+      "React Router",
+      "Vitest"
+    ],
+    "technicalNotes": [
+      "Motor de precios en TypeScript sin dependencias de React: estima el despiece por tipo de mueble (placa, fondos, tapacanto, herrajes y horas de taller) y valida medidas y combinaciones.",
+      "Carrito multiproducto persistente y mensaje de presupuesto armado para WhatsApp.",
+      "Tres planes comerciales definidos en una sola configuración; el router elige las páginas según las funciones de cada plan.",
+      "Panel de gestión con datos de ejemplo: resumen, solicitudes, presupuesto formal, producción, catálogo, precios y clientes. Los cambios se guardan solo en la sesión del navegador.",
+      "Pruebas con Vitest para el motor de precios, el carrito y el mensaje de WhatsApp."
+    ],
+    "repositoryPrivate": true,
+    "privateNote": "Código privado · proyecto de cliente",
+    "repositoryUrl": null,
+    "demoUrl": null,
+    "image": {
+      "src": "./assets/screenshots/veta-muebles-light.png",
+      "alt": "Portada de la demo de Veta Muebles, marca ficticia: titular, configurador de una biblioteca con plano y precio estimado.",
+      "width": 1440,
+      "height": 960,
+      "caption": "Demo de propuesta · Marca ficticia · Datos simulados"
+    },
+    "en": {
+      "category": "Business website / Proposal demo",
+      "context": "Freelance project · Fictional brand",
+      "headline": "Catalog, configurator and quotes for a custom furniture workshop.",
+      "scope": "React frontend demo with mock data: landing page, catalog, configurator with an estimated price, WhatsApp quote and management panel; no backend.",
+      "status": "Proposal demo.",
+      "description": "Navigable demo built as a commercial proposal for a custom furniture workshop. It is shown under a fictional brand to protect the client's identity. It includes three versions of the site (Basic, Standard and Premium) and a demo management panel.",
+      "problem": "Quotes for custom furniture depend on measurements, materials and hardware, and are put together by hand for every inquiry.",
+      "solution": "A configurator estimates the price while the customer picks measurements and materials, adds several pieces to one quote and sends it over WhatsApp. The panel shows how the workshop would track requests, production, catalog and prices.",
+      "challenge": "Quoting custom furniture means measuring, choosing materials and pricing every order by hand.",
+      "result": "Customers configure their piece, see an estimated price instantly and send the quote over WhatsApp.",
+      "technicalNotes": [
+        "Pricing engine in TypeScript with no React dependencies: it estimates the cut list per furniture type (board, backs, edge banding, hardware and workshop hours) and validates measurements and combinations.",
+        "Persistent multi-product cart and a quote message ready for WhatsApp.",
+        "Three commercial plans defined in a single configuration; the router picks pages from each plan's features.",
+        "Management panel with sample data: overview, requests, formal quote, production, catalog, prices and customers. Changes are kept only in the browser session.",
+        "Vitest tests for the pricing engine, the cart and the WhatsApp message."
+      ],
+      "image": {
+        "alt": "Home page of the Veta Muebles demo, a fictional brand: headline and a bookcase configurator with a drawing and an estimated price.",
+        "caption": "Proposal demo · Fictional brand · Mock data",
+        "previewLabel": "Enlarge Veta Muebles screenshot"
+      },
+      "privateNote": "Private code · client project"
+    }
+  },
+  {
     "id": "actas",
     "name": "Generador de Actas",
     "category": "Automatización administrativa",
@@ -181,6 +247,73 @@
         "alt": "Screenshot of the original Horizonte Global dashboard, a frontend demo with mock data.",
         "caption": "Frontend demo · Mock data",
         "previewLabel": "Enlarge Horizonte Global screenshot"
+      }
+    }
+  },
+  {
+    "id": "cerca",
+    "name": "Cerca",
+    "category": "App personal / Frontend",
+    "context": "Proyecto personal",
+    "headline": "Una app de ahorro: la foto de lo que querés comprar se acerca con cada peso.",
+    "scope": "App web instalable en React y TypeScript, sin backend: los datos y las fotos se guardan en el navegador con IndexedDB y funciona sin conexión.",
+    "status": "En uso.",
+    "statusTone": "done",
+    "description": "App de ahorro por objetivos con identidad visual propia. Cada objetivo es una postal con su foto y un camino que muestra el avance, la fecha estimada de llegada y el plan del mes según el sueldo, los gastos fijos y los trabajos freelance.",
+    "problem": "Ahorrar para algo concreto se abandona cuando el avance no se ve y no queda claro cuánto separar cada mes.",
+    "solution": "Una app que convierte cada aporte en avance visible: porcentaje, ritmo, fecha estimada y un plan mensual que reparte el sueldo y los cobros freelance entre los objetivos.",
+    "challenge": "Sostener un ahorro cuando el avance no se ve y cada mes hay que decidir cuánto separar.",
+    "result": "Cada aporte mueve el objetivo por un camino con fecha estimada de llegada y un plan del mes calculado.",
+    "stack": [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "IndexedDB",
+      "Vite",
+      "Vitest"
+    ],
+    "technicalNotes": [
+      "Lógica de dominio pura y testeada: porcentaje, ritmo y fecha estimada, plan del mes, reparto del freelance y día de cobro (mensual o quincenal).",
+      "Capa de datos detrás de una interfaz: hoy IndexedDB con idb; para pasar a un backend se cambia la implementación sin tocar las pantallas.",
+      "Instalable y sin conexión, con copia de seguridad en JSON (fotos incluidas) para pasar los datos entre dispositivos.",
+      "Sistema de diseño propio con tema claro y oscuro definido en tokens y expuesto a Tailwind CSS.",
+      "Pruebas con Vitest para la lógica y fake-indexeddb para la capa de datos."
+    ],
+    "repositoryPrivate": true,
+    "privateNote": "Código privado · proyecto personal",
+    "repositoryUrl": null,
+    "demoUrl": null,
+    "image": {
+      "src": "./assets/screenshots/cerca-light.png",
+      "darkSrc": "./assets/screenshots/cerca-dark.png",
+      "alt": "Tres pantallas de Cerca en el celular: el objetivo con su foto y el avance, la bitácora de aportes y el plan del mes. Montos de ejemplo.",
+      "width": 1440,
+      "height": 960,
+      "caption": "Interfaz real · Montos de ejemplo"
+    },
+    "en": {
+      "category": "Personal app / Frontend",
+      "context": "Personal project",
+      "headline": "A savings app: the photo of what you want gets closer with every peso.",
+      "scope": "Installable web app in React and TypeScript with no backend: data and photos are stored in the browser with IndexedDB and it works offline.",
+      "status": "In use.",
+      "privateNote": "Private code · personal project",
+      "description": "Goal-based savings app with its own visual identity. Each goal is a postcard with its photo and a path that shows progress, the estimated arrival date and the monthly plan based on salary, fixed expenses and freelance work.",
+      "problem": "Saving for something specific gets abandoned when progress is invisible and it is unclear how much to set aside each month.",
+      "solution": "An app that turns every contribution into visible progress: percentage, pace, estimated date and a monthly plan that splits salary and freelance income across goals.",
+      "challenge": "Keeping up with savings when progress is invisible and every month you have to decide how much to set aside.",
+      "result": "Every contribution moves the goal along a path with an estimated arrival date and a calculated monthly plan.",
+      "technicalNotes": [
+        "Pure, tested domain logic: percentage, pace and estimated date, monthly plan, freelance split and payday (monthly or twice a month).",
+        "Data layer behind an interface: IndexedDB with idb today; moving to a backend means swapping the implementation without touching the screens.",
+        "Installable and offline, with a JSON backup (photos included) to move data between devices.",
+        "Its own design system with light and dark themes defined as tokens and exposed to Tailwind CSS.",
+        "Vitest tests for the logic and fake-indexeddb for the data layer."
+      ],
+      "image": {
+        "alt": "Three Cerca screens on a phone: the goal with its photo and progress, the contribution log and the monthly plan. Sample amounts.",
+        "caption": "Real interface · Sample amounts",
+        "previewLabel": "Enlarge Cerca screenshot"
       }
     }
   }

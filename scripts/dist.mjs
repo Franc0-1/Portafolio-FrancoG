@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
 const PUBLIC_FILES = ['index.html', 'en/index.html', '404.html', 'styles.css', 'scripts/main.js', 'scripts/theme-init.js', 'assets/favicon.svg', 'assets/favicon-32.png', 'assets/apple-touch-icon.png', 'robots.txt', 'sitemap.xml', '_headers'];
-const PUBLIC_DIRS = { 'assets/fonts': ['.woff2'], 'assets/cv': ['.pdf'], 'assets/screenshots': ['.png', '.webp'], 'assets/ml': ['.png', '.webp'], 'assets/og': ['.png'] };
+const PUBLIC_DIRS = { 'proyectos': ['.html'], 'en/projects': ['.html'], 'assets/fonts': ['.woff2'], 'assets/cv': ['.pdf'], 'assets/screenshots': ['.png', '.webp'], 'assets/ml': ['.png', '.webp'], 'assets/og': ['.png'] };
 
 if (relative(root, dist) !== 'dist') throw new Error('Refusing to clean an unexpected dist path.');
 await rm(dist, { recursive: true, force: true });
@@ -17,9 +17,17 @@ const copy = async (file) => {
   await cp(join(root, file), join(dist, file));
 };
 for (const file of PUBLIC_FILES) await copy(file);
+// Project pages live one folder deeper (proyectos/<id>/index.html), so directories are walked recursively.
+const walk = async (dir) => (await readdir(join(root, dir), { withFileTypes: true })).reduce(async (files, entry) => [
+  ...(await files),
+  ...(entry.isDirectory() ? await walk(`${dir}/${entry.name}`) : [`${dir}/${entry.name}`]),
+], Promise.resolve([]));
+const pages = ['index.html', 'en/index.html', '404.html'];
 for (const [dir, extensions] of Object.entries(PUBLIC_DIRS)) {
-  for (const name of await readdir(join(root, dir))) {
-    if (extensions.includes(extname(name).toLowerCase())) await copy(`${dir}/${name}`);
+  for (const file of await walk(dir)) {
+    if (!extensions.includes(extname(file).toLowerCase())) continue;
+    await copy(file);
+    if (file.endsWith('.html')) pages.push(file);
   }
 }
 
@@ -31,7 +39,7 @@ const check = (from, ref) => {
   const file = target.endsWith('/') || target.endsWith('\\') ? join(target, 'index.html') : target;
   if (!existsSync(file)) missing.push(`${from} → ${ref}`);
 };
-for (const page of ['index.html', 'en/index.html', '404.html']) {
+for (const page of pages) {
   const html = await readFile(join(dist, page), 'utf8');
   for (const [, ref] of html.matchAll(/(?:href|src|srcset|data-(?:light|dark)-src)="([^"]+)"/g)) check(page, ref);
 }

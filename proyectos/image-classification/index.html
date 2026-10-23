@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f5f0e6" />
+    <title>Clasificador de imágenes — Franco Sebastian Gutierrez</title>
+    <meta name="description" content="API de clasificación con ResNet50 preentrenada. Streamlit permite cargar imágenes y Redis coordina el procesamiento de las predicciones." />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="Franco Sebastian Gutierrez" />
+    <meta property="og:url" content="https://francosgutierrez.dev/proyectos/image-classification/" />
+    <meta property="og:title" content="Clasificador de imágenes — Franco Sebastian Gutierrez" />
+    <meta property="og:description" content="API de clasificación con ResNet50 preentrenada. Streamlit permite cargar imágenes y Redis coordina el procesamiento de las predicciones." />
+    <meta property="og:image" content="https://francosgutierrez.dev/assets/og/og-es.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://francosgutierrez.dev/proyectos/image-classification/" />
+    <link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/image-classification/" />
+    <link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/image-classification/" />
+    <link rel="alternate" hreflang="x-default" href="https://francosgutierrez.dev/proyectos/image-classification/" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png" />
+    <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png" />
+    <link rel="preload" href="../../assets/fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../styles.css" />
+    <script src="../../scripts/theme-init.js"></script>
+    <script src="../../scripts/main.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="wordmark" href="../../#inicio" aria-label="Franco Gutierrez, inicio"><span class="brand-symbol" aria-hidden="true">fg.</span><span class="wordmark-text">Franco Gutierrez<small>Software Developer</small></span></a>
+        <nav class="site-nav" aria-label="Navegación principal">
+          <a class="nav-link" href="../../#perfil">Perfil</a>
+          <a class="nav-link" href="../../#proyectos">Software</a>
+          <a class="nav-link" href="../../#machine-learning" aria-current="page">ML & Data</a>
+          <a class="nav-link" href="../../#servicios">Servicios</a>
+          <a class="nav-link" href="../../#contacto">Contacto</a>
+        </nav>
+        <div class="lang-switch"><span class="lang-current" aria-current="true">ES</span><a class="lang-link" href="../../en/projects/image-classification/" hreflang="en" lang="en" data-lang-switch><span class="sr-only">English version: </span>EN</a></div>
+        <button class="theme-toggle" type="button" aria-label="Modo oscuro" aria-pressed="false" hidden>
+          <svg class="theme-icon theme-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.6 13.3A8.7 8.7 0 0 1 10.7 3.4a8.7 8.7 0 1 0 9.9 9.9Z" /></svg>
+          <svg class="theme-icon theme-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" /><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" /></svg>
+          <span class="sr-only">Modo oscuro</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <article class="case" aria-labelledby="case-title">
+        <div class="container">
+          <p class="case-back"><a class="link-arrow" href="../../#machine-learning"><span class="arrow arrow--back" aria-hidden="true">←</span> Todos los proyectos</a></p>
+          <header class="case-head">
+            <p class="item-meta"><span class="item-num">06</span><span>Visión por computadora</span></p>
+            <h1 id="case-title">Clasificador de imágenes</h1>
+            <p class="case-lead">API de clasificación con ResNet50 preentrenada. Streamlit permite cargar imágenes y Redis coordina el procesamiento de las predicciones.</p>
+            
+          </header>
+          <div class="case-media"><figure class="frame">
+        <figcaption class="frame-bar">Interfaz del proyecto · Ejemplo de inferencia con un tucán</figcaption>
+        <a class="frame-link" href="../../assets/ml/image-classifier.png" target="_blank" rel="noopener" data-project-preview data-project-name="Clasificador de imágenes" data-caption="Interfaz del proyecto · Ejemplo de inferencia con un tucán" data-light-src="../../assets/ml/image-classifier.png" aria-label="Ampliar interfaz del Clasificador de imágenes"><picture><img src="../../assets/ml/image-classifier.webp" alt="Interfaz Streamlit del clasificador con la imagen de un tucán y la predicción toucan." decoding="async" width="1252" height="1580" /></picture><span class="frame-zoom" aria-hidden="true">Ampliar ↗</span></a>
+      </figure></div>
+          <div class="case-grid">
+            <div class="case-main">
+              
+              
+              <section class="case-block" aria-labelledby="notes-image-classification"><h2 class="case-h2" id="notes-image-classification">Enfoque técnico</h2><ul class="case-notes"><li>Separación de la interfaz, la API y el worker de inferencia en servicios con Docker Compose.</li><li>El worker recibe trabajos desde una cola Redis y guarda la clase predicha y su puntuación con el identificador del trabajo.</li><li>Las imágenes se redimensionan a 224 × 224 píxeles y se preprocesan para ResNet50. Se devuelve la categoría con mayor puntuación entre las clases de ImageNet.</li><li>El alcance es integrar un modelo preentrenado con una API y una interfaz de carga; las categorías disponibles son las de ImageNet.</li></ul></section>
+            </div>
+            <aside class="case-aside" aria-label="Ficha del proyecto">
+              
+              <dl class="spec"><div class="spec-row spec-row--wide"><dt>Stack</dt><dd><ul class="tags" aria-label="Tecnologías de Clasificador de imágenes"><li>Python</li><li>FastAPI</li><li>Streamlit</li><li>TensorFlow / Keras</li><li>Redis</li><li>Docker Compose</li></ul></dd></div></dl>
+              <div class="project-actions"><a class="btn btn--outline btn--sm" href="https://github.com/Franc0-1/AnyOne_AI_Sprint_3_Project/tree/master/Sprint_3-Franco_Gutierrez" aria-label="Ver repositorio de Clasificador de imágenes">Ver repositorio <span class="arrow" aria-hidden="true">↗</span></a></div>
+            </aside>
+          </div>
+          <nav class="case-pager" aria-label="Más proyectos"><a class="case-pager-link case-pager-link--prev" href="../../proyectos/cerca/"><span class="case-pager-label"><span class="arrow" aria-hidden="true">←</span> Anterior</span><span class="case-pager-name">Cerca</span></a><a class="case-pager-link case-pager-link--next" href="../../proyectos/home-credit/"><span class="case-pager-label">Siguiente <span class="arrow" aria-hidden="true">→</span></span><span class="case-pager-name">Home Credit: riesgo crediticio</span></a></nav>
+        </div>
+      </article>
+
+      <section class="case-cta" aria-labelledby="case-cta-title">
+        <div class="container">
+          <div class="case-cta-panel">
+            <h2 id="case-cta-title">¿Te interesa algo parecido?</h2>
+            <p>Contame qué necesitás resolver y lo conversamos.</p>
+            <a class="btn btn--primary" href="../../#contacto">Contactarme</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="footer-name"><span class="brand-symbol brand-symbol--sm" aria-hidden="true">fg.</span>Franco Sebastian Gutierrez</p>
+        <p class="footer-note">Hecho con HTML, CSS y JavaScript nativo. Sin dependencias.</p>
+        <a class="link-arrow footer-top" href="#contenido">Volver arriba <span class="arrow arrow--up" aria-hidden="true">↑</span></a>
+      </div>
+    </footer>
+
+    <dialog class="project-preview" id="project-preview" aria-labelledby="preview-title">
+      <header><h2 id="preview-title">Captura del proyecto</h2><button type="button" data-preview-close aria-label="Cerrar captura" autofocus>×</button></header>
+      <div class="preview-image" data-preview-image></div>
+      <p>Interfaz real de la aplicación · Datos de ejemplo</p>
+    </dialog>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 import { existsSync } from 'node:fs';
-import { readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 
 const projectRoot = new URL('../', import.meta.url);
 const readJson = async (path) => JSON.parse(await readFile(new URL(path, projectRoot), 'utf8'));
@@ -15,13 +15,18 @@ const downArrow = '<span class="arrow arrow--down" aria-hidden="true">↓</span>
 const number = (index) => String(index + 1).padStart(2, '0');
 const withoutPeriod = (text) => String(text).replace(/\.$/, '');
 const STATUS_TONES = ['done', 'progress', 'demo'];
-const LAYOUTS = ['feature', 'split', 'compact'];
+const SITE = 'https://francosgutierrez.dev/';
 
-// Each page is generated from the same data; `base` turns ./assets/... into a path valid from that page.
+// Each language has a home page and one detail page per project. Paths are relative to the site root;
+// `dir` is the folder a page lives in, so links and assets can be written relative to it.
 const PAGES = [
-  { lang: 'es', file: 'index.html', base: './' },
-  { lang: 'en', file: 'en/index.html', base: '../' },
+  { lang: 'es', file: 'index.html', dir: '', projectDir: 'proyectos/' },
+  { lang: 'en', file: 'en/index.html', dir: 'en/', projectDir: 'en/projects/' },
 ];
+const pageFor = (lang) => PAGES.find((page) => page.lang === lang);
+const projectDirFor = (lang, id) => `${pageFor(lang).projectDir}${id}/`;
+// From a page in `fromDir`, the relative prefix that reaches the site root.
+const toRoot = (fromDir) => (fromDir ? '../'.repeat(fromDir.split('/').filter(Boolean).length) : './');
 
 const UI = {
   es: {
@@ -31,7 +36,7 @@ const UI = {
     repoAria: (n) => `Ver repositorio de ${n}`, demoAria: (n) => `Ver demo de ${n}`, evaluationAria: (n) => `Ver evaluación de ${n}`,
     moreAria: (n) => `Más detalles de ${n}`, technicalAria: (n) => `Enfoque técnico de ${n}`, zoomAria: (n) => `Ampliar captura de ${n}`,
     tagsAria: (n) => `Tecnologías de ${n}`,
-    projectsSection: { label: 'Software', title: 'Herramientas internas y aplicaciones web.', lead: 'Dos sistemas en Go que automatizan trabajo administrativo, inventario y actas, y una demo frontend en React.' },
+    projectsSection: { label: 'Software', title: 'Herramientas internas y aplicaciones web.', lead: 'Dos sistemas en Go que automatizan trabajo administrativo, inventario y actas, dos demos frontend en React para proyectos freelance y una app personal.' },
     mlSection: { label: 'ML & Data', title: 'Modelos, inferencia y análisis de datos.', lead: 'Tres proyectos de AnyoneAI: un servicio de clasificación de imágenes, la comparación de modelos de riesgo crediticio y un pipeline ELT.' },
     contactSection: {
       label: 'Contacto', title: '¿Tenés un proyecto en mente o un puesto para cubrir?',
@@ -40,9 +45,12 @@ const UI = {
     },
     linkedin: 'Empleo y propuestas', email: 'Empleo, freelance y consultas', whatsapp: 'Proyectos freelance, Argentina y exterior',
     whatsappDisplay: 'Escribir por WhatsApp', whatsappMessage: 'Hola Franco, vi tu portafolio y quería consultarte por un proyecto.',
-    github: 'Código y repositorios', cv: 'Desarrollador de software · PDF', copy: 'Copiar',
+    github: 'Código y repositorios', copy: 'Copiar',
     privateRepo: 'Código privado · herramienta interna',
     contactMe: 'Contactarme', downloadCv: 'Descargar CV',
+    viewProject: 'Ver proyecto', allProjects: 'Todos los proyectos', about: 'Sobre el proyecto', facts: 'Ficha del proyecto',
+    previous: 'Anterior', next: 'Siguiente', pager: 'Más proyectos', locale: 'es_AR',
+    caseCta: { title: '¿Te interesa algo parecido?', text: 'Contame qué necesitás resolver y lo conversamos.', button: 'Contactarme' },
   },
   en: {
     contribution: 'My role', status: 'Status', scope: 'Scope', stack: 'Stack', challenge: 'Challenge', result: 'Result',
@@ -51,7 +59,7 @@ const UI = {
     repoAria: (n) => `View repository of ${n}`, demoAria: (n) => `View demo of ${n}`, evaluationAria: (n) => `View ${n} evaluation`,
     moreAria: (n) => `More details about ${n}`, technicalAria: (n) => `Technical approach of ${n}`, zoomAria: (n) => `Enlarge ${n} screenshot`,
     tagsAria: (n) => `${n} technologies`,
-    projectsSection: { label: 'Software', title: 'Internal tools and web applications.', lead: 'Two Go systems that automate administrative work, inventory and records, plus a React frontend demo.' },
+    projectsSection: { label: 'Software', title: 'Internal tools and web applications.', lead: 'Two Go systems that automate administrative work, inventory and records, two React frontend demos for freelance projects and a personal app.' },
     mlSection: { label: 'ML & Data', title: 'Models, inference and data analysis.', lead: 'Three AnyoneAI projects: an image classification service, a comparison of credit risk models and an ELT pipeline.' },
     contactSection: {
       label: 'Contact', title: 'Have a project in mind or a position to fill?',
@@ -60,9 +68,12 @@ const UI = {
     },
     linkedin: 'Jobs and proposals', email: 'Jobs, freelance and inquiries', whatsapp: 'Freelance projects, Argentina and abroad',
     whatsappDisplay: 'Message on WhatsApp', whatsappMessage: 'Hi Franco, I saw your portfolio and would like to ask about a project.',
-    github: 'Code and repositories', cv: 'Software developer · PDF', copy: 'Copy',
+    github: 'Code and repositories', copy: 'Copy',
     privateRepo: 'Private code · internal tool',
     contactMe: 'Contact me', downloadCv: 'Download CV',
+    viewProject: 'View project', allProjects: 'All projects', about: 'About the project', facts: 'Project facts',
+    previous: 'Previous', next: 'Next', pager: 'More projects', locale: 'en_US',
+    caseCta: { title: 'Interested in something similar?', text: 'Tell me what you need to solve and let’s talk it through.', button: 'Contact me' },
   },
 };
 
@@ -94,12 +105,12 @@ const inlineSource = (src) => {
   return webp !== src && existsSync(new URL(webp, projectRoot)) ? webp : src;
 };
 
-function renderPage({ lang, base }) {
+// Rendering helpers shared by the home page and the project pages, for one language and one folder.
+function helpers(lang, fromDir) {
   const t = UI[lang];
-  const asset = (path) => escapeHtml(path.replace(/^\.\//, base));
-  const projects = projectsData.map((p) => localize(p, lang));
-  const mlProjects = mlProjectsData.map((p) => localize(p, lang));
-  const moreProjects = moreProjectsData.map((p) => localize(p, lang));
+  const root = toRoot(fromDir);
+  const asset = (path) => escapeHtml(path.replace(/^\.\//, root));
+  const href = (path) => escapeHtml(root + path);
 
   function renderFigure(project) {
     const image = project.image;
@@ -107,9 +118,9 @@ function renderPage({ lang, base }) {
     if (!image.alt?.trim() || !(image.width > 0) || !(image.height > 0)) throw new Error(`Invalid project image: ${project.id}`);
     const caption = escapeHtml(image.caption || project.name);
     const darkSource = image.darkSrc ? `<source media="(prefers-color-scheme: dark)" srcset="${asset(inlineSource(image.darkSrc))}" />` : '';
-    return `<figure class="frame${image.type === 'interface' ? ' frame--crop' : ''}">
+    return `<figure class="frame">
         <figcaption class="frame-bar">${caption}</figcaption>
-        <a class="frame-link" href="${asset(image.src)}" target="_blank" rel="noopener" data-project-preview data-project-name="${escapeHtml(project.name)}" data-caption="${caption}" data-light-src="${asset(image.src)}"${image.darkSrc ? ` data-dark-src="${asset(image.darkSrc)}"` : ''} aria-label="${escapeHtml(image.previewLabel || t.zoomAria(project.name))}"><picture${image.darkSrc ? ' data-theme-picture' : ''}>${darkSource}<img src="${asset(inlineSource(image.src))}" alt="${escapeHtml(image.alt)}" loading="lazy" decoding="async" width="${Number(image.width)}" height="${Number(image.height)}" /></picture><span class="frame-zoom" aria-hidden="true">${t.zoom} ↗</span></a>
+        <a class="frame-link" href="${asset(image.src)}" target="_blank" rel="noopener" data-project-preview data-project-name="${escapeHtml(project.name)}" data-caption="${caption}" data-light-src="${asset(image.src)}"${image.darkSrc ? ` data-dark-src="${asset(image.darkSrc)}"` : ''} aria-label="${escapeHtml(image.previewLabel || t.zoomAria(project.name))}"><picture${image.darkSrc ? ' data-theme-picture' : ''}>${darkSource}<img src="${asset(inlineSource(image.src))}" alt="${escapeHtml(image.alt)}" decoding="async" width="${Number(image.width)}" height="${Number(image.height)}" /></picture><span class="frame-zoom" aria-hidden="true">${t.zoom} ↗</span></a>
       </figure>`;
   }
 
@@ -142,88 +153,76 @@ function renderPage({ lang, base }) {
     return `<span class="state state--${project.statusTone}">${escapeHtml(withoutPeriod(project.status))}</span>`;
   }
 
-  function renderProject(project, index) {
-    const facts = [
-      ['contribution', project.contribution && escapeHtml(withoutPeriod(project.contribution))],
-      ['status', status(project)],
-      ['scope', project.scope && escapeHtml(project.scope)],
-    ].filter(([, value]) => value);
-    // An unpaired short fact takes the full row so the two-column spec never leaves a gap.
-    const shortFacts = facts.filter(([key]) => key !== 'scope').length;
-    const isWide = (key, i) => key === 'scope' || (shortFacts % 2 === 1 && i === shortFacts - 1);
-    // Internal tools keep their code private: the card says so instead of linking to a 404.
-    const repository = project.repositoryPrivate
-      ? `<span class="private-note">${t.privateRepo}</span>`
-      : externalLink(project.repositoryUrl, t.repo, t.repoAria(project.name), 'btn btn--outline btn--sm');
-    const links = repository
-      + externalLink(project.demoUrl, t.demo, t.demoAria(project.name), 'btn btn--outline btn--sm');
-    return `<article class="project project--${LAYOUTS[index] || 'compact'}" id="${escapeHtml(project.id)}" aria-labelledby="${escapeHtml(project.id)}-title" data-reveal>
-      <header class="project-head">
-        ${meta(index, project.category)}
-        <h3 id="${escapeHtml(project.id)}-title">${escapeHtml(project.name)}</h3>
-        <p class="project-headline">${escapeHtml(project.headline)}</p>
-        ${project.context ? `<p class="project-context">${escapeHtml(project.context)}</p>` : ''}
-      </header>
-      ${project.image ? `<div class="project-media">${renderFigure(project)}</div>` : ''}
-      <div class="project-body">
-        ${project.challenge && project.result ? `<dl class="outcome"><div><dt>${t.challenge}</dt><dd>${escapeHtml(project.challenge)}</dd></div><div><dt>${t.result}</dt><dd>${escapeHtml(project.result)}</dd></div></dl>` : ''}
-        <dl class="spec">${facts.map(([key, value], i) => `<div class="spec-row spec-row--${key}${isWide(key, i) ? ' spec-row--wide' : ''}"><dt>${t[key]}</dt><dd>${value}</dd></div>`).join('')}<div class="spec-row spec-row--wide"><dt>${t.stack}</dt><dd>${tags(project)}</dd></div></dl>
-        ${links ? `<div class="project-actions">${links}</div>` : ''}
-        <details class="disclosure"><summary aria-label="${escapeHtml(t.moreAria(project.name))}">${t.moreDetails}<span class="disclosure-icon" aria-hidden="true"></span></summary>
-          <div class="disclosure-body">
-            <p>${escapeHtml(project.description)}</p>
-            <dl class="context"><div><dt>${t.problem}</dt><dd>${escapeHtml(project.problem)}</dd></div><div><dt>${t.solution}</dt><dd>${escapeHtml(project.solution)}</dd></div></dl>
-            <ul>${project.technicalNotes.map((note) => `<li>${escapeHtml(note)}</li>`).join('')}</ul>
-          </div>
-        </details>
-      </div>
-    </article>`;
-  }
+  // Internal tools keep their code private: the page says so instead of linking to a 404.
+  const links = (project) => (project.repositoryPrivate
+    ? `<span class="private-note">${escapeHtml(project.privateNote || t.privateRepo)}</span>`
+    : externalLink(project.repositoryUrl, t.repo, t.repoAria(project.name), 'btn btn--outline btn--sm'))
+    + externalLink(project.demoUrl, t.demo, t.demoAria(project.name), 'btn btn--outline btn--sm')
+    + externalLink(project.evaluationUrl, t.evaluation, t.evaluationAria(project.name));
 
-  function renderMlProject(project, index) {
-    const result = project.result ? `<p class="metric"><strong class="metric-value">${escapeHtml(project.result)}</strong><span class="metric-label">${escapeHtml(project.resultLabel)}</span>${project.resultContext ? `<span class="metric-context">${escapeHtml(project.resultContext)}</span>` : ''}</p>` : '';
-    const media = project.image ? renderFigure(project) : project.chart ? renderChart(project) : '';
-    return `<article class="ml-row${media ? '' : ' ml-row--text'}" id="${escapeHtml(project.id)}" aria-labelledby="${escapeHtml(project.id)}-title" data-reveal>
-      <header class="ml-head">
-        ${meta(index, project.category)}
-        <h3 id="${escapeHtml(project.id)}-title">${escapeHtml(project.displayName || project.name)}</h3>
-      </header>
-      <div class="ml-copy">
-        <p>${escapeHtml(project.description)}</p>
-        ${result}
-        ${tags(project)}
-        <div class="project-actions">${externalLink(project.repositoryUrl, t.repo, t.repoAria(project.name), 'btn btn--outline btn--sm')}${externalLink(project.evaluationUrl, t.evaluation, t.evaluationAria(project.name))}</div>
-      </div>
-      ${media ? `<div class="ml-media">${media}</div>` : ''}
-      <details class="disclosure ml-details"><summary aria-label="${escapeHtml(t.technicalAria(project.name))}">${t.technical}<span class="disclosure-icon" aria-hidden="true"></span></summary><div class="disclosure-body"><ul>${project.technicalNotes.map((note) => `<li>${escapeHtml(note)}</li>`).join('')}</ul></div></details>
-    </article>`;
+  const metric = (project) => (project.resultLabel ? `<p class="metric"><strong class="metric-value">${escapeHtml(project.result)}</strong><span class="metric-label">${escapeHtml(project.resultLabel)}</span>${project.resultContext ? `<span class="metric-context">${escapeHtml(project.resultContext)}</span>` : ''}</p>` : '');
+
+  return { t, asset, href, renderFigure, renderChart, tags, meta, status, links, metric };
+}
+
+// Every project in page order, with its home section and its number.
+function allProjects(lang) {
+  return [
+    ...projectsData.map((p) => ({ ...localize(p, lang), section: 'proyectos' })),
+    ...mlProjectsData.map((p) => ({ ...localize(p, lang), section: 'machine-learning' })),
+  ].map((project, index) => ({ ...project, index }));
+}
+
+function renderPage({ lang, dir }) {
+  const h = helpers(lang, dir);
+  const { t, asset, href } = h;
+  const projects = allProjects(lang);
+  const moreProjects = moreProjectsData.map((p) => localize(p, lang));
+
+  // A card leads to the project page. Its title link stretches over the card, so the card reads as one link.
+  function renderThumb(project) {
+    const image = project.image;
+    if (image) {
+      const darkSource = image.darkSrc ? `<source media="(prefers-color-scheme: dark)" srcset="${asset(inlineSource(image.darkSrc))}" />` : '';
+      return `<div class="card-thumb"><picture${image.darkSrc ? ' data-theme-picture' : ''}>${darkSource}<img src="${asset(inlineSource(image.src))}" alt="" loading="lazy" decoding="async" width="${Number(image.width)}" height="${Number(image.height)}" /></picture></div>`;
+    }
+    // Without a capture the card shows the project's key figure on the ink color of the hero.
+    const figure = project.resultLabel
+      ? `<span class="card-figure">${escapeHtml(project.result)}</span><span class="card-figure-label">${escapeHtml(project.resultLabel)}</span>`
+      : `<span class="card-figure card-figure--stack">${project.stack.slice(0, 3).map(escapeHtml).join(' · ')}</span>`;
+    return `<div class="card-thumb card-thumb--text" aria-hidden="true">${figure}</div>`;
   }
+  const renderCard = (project, feature) => `<article class="card${feature ? ' card--feature' : ''}" id="${escapeHtml(project.id)}" data-reveal>
+      ${renderThumb(project)}
+      <div class="card-body">
+        ${h.meta(project.index, project.category)}
+        <h3 class="card-title"><a class="card-link" href="${href(projectDirFor(lang, project.id))}">${escapeHtml(project.displayName || project.name)}</a></h3>
+        <p class="card-line">${escapeHtml(project.headline || project.description)}</p>
+        ${feature && project.challenge ? `<p class="card-result"><span>${t.result}</span>${escapeHtml(project.result)}</p>` : ''}
+        <p class="card-foot">${h.status(project)}<span class="card-stack">${project.stack.slice(0, 3).map(escapeHtml).join(' · ')}</span></p>
+        <span class="card-more" aria-hidden="true">${t.viewProject} <span class="arrow">→</span></span>
+      </div>
+    </article>`;
 
   const renderMore = (project) => `<li><a class="more-link" href="${checkedUrl(project.repositoryUrl)}" aria-label="${escapeHtml(t.repoAria(project.name))}"><span class="more-name">${escapeHtml(project.name)}</span><span class="more-desc">${escapeHtml(project.description)}</span><span class="more-stack">${project.stack.map(escapeHtml).join(' · ')}</span>${arrow}</a></li>`;
 
-  function renderIndexItem(project, index) {
-    const note = project.status ? status(project) : project.result ? `<span class="state state--metric">AUC ${escapeHtml(project.result)}</span>` : '';
-    return `<li><a href="#${escapeHtml(project.id)}"><span class="index-num">${number(index)}</span><span class="index-name">${escapeHtml(project.displayName || project.name)}<small>${project.stack.slice(0, 3).map(escapeHtml).join(' · ')}</small></span>${note}</a></li>`;
-  }
-
-  const projectIndex = `<div class="index-group"><p class="index-label">Software</p><ol>${projects.map(renderIndexItem).join('')}</ol></div>
-          <div class="index-group"><p class="index-label">ML & Data</p><ol start="${projects.length + 1}">${mlProjects.map((project, i) => renderIndexItem(project, projects.length + i)).join('')}</ol></div>`;
-
+  const software = projects.filter((p) => p.section === 'proyectos');
+  const ml = projects.filter((p) => p.section === 'machine-learning');
   const sectionHead = (num, s, titleId) => `<header class="section-head" data-reveal><p class="section-label"><span>${num}</span> ${s.label}</p><div><h2 id="${titleId}">${s.title}</h2><p>${s.lead}</p></div></header>`;
   const section = `<section class="section projects-section" id="proyectos" aria-labelledby="projects-title">
       <div class="container">
-        ${sectionHead('01', t.projectsSection, 'projects-title')}
-        <div class="project-list">
-    ${projects.map(renderProject).join('\n    ')}
+        ${sectionHead('02', t.projectsSection, 'projects-title')}
+        <div class="cards cards--software">
+    ${software.map((project, i) => renderCard(project, i === 0)).join('\n    ')}
         </div>
         ${moreProjects.length ? `<aside class="more" aria-labelledby="more-title" data-reveal><h3 id="more-title" class="more-title">${t.alsoOnGithub}</h3><ul class="more-list">${moreProjects.map(renderMore).join('')}</ul></aside>` : ''}
       </div>
     </section>
     <section class="section ml-section" id="machine-learning" aria-labelledby="ml-title">
       <div class="container">
-        ${sectionHead('02', t.mlSection, 'ml-title')}
-        <div class="ml-list">
-    ${mlProjects.map((project, i) => renderMlProject(project, projects.length + i)).join('\n    ')}
+        ${sectionHead('03', t.mlSection, 'ml-title')}
+        <div class="cards cards--ml">
+    ${ml.map((project) => renderCard(project, false)).join('\n    ')}
         </div>
       </div>
     </section>`;
@@ -250,15 +249,13 @@ function renderPage({ lang, base }) {
     if (!/^\.\/assets\/cv\/[\w.-]+\.pdf$/.test(cv.file) || !existsSync(new URL(cv.file, projectRoot))) throw new Error(`Missing CV file: ${cv.file}`);
     return cv;
   }).sort((a, b) => (b.lang === lang) - (a.lang === lang));
-  const cvLink = (cv) => `<a class="cv-link" href="${asset(cv.file)}" download hreflang="${escapeHtml(cv.lang)}">${escapeHtml(cv.label)} ${downArrow}</a>`;
-  const cvRow = cvFiles.length ? `<li class="channel-item"><div class="channel channel--files"><span class="channel-name">CV</span><span class="channel-purpose">${t.cv}</span><span class="channel-value">${cvFiles.map(cvLink).join('')}</span></div></li>` : '';
   const channelRow = ({ name, purpose, href, display, copy }) => `<li class="channel-item"><a class="channel" href="${escapeHtml(href)}"><span class="channel-name">${escapeHtml(name)}</span><span class="channel-purpose">${escapeHtml(purpose)}</span><span class="channel-value">${escapeHtml(display)} ${arrow}</span></a>${copy ? `<button class="channel-copy" type="button" data-copy="${escapeHtml(copy)}" hidden><span data-copy-label>${t.copy}</span><span class="sr-only"> ${escapeHtml(name.toLowerCase())}</span></button>` : ''}</li>`;
   const c = t.contactSection;
   const contactSection = channels.length ? `<section class="section contact-section" id="contacto" aria-labelledby="contact-title">
       <div class="container">
         <div class="contact-panel" data-reveal>
           <div class="contact-copy"><p class="section-label"><span>05</span> ${c.label}</p><h2 id="contact-title">${c.title}</h2><p>${c.lead} ${channels.length === 1 ? c.single(channels[0].name) : c.multiple}</p></div>
-          <ul class="channels">${channels.map(channelRow).join('')}${cvRow}${channelRow({ name: 'GitHub', purpose: t.github, href: 'https://github.com/Franc0-1', display: 'github.com/Franc0-1' })}</ul>
+          <ul class="channels">${channels.map(channelRow).join('')}${channelRow({ name: 'GitHub', purpose: t.github, href: 'https://github.com/Franc0-1', display: 'github.com/Franc0-1' })}</ul>
         </div>
       </div>
     </section>` : '';
@@ -267,7 +264,7 @@ function renderPage({ lang, base }) {
     : `<a class="btn btn--ghost-ink" href="https://github.com/Franc0-1">GitHub ${arrow}</a>`)
     + (cvFiles.length ? `<a class="hero-cv link-arrow" href="${asset(cvFiles[0].file)}" download hreflang="${escapeHtml(cvFiles[0].lang)}">${t.downloadCv} ${downArrow}</a>` : '');
 
-  return [['project-index', projectIndex], ['projects', section], ['contact-action', contactAction], ['contact', contactSection]];
+  return [['projects', section], ['contact-action', contactAction], ['contact', contactSection]];
 }
 
 const ids = [...projectsData, ...mlProjectsData].map((project) => project.id);
@@ -305,6 +302,7 @@ ${declarations(1, '    ')}
 }
 const fallbackTokens = await writeColorFallback();
 
+const homes = {};
 for (const page of PAGES) {
   const pagePath = new URL(page.file, projectRoot);
   let output = await readFile(pagePath, 'utf8');
@@ -314,5 +312,169 @@ for (const page of PAGES) {
     output = output.replace(region, (_, indent) => `${indent}<!-- ${name}:start -->\n${indent}${content}\n${indent}<!-- ${name}:end -->`);
   }
   await writeFile(pagePath, output);
+  homes[page.lang] = output;
 }
-console.log(`Generated ${PAGES.map((p) => p.file).join(' and ')} and ${fallbackTokens} fallback color tokens: ${projectsData.length} featured projects, ${mlProjectsData.length} ML/data projects and ${moreProjectsData.length} additional repositories.`);
+
+// Project pages reuse the home page's header, footer and preview dialog, so the chrome has a single source.
+function chromeOf(home, file) {
+  const pick = (pattern, name) => {
+    const match = home.match(pattern);
+    if (!match) throw new Error(`Expected the ${name} in ${file}.`);
+    return match[0];
+  };
+  return {
+    skip: pick(/<a class="skip-link"[^>]*>[^<]*<\/a>/, 'skip link'),
+    header: pick(/<header class="site-header">[\s\S]*?\n {4}<\/header>/, 'site header'),
+    footer: pick(/<footer class="site-footer">[\s\S]*?<\/footer>/, 'footer'),
+    dialog: pick(/<dialog class="project-preview"[\s\S]*?<\/dialog>/, 'preview dialog'),
+  };
+}
+
+function renderProjectPage(lang, project, projects) {
+  const page = pageFor(lang);
+  const other = PAGES.find((p) => p.lang !== lang);
+  const dir = projectDirFor(lang, project.id);
+  const h = helpers(lang, dir);
+  const { t, asset, href } = h;
+  const home = href(page.dir);
+  const chrome = chromeOf(homes[lang], page.file);
+  const name = escapeHtml(project.displayName || project.name);
+  const summary = project.headline || project.description;
+  const url = (path) => escapeHtml(SITE + path);
+
+  // Header links point back to the home sections; the language switch goes to the same project.
+  const header = chrome.header
+    .replace(/href="#/g, `href="${home}#`)
+    .replace(/(<a class="lang-link" href=")[^"]*"/, `$1${href(projectDirFor(other.lang, project.id))}"`)
+    .replace(`class="nav-link" href="${home}#${project.section}"`, `class="nav-link" href="${home}#${project.section}" aria-current="page"`);
+  const footer = chrome.footer.replace('href="#inicio"', 'href="#contenido"');
+
+  const media = project.image ? h.renderFigure(project) : project.chart ? h.renderChart(project) : '';
+  const outcome = project.challenge && project.result
+    ? `<dl class="outcome"><div><dt>${t.challenge}</dt><dd>${escapeHtml(project.challenge)}</dd></div><div><dt>${t.result}</dt><dd>${escapeHtml(project.result)}</dd></div></dl>`
+    : '';
+  const about = project.problem
+    ? `<section class="case-block" aria-labelledby="about-${escapeHtml(project.id)}"><h2 class="case-h2" id="about-${escapeHtml(project.id)}">${t.about}</h2><p>${escapeHtml(project.description)}</p><dl class="context"><div><dt>${t.problem}</dt><dd>${escapeHtml(project.problem)}</dd></div><div><dt>${t.solution}</dt><dd>${escapeHtml(project.solution)}</dd></div></dl></section>`
+    : '';
+  const facts = [
+    [t.contribution, project.contribution && escapeHtml(withoutPeriod(project.contribution))],
+    [t.status, h.status(project)],
+    [t.scope, project.scope && escapeHtml(project.scope)],
+    [t.stack, h.tags(project)],
+  ].filter(([, value]) => value).map(([label, value]) => `<div class="spec-row spec-row--wide"><dt>${label}</dt><dd>${value}</dd></div>`).join('');
+
+  const pagerLink = (target, kind) => (target
+    ? `<a class="case-pager-link case-pager-link--${kind}" href="${href(projectDirFor(lang, target.id))}"><span class="case-pager-label">${kind === 'prev' ? `<span class="arrow" aria-hidden="true">←</span> ${t.previous}` : `${t.next} <span class="arrow" aria-hidden="true">→</span>`}</span><span class="case-pager-name">${escapeHtml(target.displayName || target.name)}</span></a>`
+    : '<span></span>');
+  const position = projects.findIndex((p) => p.id === project.id);
+
+  return `<!doctype html>
+<html lang="${lang}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f5f0e6" />
+    <title>${name} — Franco Sebastian Gutierrez</title>
+    <meta name="description" content="${escapeHtml(summary)}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="${t.locale}" />
+    <meta property="og:site_name" content="Franco Sebastian Gutierrez" />
+    <meta property="og:url" content="${url(dir)}" />
+    <meta property="og:title" content="${name} — Franco Sebastian Gutierrez" />
+    <meta property="og:description" content="${escapeHtml(summary)}" />
+    <meta property="og:image" content="${url(`assets/og/og-${lang}.png`)}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="${url(dir)}" />
+    <link rel="alternate" hreflang="es" href="${url(projectDirFor('es', project.id))}" />
+    <link rel="alternate" hreflang="en" href="${url(projectDirFor('en', project.id))}" />
+    <link rel="alternate" hreflang="x-default" href="${url(projectDirFor('es', project.id))}" />
+    <link rel="icon" type="image/svg+xml" href="${asset('./assets/favicon.svg')}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="${asset('./assets/favicon-32.png')}" />
+    <link rel="apple-touch-icon" href="${asset('./assets/apple-touch-icon.png')}" />
+    <link rel="preload" href="${asset('./assets/fonts/archivo-latin-var.woff2')}" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="${asset('./styles.css')}" />
+    <script src="${asset('./scripts/theme-init.js')}"></script>
+    <script src="${asset('./scripts/main.js')}" defer></script>
+  </head>
+  <body>
+    ${chrome.skip}
+    ${header}
+
+    <main id="contenido">
+      <article class="case" aria-labelledby="case-title">
+        <div class="container">
+          <p class="case-back"><a class="link-arrow" href="${home}#${project.section}"><span class="arrow arrow--back" aria-hidden="true">←</span> ${t.allProjects}</a></p>
+          <header class="case-head">
+            ${h.meta(project.index, project.category)}
+            <h1 id="case-title">${name}</h1>
+            <p class="case-lead">${escapeHtml(summary)}</p>
+            ${project.context ? `<p class="project-context">${escapeHtml(project.context)}</p>` : ''}
+          </header>
+          ${media ? `<div class="case-media">${media}</div>` : ''}
+          <div class="case-grid">
+            <div class="case-main">
+              ${outcome}
+              ${about}
+              <section class="case-block" aria-labelledby="notes-${escapeHtml(project.id)}"><h2 class="case-h2" id="notes-${escapeHtml(project.id)}">${t.technical}</h2><ul class="case-notes">${project.technicalNotes.map((note) => `<li>${escapeHtml(note)}</li>`).join('')}</ul></section>
+            </div>
+            <aside class="case-aside" aria-label="${t.facts}">
+              ${h.metric(project)}
+              <dl class="spec">${facts}</dl>
+              <div class="project-actions">${h.links(project)}</div>
+            </aside>
+          </div>
+          <nav class="case-pager" aria-label="${t.pager}">${pagerLink(projects[position - 1], 'prev')}${pagerLink(projects[position + 1], 'next')}</nav>
+        </div>
+      </article>
+
+      <section class="case-cta" aria-labelledby="case-cta-title">
+        <div class="container">
+          <div class="case-cta-panel">
+            <h2 id="case-cta-title">${t.caseCta.title}</h2>
+            <p>${t.caseCta.text}</p>
+            <a class="btn btn--primary" href="${home}#contacto">${t.caseCta.button}</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    ${footer}
+
+    ${chrome.dialog}
+  </body>
+</html>
+`;
+}
+
+// The project folders only hold generated pages: they are rebuilt from scratch on every run.
+let projectPages = 0;
+for (const page of PAGES) {
+  const folder = new URL(page.projectDir, projectRoot);
+  if (!/^(en\/)?(proyectos|projects)\/$/.test(page.projectDir)) throw new Error(`Refusing to clean ${page.projectDir}.`);
+  await rm(folder, { recursive: true, force: true });
+  const projects = allProjects(page.lang);
+  for (const project of projects) {
+    const dir = new URL(projectDirFor(page.lang, project.id), projectRoot);
+    await mkdir(dir, { recursive: true });
+    await writeFile(new URL('index.html', dir), renderProjectPage(page.lang, project, projects));
+    projectPages++;
+  }
+}
+
+// The sitemap lists every page with its language alternate.
+const sitemapEntry = (es, en) => [es, en].map((loc) => `  <url>
+    <loc>${SITE}${loc}</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="${SITE}${es}" />
+    <xhtml:link rel="alternate" hreflang="en" href="${SITE}${en}" />
+  </url>`).join('\n');
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${[sitemapEntry('', 'en/'), ...allProjects('es').map((p) => sitemapEntry(projectDirFor('es', p.id), projectDirFor('en', p.id)))].join('\n')}
+</urlset>
+`;
+await writeFile(new URL('sitemap.xml', projectRoot), sitemap);
+
+console.log(`Generated ${PAGES.map((p) => p.file).join(' and ')}, ${projectPages} project pages, sitemap.xml and ${fallbackTokens} fallback color tokens: ${projectsData.length} featured projects, ${mlProjectsData.length} ML/data projects and ${moreProjectsData.length} additional repositories.`);
