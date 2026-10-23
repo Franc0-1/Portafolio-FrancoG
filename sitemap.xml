@@ -41,6 +41,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/horizonte-global/" />
   </url>
   <url>
+    <loc>https://francosgutierrez.dev/proyectos/nacar/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/nacar/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/nacar/" />
+  </url>
+  <url>
+    <loc>https://francosgutierrez.dev/en/projects/nacar/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/nacar/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/nacar/" />
+  </url>
+  <url>
     <loc>https://francosgutierrez.dev/proyectos/cerca/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/cerca/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/cerca/" />

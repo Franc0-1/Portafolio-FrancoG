@@ -185,6 +185,66 @@
     }
   },
   {
+    "id": "nacar",
+    "name": "Nácar",
+    "category": "Sitio web comercial / Demo frontend",
+    "context": "Demo para centros de estética · Marca ficticia",
+    "headline": "Landing y catálogo de tratamientos con turnos por WhatsApp para un centro de estética.",
+    "scope": "Demo frontend en React con datos de ejemplo: landing, catálogo con filtros, ficha de cada tratamiento y pedido de turno por WhatsApp; sin backend.",
+    "status": "Demo frontend.",
+    "statusTone": "demo",
+    "description": "Sitio para un centro de estética pensado para adaptarse a cada cliente: nombre, contacto, tratamientos, precios y textos viven en archivos de configuración. Usa una marca ficticia y datos de ejemplo.",
+    "problem": "Muchos centros de estética reciben consultas por WhatsApp sin un lugar donde mostrar sus tratamientos, duraciones y precios.",
+    "solution": "Una landing que presenta el centro y un catálogo donde cada tratamiento muestra duración y precio orientativo, con un botón que abre WhatsApp con el pedido de turno ya escrito.",
+    "challenge": "Mostrar tratamientos, duraciones y precios sin depender de responder cada consulta a mano.",
+    "result": "Un catálogo con búsqueda y filtros que lleva a cada tratamiento y abre WhatsApp con el turno ya pedido.",
+    "stack": [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "React Router",
+      "Vite"
+    ],
+    "technicalNotes": [
+      "Catálogo de 16 tratamientos en 6 categorías, con búsqueda, filtro por duración y orden; los filtros quedan en la URL, así un enlace comparte la misma vista.",
+      "Ficha de cada tratamiento con duración, precio orientativo y variantes, y enlaces de WhatsApp con el mensaje armado para pedir turno o consultar.",
+      "Datos del negocio, tratamientos y textos separados en archivos de configuración para adaptarlo a un cliente real sin tocar los componentes.",
+      "Paleta y tipografías definidas como tokens de Tailwind CSS 4; rutas con React Router y fallback de SPA para los enlaces directos."
+    ],
+    "repositoryUrl": "https://github.com/Franc0-1/estetica-demo",
+    "demoUrl": null,
+    "image": {
+      "src": "./assets/screenshots/nacar-light.png",
+      "alt": "Portada de la demo de Nácar, marca ficticia: titular, botones para explorar tratamientos y pedir turno, y una foto de ejemplo.",
+      "width": 1440,
+      "height": 960,
+      "caption": "Demo frontend · Marca ficticia · Datos de ejemplo"
+    },
+    "en": {
+      "category": "Business website / Frontend demo",
+      "context": "Demo for beauty centres · Fictional brand",
+      "headline": "Landing page and treatment catalog with WhatsApp booking for a beauty centre.",
+      "scope": "React frontend demo with sample data: landing page, filterable catalog, a page per treatment and WhatsApp booking; no backend.",
+      "status": "Frontend demo.",
+      "description": "Website for a beauty centre built to be adapted to each client: name, contact details, treatments, prices and copy live in configuration files. It uses a fictional brand and sample data.",
+      "problem": "Many beauty centres get inquiries over WhatsApp with no place to show their treatments, durations and prices.",
+      "solution": "A landing page that presents the centre and a catalog where each treatment shows its duration and an indicative price, with a button that opens WhatsApp with the booking request already written.",
+      "challenge": "Show treatments, durations and prices without answering every inquiry by hand.",
+      "result": "A catalog with search and filters that leads to each treatment and opens WhatsApp with the booking already requested.",
+      "technicalNotes": [
+        "Catalog of 16 treatments in 6 categories, with search, duration filter and sorting; filters live in the URL, so a link shares the same view.",
+        "A page per treatment with duration, indicative price and variants, plus WhatsApp links with a ready-made message to book or ask a question.",
+        "Business details, treatments and copy kept in configuration files, so it can be adapted to a real client without touching the components.",
+        "Palette and typefaces defined as Tailwind CSS 4 tokens; routing with React Router and a SPA fallback for direct links."
+      ],
+      "image": {
+        "alt": "Home page of the Nácar demo, a fictional brand: headline, buttons to explore treatments and book, and a sample photo.",
+        "caption": "Frontend demo · Fictional brand · Sample data",
+        "previewLabel": "Enlarge Nácar screenshot"
+      }
+    }
+  },
+  {
     "id": "cerca",
     "name": "Cerca",
     "category": "App personal / Frontend",
