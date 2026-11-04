@@ -50,6 +50,7 @@
           <svg class="theme-icon theme-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" /><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" /></svg>
           <span class="sr-only">Modo oscuro</span>
         </button>
+        <a class="btn btn--ink header-cta" href="#contacto">Hablemos</a>
       </div>
     </header>
 
@@ -62,10 +63,10 @@
               <h1 id="hero-title">Software a medida,<br /> de la web <span>al machine learning.</span></h1>
               <p class="hero-lead">Desarrollo aplicaciones web, herramientas internas y servicios con modelos de datos para empresas, organismos y emprendimientos: desde la base de datos hasta la interfaz, con Go, Python y React.</p>
               <div class="hero-actions">
-                <a class="btn btn--primary" href="#proyectos">Ver proyectos <span class="arrow arrow--down" aria-hidden="true">↓</span></a>
                 <!-- contact-action:start -->
-                <a class="btn btn--ghost-ink" href="#contacto">Contactarme</a><a class="hero-cv link-arrow" href="./assets/cv/Franco-Gutierrez-CV-Desarrollador-de-Software-ES.pdf" download hreflang="es">Descargar CV <span class="arrow arrow--down" aria-hidden="true">↓</span></a>
+                <a class="btn btn--ink" href="#contacto">Contame tu proyecto <span class="arrow" aria-hidden="true">→</span></a><a class="hero-cv link-arrow" href="./assets/cv/Franco-Gutierrez-CV-Desarrollador-de-Software-ES.pdf" download hreflang="es">Descargar CV <span class="arrow arrow--down" aria-hidden="true">↓</span></a>
                 <!-- contact-action:end -->
+                <a class="btn btn--outline-ink hero-projects" href="#proyectos">Ver proyectos <span class="arrow arrow--down" aria-hidden="true">↓</span></a>
                 <a class="hero-github link-arrow" href="https://github.com/Franc0-1">GitHub <span class="arrow" aria-hidden="true">↗</span></a>
               </div>
             </div>
@@ -109,63 +110,92 @@
       <section class="section projects-section" id="proyectos" aria-labelledby="projects-title">
       <div class="container">
         <header class="section-head" data-reveal><p class="section-label"><span>02</span> Software</p><div><h2 id="projects-title">Herramientas internas y aplicaciones web.</h2><p>Dos sistemas en Go que automatizan trabajo administrativo, inventario y actas, dos demos frontend en React y una app personal.</p></div></header>
-        <div class="cards cards--software">
-    <article class="card card--feature" id="inventario" data-reveal>
-      <div class="card-thumb"><picture data-theme-picture><source media="(prefers-color-scheme: dark)" srcset="./assets/screenshots/inventory-dark.webp" /><img src="./assets/screenshots/inventory-light.webp" alt="" loading="lazy" decoding="async" width="1440" height="960" /></picture></div>
-      <div class="card-body">
-        <p class="item-meta"><span class="item-num">01</span><span>Herramientas internas</span></p>
-        <h3 class="card-title"><a class="card-link" href="./proyectos/inventario/">Sistema de Inventario</a></h3>
-        <p class="card-line">Del Excel a SQL Server, con gestión web del inventario.</p>
-        <p class="card-result"><span>Resultado</span>Gestión web con SQL Server: búsqueda, filtros, préstamos e historial de movimientos.</p>
-        <p class="card-foot"><span class="state state--progress">En desarrollo avanzado</span><span class="card-stack">Go · SQL Server · excelize</span></p>
-        <span class="card-more" aria-hidden="true">Ver proyecto <span class="arrow">→</span></span>
       </div>
-    </article>
-    <article class="card" id="actas" data-reveal>
-      <div class="card-thumb"><picture data-theme-picture><source media="(prefers-color-scheme: dark)" srcset="./assets/screenshots/actas-dark.webp" /><img src="./assets/screenshots/actas-light.webp" alt="" loading="lazy" decoding="async" width="820" height="899" /></picture></div>
-      <div class="card-body">
-        <p class="item-meta"><span class="item-num">02</span><span>Automatización administrativa</span></p>
-        <h3 class="card-title"><a class="card-link" href="./proyectos/actas/">Generador de Actas</a></h3>
-        <p class="card-line">Documentos administrativos, generados desde la web.</p>
-        
-        <p class="card-foot"><span class="state state--done">Terminado</span><span class="card-stack">Go · LibreOffice · Docker Compose</span></p>
-        <span class="card-more" aria-hidden="true">Ver proyecto <span class="arrow">→</span></span>
-      </div>
-    </article>
-    <article class="card" id="horizonte-global" data-reveal>
-      <div class="card-thumb"><picture><img src="./assets/screenshots/horizonte-global-light.webp" alt="" loading="lazy" decoding="async" width="1440" height="960" /></picture></div>
-      <div class="card-body">
-        <p class="item-meta"><span class="item-num">03</span><span>Frontend / Demo visual</span></p>
-        <h3 class="card-title"><a class="card-link" href="./proyectos/horizonte-global/">Horizonte Global</a></h3>
-        <p class="card-line">Landing y CRM para una agencia de viajes.</p>
-        
-        <p class="card-foot"><span class="state state--demo">Demo frontend</span><span class="card-stack">React · React Router · Tailwind CSS</span></p>
-        <span class="card-more" aria-hidden="true">Ver proyecto <span class="arrow">→</span></span>
-      </div>
-    </article>
-    <article class="card" id="nacar" data-reveal>
-      <div class="card-thumb"><picture><img src="./assets/screenshots/nacar-light.webp" alt="" loading="lazy" decoding="async" width="1440" height="960" /></picture></div>
-      <div class="card-body">
-        <p class="item-meta"><span class="item-num">04</span><span>Sitio web comercial / Demo frontend</span></p>
-        <h3 class="card-title"><a class="card-link" href="./proyectos/nacar/">Nácar</a></h3>
-        <p class="card-line">Landing y catálogo de tratamientos con turnos por WhatsApp para un centro de estética.</p>
-        
-        <p class="card-foot"><span class="state state--demo">Demo frontend</span><span class="card-stack">React · TypeScript · Tailwind CSS</span></p>
-        <span class="card-more" aria-hidden="true">Ver proyecto <span class="arrow">→</span></span>
-      </div>
-    </article>
-    <article class="card" id="cerca" data-reveal>
-      <div class="card-thumb"><picture data-theme-picture><source media="(prefers-color-scheme: dark)" srcset="./assets/screenshots/cerca-dark.webp" /><img src="./assets/screenshots/cerca-light.webp" alt="" loading="lazy" decoding="async" width="1440" height="960" /></picture></div>
-      <div class="card-body">
-        <p class="item-meta"><span class="item-num">05</span><span>App personal / Frontend</span></p>
-        <h3 class="card-title"><a class="card-link" href="./proyectos/cerca/">Cerca</a></h3>
-        <p class="card-line">Una app de ahorro: la foto de lo que querés comprar se acerca con cada peso.</p>
-        
-        <p class="card-foot"><span class="state state--done">En uso</span><span class="card-stack">React · TypeScript · Tailwind CSS</span></p>
-        <span class="card-more" aria-hidden="true">Ver proyecto <span class="arrow">→</span></span>
-      </div>
-    </article>
+      <div class="showcase" role="region" aria-roledescription="carrusel" aria-label="Proyectos de software" data-showcase>
+        <div class="showcase-bar">
+          <p class="showcase-hint">Deslizá, usá las flechas o elegí un proyecto</p>
+          <div class="showcase-arrows" data-showcase-controls hidden><button class="icon-btn" type="button" data-step="-1" aria-label="Proyecto anterior"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="icon-btn" type="button" data-step="1" aria-label="Proyecto siguiente"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5 13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
         </div>
+        <ol class="showcase-track" tabindex="0" aria-label="Proyectos: desplazable con las flechas del teclado">
+        <li class="showcase-slide showcase-slide--wide" id="inventario" aria-roledescription="proyecto" aria-label="1 de 5: Sistema de Inventario">
+          <span class="showcase-num" aria-hidden="true">01</span>
+          <a class="showcase-media" href="./proyectos/inventario/" tabindex="-1" aria-hidden="true"><picture data-theme-picture><source media="(prefers-color-scheme: dark)" srcset="./assets/screenshots/inventory-dark.webp" /><img src="./assets/screenshots/inventory-light.webp" alt="" loading="eager" decoding="async" width="1440" height="960" /></picture></a>
+          <div class="showcase-head">
+            
+            <p class="showcase-kicker">Herramientas internas</p>
+            <h3 class="showcase-title"><a href="./proyectos/inventario/">Sistema de Inventario</a></h3>
+            <p class="showcase-line">Del Excel a SQL Server, con gestión web del inventario.</p>
+          </div>
+          <div class="showcase-side">
+            <dl class="card-story"><div><dt>Antes</dt><dd>El inventario se buscaba y administraba a mano en planillas de Excel.</dd></div><div><dt>Ahora</dt><dd>Gestión web con SQL Server: búsqueda, filtros, préstamos e historial de movimientos.</dd></div></dl>
+            <p class="card-foot"><span class="state state--progress">En desarrollo avanzado</span><span class="card-stack">Go · SQL Server · excelize</span></p>
+            <a class="showcase-more" href="./proyectos/inventario/" tabindex="-1" aria-hidden="true">Ver proyecto <span class="arrow">→</span></a>
+          </div>
+        </li>
+        <li class="showcase-slide showcase-slide--tall" id="actas" aria-roledescription="proyecto" aria-label="2 de 5: Generador de Actas">
+          
+          <a class="showcase-media showcase-media--contain" href="./proyectos/actas/" tabindex="-1" aria-hidden="true"><picture data-theme-picture><source media="(prefers-color-scheme: dark)" srcset="./assets/screenshots/actas-dark.webp" /><img src="./assets/screenshots/actas-light.webp" alt="" loading="eager" decoding="async" width="820" height="899" /></picture></a>
+          <div class="showcase-head">
+            <span class="showcase-num" aria-hidden="true">02</span>
+            <p class="showcase-kicker">Automatización administrativa</p>
+            <h3 class="showcase-title"><a href="./proyectos/actas/">Generador de Actas</a></h3>
+            <p class="showcase-line">Documentos administrativos, generados desde la web.</p>
+          </div>
+          <div class="showcase-side">
+            <dl class="card-story"><div><dt>Antes</dt><dd>Cada acta requiere completar datos, validarlos y producir el documento en el formato correcto.</dd></div><div><dt>Ahora</dt><dd>Un formulario web genera el acta en DOCX y PDF, con nombre de archivo automático.</dd></div></dl>
+            <p class="card-foot"><span class="state state--done">Terminado</span><span class="card-stack">Go · LibreOffice · Docker Compose</span></p>
+            <a class="showcase-more" href="./proyectos/actas/" tabindex="-1" aria-hidden="true">Ver proyecto <span class="arrow">→</span></a>
+          </div>
+        </li>
+        <li class="showcase-slide showcase-slide--wide" id="horizonte-global" aria-roledescription="proyecto" aria-label="3 de 5: Horizonte Global">
+          <span class="showcase-num" aria-hidden="true">03</span>
+          <a class="showcase-media" href="./proyectos/horizonte-global/" tabindex="-1" aria-hidden="true"><picture><img src="./assets/screenshots/horizonte-global-light.webp" alt="" loading="lazy" decoding="async" width="1440" height="960" /></picture></a>
+          <div class="showcase-head">
+            
+            <p class="showcase-kicker">Frontend / Demo visual</p>
+            <h3 class="showcase-title"><a href="./proyectos/horizonte-global/">Horizonte Global</a></h3>
+            <p class="showcase-line">Landing y CRM para una agencia de viajes.</p>
+          </div>
+          <div class="showcase-side">
+            <dl class="card-story"><div><dt>Antes</dt><dd>Presentar la agencia y organizar clientes y trámites migratorios en una misma interfaz.</dd></div><div><dt>Ahora</dt><dd>Landing multilingüe y CRM navegable en React, como demo visual con datos simulados.</dd></div></dl>
+            <p class="card-foot"><span class="state state--demo">Demo frontend</span><span class="card-stack">React · React Router · Tailwind CSS</span></p>
+            <a class="showcase-more" href="./proyectos/horizonte-global/" tabindex="-1" aria-hidden="true">Ver proyecto <span class="arrow">→</span></a>
+          </div>
+        </li>
+        <li class="showcase-slide showcase-slide--tall" id="nacar" aria-roledescription="proyecto" aria-label="4 de 5: Nácar">
+          
+          <a class="showcase-media" href="./proyectos/nacar/" tabindex="-1" aria-hidden="true"><picture><img src="./assets/screenshots/nacar-light.webp" alt="" loading="lazy" decoding="async" width="1440" height="960" /></picture></a>
+          <div class="showcase-head">
+            <span class="showcase-num" aria-hidden="true">04</span>
+            <p class="showcase-kicker">Sitio web comercial / Demo frontend</p>
+            <h3 class="showcase-title"><a href="./proyectos/nacar/">Nácar</a></h3>
+            <p class="showcase-line">Landing y catálogo de tratamientos con turnos por WhatsApp para un centro de estética.</p>
+          </div>
+          <div class="showcase-side">
+            <dl class="card-story"><div><dt>Antes</dt><dd>Mostrar tratamientos, duraciones y precios sin depender de responder cada consulta a mano.</dd></div><div><dt>Ahora</dt><dd>Un catálogo con búsqueda y filtros que lleva a cada tratamiento y abre WhatsApp con el turno ya pedido.</dd></div></dl>
+            <p class="card-foot"><span class="state state--demo">Demo frontend</span><span class="card-stack">React · TypeScript · Tailwind CSS</span></p>
+            <a class="showcase-more" href="./proyectos/nacar/" tabindex="-1" aria-hidden="true">Ver proyecto <span class="arrow">→</span></a>
+          </div>
+        </li>
+        <li class="showcase-slide showcase-slide--wide" id="cerca" aria-roledescription="proyecto" aria-label="5 de 5: Cerca">
+          <span class="showcase-num" aria-hidden="true">05</span>
+          <a class="showcase-media" href="./proyectos/cerca/" tabindex="-1" aria-hidden="true"><picture data-theme-picture><source media="(prefers-color-scheme: dark)" srcset="./assets/screenshots/cerca-dark.webp" /><img src="./assets/screenshots/cerca-light.webp" alt="" loading="lazy" decoding="async" width="1440" height="960" /></picture></a>
+          <div class="showcase-head">
+            
+            <p class="showcase-kicker">App personal / Frontend</p>
+            <h3 class="showcase-title"><a href="./proyectos/cerca/">Cerca</a></h3>
+            <p class="showcase-line">Una app de ahorro: la foto de lo que querés comprar se acerca con cada peso.</p>
+          </div>
+          <div class="showcase-side">
+            <dl class="card-story"><div><dt>Antes</dt><dd>Sostener un ahorro cuando el avance no se ve y cada mes hay que decidir cuánto separar.</dd></div><div><dt>Ahora</dt><dd>Cada aporte mueve el objetivo por un camino con fecha estimada de llegada y un plan del mes calculado.</dd></div></dl>
+            <p class="card-foot"><span class="state state--done">En uso</span><span class="card-stack">React · TypeScript · Tailwind CSS</span></p>
+            <a class="showcase-more" href="./proyectos/cerca/" tabindex="-1" aria-hidden="true">Ver proyecto <span class="arrow">→</span></a>
+          </div>
+        </li>
+        </ol>
+        <nav class="showcase-index" aria-label="Elegir proyecto"><ol><li><a href="#inventario" aria-current="true"><span>01</span> Sistema de Inventario</a></li><li><a href="#actas"><span>02</span> Generador de Actas</a></li><li><a href="#horizonte-global"><span>03</span> Horizonte Global</a></li><li><a href="#nacar"><span>04</span> Nácar</a></li><li><a href="#cerca"><span>05</span> Cerca</a></li></ol></nav>
+      </div>
+      <div class="container">
         <aside class="more" aria-labelledby="more-title" data-reveal><h3 id="more-title" class="more-title">También en GitHub</h3><ul class="more-list"><li><a class="more-link" href="https://github.com/Franc0-1/Gestor-de-Ingresos" aria-label="Ver repositorio de Gestor de Ingresos"><span class="more-name">Gestor de Ingresos</span><span class="more-desc">Finanzas personales: ingresos, gastos, transferencias y dashboard por cuenta y moneda.</span><span class="more-stack">Go · React · TypeScript</span><span class="arrow" aria-hidden="true">↗</span></a></li><li><a class="more-link" href="https://github.com/Franc0-1/Lab3ProjectoFinal" aria-label="Ver repositorio de Gestión de pizzería"><span class="more-name">Gestión de pizzería</span><span class="more-desc">Proyecto académico full-stack: pedidos, roles, carrito y reportes en Excel y PDF.</span><span class="more-stack">Laravel · React · Inertia · MySQL</span><span class="arrow" aria-hidden="true">↗</span></a></li><li><a class="more-link" href="https://github.com/Franc0-1/LabPorjectZoo" aria-label="Ver repositorio de Gestión de zoológico"><span class="more-name">Gestión de zoológico</span><span class="more-desc">Aplicación de consola orientada a objetos. Proyecto de formación.</span><span class="more-stack">C#</span><span class="arrow" aria-hidden="true">↗</span></a></li></ul></aside>
       </div>
     </section>
@@ -265,7 +295,8 @@
       <section class="section contact-section" id="contacto" aria-labelledby="contact-title">
       <div class="container">
         <div class="contact-panel" data-reveal>
-          <div class="contact-copy"><p class="section-label"><span>05</span> Contacto</p><h2 id="contact-title">¿Tenés un proyecto en mente o un puesto para cubrir?</h2><p>Estoy disponible para proyectos freelance y oportunidades laborales, en Argentina y otros países. Contame en pocas líneas qué necesitás resolver, por el canal que te quede más cómodo.</p></div>
+          <div class="contact-copy"><p class="section-label"><span>05</span> Contacto</p><h2 id="contact-title">¿Tenés un proyecto en mente o un puesto para cubrir?</h2></div>
+          <p class="contact-lead">Estoy disponible para proyectos freelance y oportunidades laborales, en Argentina y otros países. Contame en pocas líneas qué necesitás resolver, por el canal que te quede más cómodo.</p>
           <ul class="channels"><li class="channel-item"><a class="channel" href="https://wa.me/5493624669203?text=Hola%20Franco%2C%20vi%20tu%20portafolio%20y%20quer%C3%ADa%20consultarte%20por%20un%20proyecto."><span class="channel-name">WhatsApp</span><span class="channel-purpose">Proyectos freelance, Argentina y exterior</span><span class="channel-value">Escribir por WhatsApp <span class="arrow" aria-hidden="true">↗</span></span></a></li><li class="channel-item"><a class="channel" href="mailto:ffrancc0gtl@gmail.com"><span class="channel-name">Email</span><span class="channel-purpose">Empleo, freelance y consultas</span><span class="channel-value">ffrancc0gtl@gmail.com <span class="arrow" aria-hidden="true">↗</span></span></a><button class="channel-copy" type="button" data-copy="ffrancc0gtl@gmail.com" hidden><span data-copy-label>Copiar</span><span class="sr-only"> email</span></button></li><li class="channel-item"><a class="channel" href="https://www.linkedin.com/in/franco-gutierrez-tech"><span class="channel-name">LinkedIn</span><span class="channel-purpose">Empleo y propuestas</span><span class="channel-value">linkedin.com/in/franco-gutierrez-tech <span class="arrow" aria-hidden="true">↗</span></span></a></li><li class="channel-item"><a class="channel" href="https://github.com/Franc0-1"><span class="channel-name">GitHub</span><span class="channel-purpose">Código y repositorios</span><span class="channel-value">github.com/Franc0-1 <span class="arrow" aria-hidden="true">↗</span></span></a></li></ul>
         </div>
       </div>
@@ -276,6 +307,7 @@
     <footer class="site-footer">
       <div class="container footer-inner">
         <p class="footer-name"><span class="brand-symbol brand-symbol--sm" aria-hidden="true">fg.</span>Franco Sebastian Gutierrez</p>
+        <nav class="footer-links" aria-label="Enlaces de contacto"><a href="mailto:ffrancc0gtl@gmail.com">ffrancc0gtl@gmail.com</a><a href="https://www.linkedin.com/in/franco-gutierrez-tech">LinkedIn</a><a href="https://github.com/Franc0-1">GitHub</a></nav>
         <p class="footer-note">Hecho con HTML, CSS y JavaScript nativo. Sin dependencias.</p>
         <a class="link-arrow footer-top" href="#inicio">Volver arriba <span class="arrow arrow--up" aria-hidden="true">↑</span></a>
       </div>

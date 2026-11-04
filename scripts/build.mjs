@@ -47,9 +47,10 @@ const UI = {
     whatsappDisplay: 'Escribir por WhatsApp', whatsappMessage: 'Hola Franco, vi tu portafolio y quería consultarte por un proyecto.',
     github: 'Código y repositorios', copy: 'Copiar',
     privateRepo: 'Código privado · herramienta interna',
-    contactMe: 'Contactarme', downloadCv: 'Descargar CV',
+    contactMe: 'Contame tu proyecto', downloadCv: 'Descargar CV', before: 'Antes', after: 'Ahora',
     viewProject: 'Ver proyecto', allProjects: 'Todos los proyectos', about: 'Sobre el proyecto', facts: 'Ficha del proyecto',
     previous: 'Anterior', next: 'Siguiente', pager: 'Más proyectos', locale: 'es_AR',
+    showcase: { role: 'carrusel', label: 'Proyectos de software', track: 'Proyectos: desplazable con las flechas del teclado', index: 'Elegir proyecto', hint: 'Deslizá, usá las flechas o elegí un proyecto', prev: 'Proyecto anterior', next: 'Proyecto siguiente', slide: (i, n) => `${i} de ${n}` },
     caseCta: { title: '¿Te interesa algo parecido?', text: 'Contame qué necesitás resolver y lo conversamos.', button: 'Contactarme' },
   },
   en: {
@@ -70,9 +71,10 @@ const UI = {
     whatsappDisplay: 'Message on WhatsApp', whatsappMessage: 'Hi Franco, I saw your portfolio and would like to ask about a project.',
     github: 'Code and repositories', copy: 'Copy',
     privateRepo: 'Private code · internal tool',
-    contactMe: 'Contact me', downloadCv: 'Download CV',
+    contactMe: 'Tell me about your project', downloadCv: 'Download CV', before: 'Before', after: 'Now',
     viewProject: 'View project', allProjects: 'All projects', about: 'About the project', facts: 'Project facts',
     previous: 'Previous', next: 'Next', pager: 'More projects', locale: 'en_US',
+    showcase: { role: 'carousel', label: 'Software projects', track: 'Projects: scrollable with the arrow keys', index: 'Choose a project', hint: 'Swipe, use the arrows or pick a project', prev: 'Previous project', next: 'Next project', slide: (i, n) => `${i} of ${n}` },
     caseCta: { title: 'Interested in something similar?', text: 'Tell me what you need to solve and let’s talk it through.', button: 'Contact me' },
   },
 };
@@ -192,17 +194,54 @@ function renderPage({ lang, dir }) {
       : `<span class="card-figure card-figure--stack">${project.stack.slice(0, 3).map(escapeHtml).join(' · ')}</span>`;
     return `<div class="card-thumb card-thumb--text" aria-hidden="true">${figure}</div>`;
   }
-  const renderCard = (project, feature) => `<article class="card${feature ? ' card--feature' : ''}" id="${escapeHtml(project.id)}" data-reveal>
+  const renderCard = (project) => `<article class="card" id="${escapeHtml(project.id)}" data-reveal>
       ${renderThumb(project)}
       <div class="card-body">
         ${h.meta(project.index, project.category)}
         <h3 class="card-title"><a class="card-link" href="${href(projectDirFor(lang, project.id))}">${escapeHtml(project.displayName || project.name)}</a></h3>
-        <p class="card-line">${escapeHtml(project.headline || project.description)}</p>
-        ${feature && project.challenge ? `<p class="card-result"><span>${t.result}</span>${escapeHtml(project.result)}</p>` : ''}
+        ${!project.challenge ? `<p class="card-line">${escapeHtml(project.headline || project.description)}</p>` : ''}
+        ${project.challenge ? `<dl class="card-story"><div><dt>${t.before}</dt><dd>${escapeHtml(project.challenge)}</dd></div><div><dt>${t.after}</dt><dd>${escapeHtml(project.result)}</dd></div></dl>` : ''}
         <p class="card-foot">${h.status(project)}<span class="card-stack">${project.stack.slice(0, 3).map(escapeHtml).join(' · ')}</span></p>
         <span class="card-more" aria-hidden="true">${t.viewProject} <span class="arrow">→</span></span>
       </div>
     </article>`;
+
+  const arrowIcon = (dir) => `<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="${dir === 'prev' ? 'M12.5 4.5 7 10l5.5 5.5' : 'M7.5 4.5 13 10l-5.5 5.5'}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  function renderSlide(project, i, total) {
+    const image = project.image;
+    const link = href(projectDirFor(lang, project.id));
+    const name = escapeHtml(project.displayName || project.name);
+    const num = `<span class="showcase-num" aria-hidden="true">${number(project.index)}</span>`;
+    // Screenshots far from 3:2 (Actas is almost square) are shown whole on a matte instead of cropped.
+    const fit = Math.abs(image.width / image.height - 1.5) > 0.2 ? ' showcase-media--contain' : '';
+    const darkSource = image.darkSrc ? `<source media="(prefers-color-scheme: dark)" srcset="${asset(inlineSource(image.darkSrc))}" />` : '';
+    const wide = i % 2 === 0;
+    return `<li class="showcase-slide showcase-slide--${wide ? 'wide' : 'tall'}" id="${escapeHtml(project.id)}" aria-roledescription="${lang === 'es' ? 'proyecto' : 'project'}" aria-label="${t.showcase.slide(i + 1, total)}: ${name}">
+          ${wide ? num : ''}
+          <a class="showcase-media${fit}" href="${link}" tabindex="-1" aria-hidden="true"><picture${image.darkSrc ? ' data-theme-picture' : ''}>${darkSource}<img src="${asset(inlineSource(image.src))}" alt="" loading="${i < 2 ? 'eager' : 'lazy'}" decoding="async" width="${Number(image.width)}" height="${Number(image.height)}" /></picture></a>
+          <div class="showcase-head">
+            ${wide ? '' : num}
+            <p class="showcase-kicker">${escapeHtml(project.category)}</p>
+            <h3 class="showcase-title"><a href="${link}">${name}</a></h3>
+            <p class="showcase-line">${escapeHtml(project.headline || project.description)}</p>
+          </div>
+          <div class="showcase-side">
+            ${project.challenge ? `<dl class="card-story"><div><dt>${t.before}</dt><dd>${escapeHtml(project.challenge)}</dd></div><div><dt>${t.after}</dt><dd>${escapeHtml(project.result)}</dd></div></dl>` : ''}
+            <p class="card-foot">${h.status(project)}<span class="card-stack">${project.stack.slice(0, 3).map(escapeHtml).join(' · ')}</span></p>
+            <a class="showcase-more" href="${link}" tabindex="-1" aria-hidden="true">${t.viewProject} <span class="arrow">→</span></a>
+          </div>
+        </li>`;
+  }
+  const renderShowcase = (items) => `<div class="showcase" role="region" aria-roledescription="${t.showcase.role}" aria-label="${t.showcase.label}" data-showcase>
+        <div class="showcase-bar">
+          <p class="showcase-hint">${t.showcase.hint}</p>
+          <div class="showcase-arrows" data-showcase-controls hidden><button class="icon-btn" type="button" data-step="-1" aria-label="${t.showcase.prev}">${arrowIcon('prev')}</button><button class="icon-btn" type="button" data-step="1" aria-label="${t.showcase.next}">${arrowIcon('next')}</button></div>
+        </div>
+        <ol class="showcase-track" tabindex="0" aria-label="${t.showcase.track}">
+        ${items.map((project, i) => renderSlide(project, i, items.length)).join('\n        ')}
+        </ol>
+        <nav class="showcase-index" aria-label="${t.showcase.index}"><ol>${items.map((project, i) => `<li><a href="#${escapeHtml(project.id)}"${i ? '' : ' aria-current="true"'}><span>${number(project.index)}</span> ${escapeHtml(project.displayName || project.name)}</a></li>`).join('')}</ol></nav>
+      </div>`;
 
   const renderMore = (project) => `<li><a class="more-link" href="${checkedUrl(project.repositoryUrl)}" aria-label="${escapeHtml(t.repoAria(project.name))}"><span class="more-name">${escapeHtml(project.name)}</span><span class="more-desc">${escapeHtml(project.description)}</span><span class="more-stack">${project.stack.map(escapeHtml).join(' · ')}</span>${arrow}</a></li>`;
 
@@ -212,9 +251,9 @@ function renderPage({ lang, dir }) {
   const section = `<section class="section projects-section" id="proyectos" aria-labelledby="projects-title">
       <div class="container">
         ${sectionHead('02', t.projectsSection, 'projects-title')}
-        <div class="cards cards--software">
-    ${software.map((project, i) => renderCard(project, i === 0)).join('\n    ')}
-        </div>
+      </div>
+      ${renderShowcase(software)}
+      <div class="container">
         ${moreProjects.length ? `<aside class="more" aria-labelledby="more-title" data-reveal><h3 id="more-title" class="more-title">${t.alsoOnGithub}</h3><ul class="more-list">${moreProjects.map(renderMore).join('')}</ul></aside>` : ''}
       </div>
     </section>
@@ -222,7 +261,7 @@ function renderPage({ lang, dir }) {
       <div class="container">
         ${sectionHead('03', t.mlSection, 'ml-title')}
         <div class="cards cards--ml">
-    ${ml.map((project) => renderCard(project, false)).join('\n    ')}
+    ${ml.map((project) => renderCard(project)).join('\n    ')}
         </div>
       </div>
     </section>`;
@@ -254,14 +293,15 @@ function renderPage({ lang, dir }) {
   const contactSection = channels.length ? `<section class="section contact-section" id="contacto" aria-labelledby="contact-title">
       <div class="container">
         <div class="contact-panel" data-reveal>
-          <div class="contact-copy"><p class="section-label"><span>05</span> ${c.label}</p><h2 id="contact-title">${c.title}</h2><p>${c.lead} ${channels.length === 1 ? c.single(channels[0].name) : c.multiple}</p></div>
+          <div class="contact-copy"><p class="section-label"><span>05</span> ${c.label}</p><h2 id="contact-title">${c.title}</h2></div>
+          <p class="contact-lead">${c.lead} ${channels.length === 1 ? c.single(channels[0].name) : c.multiple}</p>
           <ul class="channels">${channels.map(channelRow).join('')}${channelRow({ name: 'GitHub', purpose: t.github, href: 'https://github.com/Franc0-1', display: 'github.com/Franc0-1' })}</ul>
         </div>
       </div>
     </section>` : '';
   const contactAction = (channels.length
-    ? `<a class="btn btn--ghost-ink" href="#contacto">${t.contactMe}</a>`
-    : `<a class="btn btn--ghost-ink" href="https://github.com/Franc0-1">GitHub ${arrow}</a>`)
+    ? `<a class="btn btn--ink" href="#contacto">${t.contactMe} <span class="arrow" aria-hidden="true">→</span></a>`
+    : `<a class="btn btn--ink" href="https://github.com/Franc0-1">GitHub ${arrow}</a>`)
     + (cvFiles.length ? `<a class="hero-cv link-arrow" href="${asset(cvFiles[0].file)}" download hreflang="${escapeHtml(cvFiles[0].lang)}">${t.downloadCv} ${downArrow}</a>` : '');
 
   return [['projects', section], ['contact-action', contactAction], ['contact', contactSection]];

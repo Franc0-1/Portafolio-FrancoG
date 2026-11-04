@@ -157,3 +157,43 @@ if ('IntersectionObserver' in window) {
     });
   }
 }
+
+// Software showcase: the track is a native horizontal scroller, usable without JavaScript.
+// This adds the arrows, keeps the index in sync and makes the index scroll only the track.
+document.querySelectorAll('[data-showcase]').forEach((showcase) => {
+  const track = showcase.querySelector('.showcase-track');
+  const slides = [...track.children];
+  const entries = [...showcase.querySelectorAll('.showcase-index a')];
+  const controls = showcase.querySelector('[data-showcase-controls]');
+  const [previous, next] = controls.querySelectorAll('[data-step]');
+  let current = 0;
+
+  const goTo = (index) => {
+    const slide = slides[Math.max(0, Math.min(slides.length - 1, index))];
+    track.scrollTo({ left: slide.offsetLeft - slides[0].offsetLeft, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+  };
+  const sync = () => {
+    const max = track.scrollWidth - track.clientWidth;
+    const atEnd = track.scrollLeft >= max - 2;
+    const step = slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : 1;
+    current = atEnd ? slides.length - 1 : Math.round(track.scrollLeft / step);
+    entries.forEach((entry, i) => (i === current ? entry.setAttribute('aria-current', 'true') : entry.removeAttribute('aria-current')));
+    previous.setAttribute('aria-disabled', String(track.scrollLeft < 2));
+    next.setAttribute('aria-disabled', String(atEnd));
+  };
+
+  controls.hidden = false;
+  [previous, next].forEach((button) => button.addEventListener('click', () => {
+    if (button.getAttribute('aria-disabled') !== 'true') goTo(current + Number(button.dataset.step));
+  }));
+  entries.forEach((entry, i) => entry.addEventListener('click', (event) => {
+    event.preventDefault(); // scroll the track, not the page
+    goTo(i);
+  }));
+  let frame = 0;
+  track.addEventListener('scroll', () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(sync); }, { passive: true });
+  // Also runs once the layout settles (the first measurement can come before it) and on every resize.
+  if ('ResizeObserver' in window) new ResizeObserver(sync).observe(track);
+  else window.addEventListener('resize', sync);
+  sync();
+});
