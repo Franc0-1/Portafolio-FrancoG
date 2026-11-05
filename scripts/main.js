@@ -2,10 +2,11 @@ const root = document.documentElement;
 const themeButton = document.querySelector('.theme-toggle');
 const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const english = root.lang.startsWith('en');
-const text = english
-  ? { toLight: 'Switch to light mode', toDark: 'Switch to dark mode', copy: 'Copy', copied: 'Copied', copyFailed: 'Couldn’t copy' }
-  : { toLight: 'Activar modo claro', toDark: 'Activar modo oscuro', copy: 'Copiar', copied: 'Copiado', copyFailed: 'No se pudo copiar' };
+const text = {
+  es: { toLight: 'Activar modo claro', toDark: 'Activar modo oscuro', copy: 'Copiar', copied: 'Copiado', copyFailed: 'No se pudo copiar' },
+  en: { toLight: 'Switch to light mode', toDark: 'Switch to dark mode', copy: 'Copy', copied: 'Copied', copyFailed: 'Couldn’t copy' },
+  pt: { toLight: 'Ativar modo claro', toDark: 'Ativar modo escuro', copy: 'Copiar', copied: 'Copiado', copyFailed: 'Não foi possível copiar' },
+}[root.lang.slice(0, 2)] || {};
 
 function isDarkTheme() {
   return root.dataset.theme ? root.dataset.theme === 'dark' : systemTheme.matches;
@@ -94,7 +95,7 @@ document.querySelectorAll('[data-lang-switch]').forEach((link) => {
 // The header gains a divider once the page scrolls under it.
 const header = document.querySelector('.site-header');
 // On phones the header slides away while scrolling down and returns when scrolling up.
-const compactHeader = window.matchMedia('(max-width: 640px)');
+const compactHeader = window.matchMedia('(max-width: 820px)');
 let lastScrollY = window.scrollY;
 let ignoreScrollUntil = 0;
 const updateHeader = () => {

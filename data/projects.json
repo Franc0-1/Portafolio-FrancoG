@@ -63,6 +63,32 @@
         "caption": "Real interface · Sample data",
         "previewLabel": "Enlarge Inventory System screenshot"
       }
+    },
+    "pt": {
+      "name": "Sistema de Inventário",
+      "category": "Ferramentas internas",
+      "context": "Estágio · Casa de Governo da Província do Chaco",
+      "headline": "Do Excel ao SQL Server, com gestão web do inventário.",
+      "contribution": "Desenvolvimento individual.",
+      "scope": "Backend em Go com SQL Server para equipamentos, insumos, empréstimos e histórico de movimentações. Importa e exporta Excel para migrar e fazer backup dos dados.",
+      "status": "Em desenvolvimento avançado.",
+      "description": "Aplicação interna em Go para gerenciar equipamentos, estoque de insumos, empréstimos e histórico de movimentações a partir de uma interface web, com resumo e relatórios.",
+      "problem": "A busca e a gestão manual do inventário no Excel dificultavam o acesso às informações e o controle dos dispositivos.",
+      "solution": "Uma API REST em Go com interface web: CRUD, busca, filtros, ordenação e paginação. Os dados ficam no SQL Server; o Excel fica para importar e exportar.",
+      "challenge": "O inventário era buscado e gerenciado à mão em planilhas do Excel.",
+      "result": "Gestão web com SQL Server: busca, filtros, empréstimos e histórico de movimentações.",
+      "technicalNotes": [
+        "Camadas separadas: handlers HTTP, serviços com a lógica de negócio e repositórios intercambiáveis (SQL Server ou Excel) atrás da mesma interface.",
+        "Migrações SQL e ferramentas de linha de comando para preparar o banco e migrar os dados das planilhas.",
+        "Movimentações de estoque (entrada, saída, ajuste e transferência), empréstimos que vencem no fim do expediente, resumo e relatórios.",
+        "Docker Compose com um contêiner reforçado: sistema de arquivos somente leitura, sem privilégios extras e logs rotacionados.",
+        "Testes em Go para handlers, serviços e repositórios, além de testes do frontend."
+      ],
+      "image": {
+        "alt": "Captura real do Sistema de Inventário com dados de exemplo.",
+        "caption": "Interface real · Dados de exemplo",
+        "previewLabel": "Ampliar captura do Sistema de Inventário"
+      }
     }
   },
   {
@@ -125,6 +151,30 @@
         "caption": "Real interface · Sample data",
         "previewLabel": "Enlarge Records Generator screenshot"
       }
+    },
+    "pt": {
+      "name": "Gerador de Atas",
+      "category": "Automação administrativa",
+      "context": "Estágio · Casa de Governo da Província do Chaco",
+      "headline": "Documentos administrativos, gerados pela web.",
+      "contribution": "Desenvolvimento individual.",
+      "scope": "API HTTP e interface web que geram arquivos DOCX e os convertem para PDF com o LibreOffice.",
+      "status": "Concluído.",
+      "description": "Sistema em Go que gera atas administrativas dinâmicas em DOCX e automatiza a conversão para PDF com o LibreOffice em modo headless.",
+      "problem": "Preparar atas administrativas exige preencher informações, validar os dados e produzir documentos nos formatos necessários.",
+      "solution": "Uma interface web conectada a uma API HTTP gera os documentos, nomeia os arquivos automaticamente e os converte de DOCX para PDF.",
+      "challenge": "Cada ata exige preencher dados, validá-los e produzir o documento no formato certo.",
+      "result": "Um formulário web gera a ata em DOCX e PDF, com nome de arquivo automático.",
+      "technicalNotes": [
+        "API HTTP em Go e interface web para inserir os dados e gerar as atas.",
+        "LibreOffice em modo headless para automatizar a conversão de DOCX para PDF.",
+        "Docker e Docker Compose para executar o serviço implantado no Proxmox."
+      ],
+      "image": {
+        "alt": "Captura real do Gerador de Atas com dados de exemplo.",
+        "caption": "Interface real · Dados de exemplo",
+        "previewLabel": "Ampliar captura do Gerador de Atas"
+      }
     }
   },
   {
@@ -181,6 +231,28 @@
         "alt": "Screenshot of the original Horizonte Global dashboard, a frontend demo with mock data.",
         "caption": "Frontend demo · Mock data",
         "previewLabel": "Enlarge Horizonte Global screenshot"
+      }
+    },
+    "pt": {
+      "category": "Frontend / Demo visual",
+      "context": "Projeto freelance",
+      "headline": "Landing page e CRM para uma agência de viagens.",
+      "scope": "Landing page multilíngue e CRM navegável em React com dados simulados; sem backend nem banco de dados.",
+      "status": "Demo frontend.",
+      "description": "Protótipo frontend para uma agência de viagens e mobilidade internacional. Inclui uma landing page multilíngue e um CRM com clientes, casos, documentos, calendário e equipe, usando dados simulados.",
+      "problem": "Apresentar a agência e explorar visualmente como organizar clientes e processos migratórios em uma única interface.",
+      "solution": "Uma landing page e um painel navegáveis em React. O escopo é uma demo visual: sem backend, banco de dados nem integração com uma API real.",
+      "challenge": "Apresentar a agência e organizar clientes e trâmites migratórios em uma única interface.",
+      "result": "Landing page multilíngue e CRM navegável em React, como demo visual com dados simulados.",
+      "technicalNotes": [
+        "Componentes para a landing page e o painel, com navegação via React Router.",
+        "Tailwind CSS, Framer Motion e Lucide para estilos, transições e ícones.",
+        "Dados simulados dentro do próprio frontend. O repositório não tem backend nem banco de dados."
+      ],
+      "image": {
+        "alt": "Captura do painel original do Horizonte Global, uma demo frontend com dados simulados.",
+        "caption": "Demo frontend · Dados simulados",
+        "previewLabel": "Ampliar captura do Horizonte Global"
       }
     }
   },
@@ -241,6 +313,29 @@
         "alt": "Home page of the Nácar demo, a fictional brand: headline, buttons to explore treatments and book, and a sample photo.",
         "caption": "Frontend demo · Fictional brand · Sample data",
         "previewLabel": "Enlarge Nácar screenshot"
+      }
+    },
+    "pt": {
+      "category": "Site comercial / Demo frontend",
+      "context": "Demo para centros de estética · Marca fictícia",
+      "headline": "Landing page e catálogo de tratamentos com agendamento pelo WhatsApp para um centro de estética.",
+      "scope": "Demo frontend em React com dados de exemplo: landing page, catálogo filtrável, uma página por tratamento e agendamento pelo WhatsApp; sem backend.",
+      "status": "Demo frontend.",
+      "description": "Site para um centro de estética pensado para ser adaptado a cada cliente: nome, contatos, tratamentos, preços e textos ficam em arquivos de configuração. Usa uma marca fictícia e dados de exemplo.",
+      "problem": "Muitos centros de estética recebem consultas pelo WhatsApp sem ter onde mostrar seus tratamentos, durações e preços.",
+      "solution": "Uma landing page que apresenta o centro e um catálogo em que cada tratamento mostra sua duração e um preço de referência, com um botão que abre o WhatsApp com o pedido de agendamento já escrito.",
+      "challenge": "Mostrar tratamentos, durações e preços sem responder cada consulta à mão.",
+      "result": "Um catálogo com busca e filtros que leva a cada tratamento e abre o WhatsApp com o agendamento já solicitado.",
+      "technicalNotes": [
+        "Catálogo de 16 tratamentos em 6 categorias, com busca, filtro por duração e ordenação; os filtros ficam na URL, então um link compartilha a mesma visualização.",
+        "Uma página por tratamento com duração, preço de referência e variantes, além de links para o WhatsApp com mensagem pronta para agendar ou tirar dúvidas.",
+        "Dados do negócio, tratamentos e textos em arquivos de configuração, para adaptar a um cliente real sem mexer nos componentes.",
+        "Paleta e tipografias definidas como tokens do Tailwind CSS 4; rotas com React Router e fallback de SPA para links diretos."
+      ],
+      "image": {
+        "alt": "Página inicial da demo Nácar, uma marca fictícia: título, botões para ver tratamentos e agendar, e uma foto de exemplo.",
+        "caption": "Demo frontend · Marca fictícia · Dados de exemplo",
+        "previewLabel": "Ampliar captura do Nácar"
       }
     }
   },
@@ -308,6 +403,31 @@
         "alt": "Three Cerca screens on a phone: the goal with its photo and progress, the contribution log and the monthly plan. Sample amounts.",
         "caption": "Real interface · Sample amounts",
         "previewLabel": "Enlarge Cerca screenshot"
+      }
+    },
+    "pt": {
+      "category": "App pessoal / Frontend",
+      "context": "Projeto pessoal",
+      "headline": "Um app de poupança: a foto do que você quer fica mais perto a cada aporte.",
+      "scope": "Web app instalável em React e TypeScript, sem backend: dados e fotos ficam no navegador com IndexedDB e funciona offline.",
+      "status": "Em uso.",
+      "privateNote": "Código privado · projeto pessoal",
+      "description": "App de poupança por metas com identidade visual própria. Cada meta é um cartão-postal com sua foto e um caminho que mostra o progresso, a data estimada de chegada e o plano mensal com base no salário, nos gastos fixos e nos trabalhos freelance.",
+      "problem": "Juntar dinheiro para algo específico acaba abandonado quando o progresso não aparece e não fica claro quanto separar por mês.",
+      "solution": "Um app que transforma cada aporte em progresso visível: porcentagem, ritmo, data estimada e um plano mensal que divide o salário e a renda freelance entre as metas.",
+      "challenge": "Manter a poupança quando o progresso não aparece e todo mês é preciso decidir quanto separar.",
+      "result": "Cada aporte avança a meta por um caminho com data estimada de chegada e um plano mensal calculado.",
+      "technicalNotes": [
+        "Lógica de domínio pura e testada: porcentagem, ritmo e data estimada, plano mensal, divisão da renda freelance e dia de pagamento (mensal ou quinzenal).",
+        "Camada de dados atrás de uma interface: IndexedDB com idb hoje; migrar para um backend significa trocar a implementação sem mexer nas telas.",
+        "Instalável e offline, com backup em JSON (fotos incluídas) para levar os dados entre dispositivos.",
+        "Sistema de design próprio com temas claro e escuro definidos como tokens e expostos ao Tailwind CSS.",
+        "Testes com Vitest para a lógica e fake-indexeddb para a camada de dados."
+      ],
+      "image": {
+        "alt": "Três telas do Cerca em um celular: a meta com sua foto e progresso, o registro de aportes e o plano mensal. Valores de exemplo.",
+        "caption": "Interface real · Valores de exemplo",
+        "previewLabel": "Ampliar captura do Cerca"
       }
     }
   }

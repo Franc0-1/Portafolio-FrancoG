@@ -11,6 +11,10 @@
     "en": {
       "name": "Income Manager",
       "description": "Personal finance: income, expenses, transfers and a dashboard by account and currency."
+    },
+    "pt": {
+      "name": "Gestor de Receitas",
+      "description": "Finanças pessoais: receitas, despesas, transferências e um painel por conta e moeda."
     }
   },
   {
@@ -26,6 +30,10 @@
     "en": {
       "name": "Pizzeria management",
       "description": "Full-stack academic project: orders, roles, shopping cart and Excel and PDF reports."
+    },
+    "pt": {
+      "name": "Gestão de pizzaria",
+      "description": "Projeto acadêmico full-stack: pedidos, perfis, carrinho e relatórios em Excel e PDF."
     }
   },
   {
@@ -38,6 +46,10 @@
     "en": {
       "name": "Zoo management",
       "description": "Object-oriented console application. Training project."
+    },
+    "pt": {
+      "name": "Gestão de zoológico",
+      "description": "Aplicação de console orientada a objetos. Projeto de formação."
     }
   }
 ]

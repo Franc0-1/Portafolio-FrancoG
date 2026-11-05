@@ -45,6 +45,22 @@
         "caption": "Project interface · Inference example with a toucan",
         "previewLabel": "Enlarge Image Classifier interface"
       }
+    },
+    "pt": {
+      "name": "Classificador de imagens",
+      "category": "Visão computacional",
+      "description": "API de classificação com uma ResNet50 pré-treinada. O Streamlit permite enviar imagens e o Redis coordena o processamento das previsões.",
+      "technicalNotes": [
+        "A interface, a API e o worker de inferência rodam como serviços separados com Docker Compose.",
+        "O worker pega tarefas de uma fila no Redis e salva a classe prevista e sua pontuação com o ID da tarefa.",
+        "As imagens são redimensionadas para 224 × 224 pixels e pré-processadas para a ResNet50. É retornada a classe do ImageNet com a maior pontuação.",
+        "O escopo é integrar um modelo pré-treinado com uma API e uma interface de envio; as categorias disponíveis são as do ImageNet."
+      ],
+      "image": {
+        "alt": "Interface Streamlit do classificador com a imagem de um tucano e a previsão toucan.",
+        "caption": "Interface do projeto · Exemplo de inferência com um tucano",
+        "previewLabel": "Ampliar interface do Classificador de imagens"
+      }
     }
   },
   {
@@ -104,6 +120,29 @@
         ],
         "source": "Redrawn from the values in the notebook output."
       }
+    },
+    "pt": {
+      "displayName": "Home Credit: risco de crédito",
+      "category": "Modelos preditivos",
+      "description": "Análise de 307.511 pedidos de crédito e comparação de regressão logística, Random Forest e LightGBM para estimar o risco de dificuldades de pagamento.",
+      "result": "0,7551",
+      "resultLabel": "ROC AUC · Validação",
+      "resultContext": "LightGBM · 49.202 pedidos na validação.",
+      "technicalNotes": [
+        "Dataset: 246.008 pedidos para treino e 61.503 para teste. 20% do treino fica separado para validação: 196.806 para treinar e 49.202 para avaliar, com semente 42.",
+        "ROC AUC de validação: 0,6772 com a regressão logística inicial, 0,7465 dentro de um pipeline, 0,7323 com um Random Forest ajustado e 0,7551 com LightGBM.",
+        "O LightGBM usa early stopping e chega à melhor iteração na rodada 218. O resultado corresponde ao conjunto de validação usado no ajuste, não ao conjunto de teste.",
+        "As métricas vêm das saídas salvas no notebook; o experimento não foi executado novamente para este portfólio."
+      ],
+      "chart": {
+        "caption": "Exploração do dataset de treino · 8,03% com dificuldades de pagamento",
+        "label": "Variável alvo · 246.008 pedidos",
+        "labels": [
+          "Sem dificuldades de pagamento",
+          "Com dificuldades de pagamento"
+        ],
+        "source": "Redesenhado a partir dos valores da saída do notebook."
+      }
     }
   },
   {
@@ -132,6 +171,15 @@
       "technicalNotes": [
         "Extraction, loading and transformation of data for querying in SQLite with SQL.",
         "Analysis of revenue and delivery times segmented by state and category, with visualization of the results."
+      ]
+    },
+    "pt": {
+      "displayName": "Receita e prazos de entrega",
+      "category": "Engenharia e análise de dados",
+      "description": "Pipeline ELT para analisar receita e prazos de entrega, segmentar por estado e categoria e visualizar tendências do negócio.",
+      "technicalNotes": [
+        "Extração, carga e transformação dos dados para consulta no SQLite com SQL.",
+        "Análise de receita e prazos de entrega segmentada por estado e categoria, com visualização dos resultados."
       ]
     }
   }

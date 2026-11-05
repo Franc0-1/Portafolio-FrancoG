@@ -22,6 +22,7 @@ const SITE = 'https://francosgutierrez.dev/';
 const PAGES = [
   { lang: 'es', file: 'index.html', dir: '', projectDir: 'proyectos/' },
   { lang: 'en', file: 'en/index.html', dir: 'en/', projectDir: 'en/projects/' },
+  { lang: 'pt', file: 'pt/index.html', dir: 'pt/', projectDir: 'pt/projetos/' },
 ];
 const pageFor = (lang) => PAGES.find((page) => page.lang === lang);
 const projectDirFor = (lang, id) => `${pageFor(lang).projectDir}${id}/`;
@@ -77,17 +78,51 @@ const UI = {
     showcase: { role: 'carousel', label: 'Software projects', track: 'Projects: scrollable with the arrow keys', index: 'Choose a project', hint: 'Swipe, use the arrows or pick a project', prev: 'Previous project', next: 'Next project', slide: (i, n) => `${i} of ${n}` },
     caseCta: { title: 'Interested in something similar?', text: 'Tell me what you need to solve and let’s talk it through.', button: 'Contact me' },
   },
+  pt: {
+    contribution: 'Minha contribuição', status: 'Status', scope: 'Escopo', stack: 'Stack', challenge: 'Desafio', result: 'Resultado',
+    problem: 'Problema', solution: 'Solução', repo: 'Ver repositório', demo: 'Ver demo', evaluation: 'Ver avaliação',
+    moreDetails: 'Mais detalhes', technical: 'Abordagem técnica', zoom: 'Ampliar', alsoOnGithub: 'Também no GitHub',
+    repoAria: (n) => `Ver repositório de ${n}`, demoAria: (n) => `Ver demo de ${n}`, evaluationAria: (n) => `Ver avaliação de ${n}`,
+    moreAria: (n) => `Mais detalhes sobre ${n}`, technicalAria: (n) => `Abordagem técnica de ${n}`, zoomAria: (n) => `Ampliar captura de ${n}`,
+    tagsAria: (n) => `Tecnologias de ${n}`,
+    projectsSection: { label: 'Software', title: 'Ferramentas internas e aplicações web.', lead: 'Dois sistemas em Go que automatizam trabalho administrativo, inventário e atas, duas demos frontend em React e um app pessoal.' },
+    mlSection: { label: 'ML e Dados', title: 'Modelos, inferência e análise de dados.', lead: 'Três projetos da AnyoneAI: um serviço de classificação de imagens, a comparação de modelos de risco de crédito e um pipeline ELT.' },
+    contactSection: {
+      label: 'Contato', title: 'Tem um projeto em mente ou uma vaga para preencher?',
+      lead: 'Estou disponível para projetos freelance e oportunidades de trabalho, na Argentina e em outros países.',
+      single: (name) => `${name} é o canal mais direto.`, multiple: 'Me conte em poucas linhas o que você precisa resolver, pelo canal que for mais cômodo para você.',
+    },
+    linkedin: 'Vagas e propostas', email: 'Vagas, freelance e consultas', whatsapp: 'Projetos freelance, Argentina e exterior',
+    whatsappDisplay: 'Escrever no WhatsApp', whatsappMessage: 'Olá, Franco! Vi seu portfólio e queria falar sobre um projeto.',
+    github: 'Código e repositórios', copy: 'Copiar',
+    privateRepo: 'Código privado · ferramenta interna',
+    contactMe: 'Conte seu projeto', downloadCv: 'Baixar CV', before: 'Antes', after: 'Agora',
+    viewProject: 'Ver projeto', allProjects: 'Todos os projetos', about: 'Sobre o projeto', facts: 'Ficha do projeto',
+    previous: 'Anterior', next: 'Próximo', pager: 'Mais projetos', locale: 'pt_BR',
+    showcase: { role: 'carrossel', label: 'Projetos de software', track: 'Projetos: role com as setas do teclado', index: 'Escolher projeto', hint: 'Deslize, use as setas ou escolha um projeto', prev: 'Projeto anterior', next: 'Próximo projeto', slide: (i, n) => `${i} de ${n}` },
+    caseCta: { title: 'Tem interesse em algo parecido?', text: 'Me conte o que você precisa resolver e conversamos.', button: 'Entrar em contato' },
+  },
 };
+for (const lang of Object.keys(UI)) {
+  const missing = Object.keys(UI.es).filter((key) => !(key in UI[lang]));
+  if (missing.length) throw new Error(`UI.${lang} is missing: ${missing.join(', ')}`);
+}
+// Number formats and the word for one slide, per language.
+const INTL = { es: 'es-AR', en: 'en-US', pt: 'pt-BR' };
+const SLIDE_ROLE = { es: 'proyecto', en: 'project', pt: 'projeto' };
+// No Portuguese social card yet: Portuguese pages share the English one.
+const ogImage = (lang) => `assets/og/og-${existsSync(new URL(`assets/og/og-${lang}.png`, projectRoot)) ? lang : 'en'}.png`;
 
-// Spanish is the source; other languages override fields from each item's "en" block.
+// Spanish is the source; other languages override fields from each item's block for that language ("en", "pt").
 function localize(item, lang) {
-  const { en, ...base } = item;
+  const { en, pt, ...base } = item;
   if (lang === 'es') return base;
-  if (!en) throw new Error(`Missing "${lang}" translation: ${item.id || item.name}`);
+  const tr = { en, pt }[lang];
+  if (!tr) throw new Error(`Missing "${lang}" translation: ${item.id || item.name}`);
   return {
-    ...base, ...en,
-    ...(base.image ? { image: { ...base.image, ...en.image } } : {}),
-    ...(base.chart ? { chart: { ...base.chart, ...en.chart } } : {}),
+    ...base, ...tr,
+    ...(base.image ? { image: { ...base.image, ...tr.image } } : {}),
+    ...(base.chart ? { chart: { ...base.chart, ...tr.chart } } : {}),
   };
 }
 
@@ -131,7 +166,7 @@ function helpers(lang, fromDir) {
   function renderChart(project) {
     const chart = project.chart;
     if (!chart.labels?.length || chart.labels.length !== chart.counts?.length) throw new Error(`Invalid chart: ${project.id}`);
-    const locale = lang === 'es' ? 'es-AR' : 'en-US';
+    const locale = INTL[lang];
     const count = new Intl.NumberFormat(locale);
     const share = new Intl.NumberFormat(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     const total = chart.counts.reduce((sum, value) => sum + value, 0);
@@ -216,7 +251,7 @@ function renderPage({ lang, dir }) {
     const fit = Math.abs(image.width / image.height - 1.5) > 0.2 ? ' showcase-media--contain' : '';
     const darkSource = image.darkSrc ? `<source media="(prefers-color-scheme: dark)" srcset="${asset(inlineSource(image.darkSrc))}" />` : '';
     const wide = i % 2 === 0;
-    return `<li class="showcase-slide showcase-slide--${wide ? 'wide' : 'tall'}" id="${escapeHtml(project.id)}" aria-roledescription="${lang === 'es' ? 'proyecto' : 'project'}" aria-label="${t.showcase.slide(i + 1, total)}: ${name}">
+    return `<li class="showcase-slide showcase-slide--${wide ? 'wide' : 'tall'}" id="${escapeHtml(project.id)}" aria-roledescription="${SLIDE_ROLE[lang]}" aria-label="${t.showcase.slide(i + 1, total)}: ${name}">
           ${wide ? num : ''}
           <a class="showcase-media${fit}" href="${link}" tabindex="-1" aria-hidden="true"><picture${image.darkSrc ? ' data-theme-picture' : ''}>${darkSource}<img src="${asset(inlineSource(image.src))}" alt="" loading="${i < 2 ? 'eager' : 'lazy'}" decoding="async" width="${Number(image.width)}" height="${Number(image.height)}" /></picture></a>
           <div class="showcase-head">
@@ -372,7 +407,6 @@ function chromeOf(home, file) {
 
 function renderProjectPage(lang, project, projects) {
   const page = pageFor(lang);
-  const other = PAGES.find((p) => p.lang !== lang);
   const dir = projectDirFor(lang, project.id);
   const h = helpers(lang, dir);
   const { t, asset, href } = h;
@@ -385,7 +419,7 @@ function renderProjectPage(lang, project, projects) {
   // Header links point back to the home sections; the language switch goes to the same project.
   const header = chrome.header
     .replace(/href="#/g, `href="${home}#`)
-    .replace(/(<a class="lang-link" href=")[^"]*"/, `$1${href(projectDirFor(other.lang, project.id))}"`)
+    .replace(/(<a class="lang-link" href=")[^"]*(" hreflang="(\w+)")/g, (_, start, end, target) => `${start}${href(projectDirFor(target, project.id))}${end}`)
     .replace(`class="nav-link" href="${home}#${project.section}"`, `class="nav-link" href="${home}#${project.section}" aria-current="page"`);
   const footer = chrome.footer.replace('href="#inicio"', 'href="#contenido"');
 
@@ -423,13 +457,12 @@ function renderProjectPage(lang, project, projects) {
     <meta property="og:url" content="${url(dir)}" />
     <meta property="og:title" content="${name} — Franco Sebastian Gutierrez" />
     <meta property="og:description" content="${escapeHtml(summary)}" />
-    <meta property="og:image" content="${url(`assets/og/og-${lang}.png`)}" />
+    <meta property="og:image" content="${url(ogImage(lang))}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="${url(dir)}" />
-    <link rel="alternate" hreflang="es" href="${url(projectDirFor('es', project.id))}" />
-    <link rel="alternate" hreflang="en" href="${url(projectDirFor('en', project.id))}" />
+    ${PAGES.map((p) => `<link rel="alternate" hreflang="${p.lang}" href="${url(projectDirFor(p.lang, project.id))}" />`).join('\n    ')}
     <link rel="alternate" hreflang="x-default" href="${url(projectDirFor('es', project.id))}" />
     <link rel="icon" type="image/svg+xml" href="${asset('./assets/favicon.svg')}" />
     <link rel="icon" type="image/png" sizes="32x32" href="${asset('./assets/favicon-32.png')}" />
@@ -493,7 +526,7 @@ function renderProjectPage(lang, project, projects) {
 let projectPages = 0;
 for (const page of PAGES) {
   const folder = new URL(page.projectDir, projectRoot);
-  if (!/^(en\/)?(proyectos|projects)\/$/.test(page.projectDir)) throw new Error(`Refusing to clean ${page.projectDir}.`);
+  if (!/^((en|pt)\/)?(proyectos|projects|projetos)\/$/.test(page.projectDir)) throw new Error(`Refusing to clean ${page.projectDir}.`);
   await rm(folder, { recursive: true, force: true });
   const projects = allProjects(page.lang);
   for (const project of projects) {
@@ -505,16 +538,15 @@ for (const page of PAGES) {
 }
 
 // The sitemap lists every page with its language alternate.
-const sitemapEntry = (es, en) => [es, en].map((loc) => `  <url>
-    <loc>${SITE}${loc}</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="${SITE}${es}" />
-    <xhtml:link rel="alternate" hreflang="en" href="${SITE}${en}" />
+const sitemapEntry = (pathFor) => PAGES.map((page) => `  <url>
+    <loc>${SITE}${pathFor(page)}</loc>
+${PAGES.map((alt) => `    <xhtml:link rel="alternate" hreflang="${alt.lang}" href="${SITE}${pathFor(alt)}" />`).join('\n')}
   </url>`).join('\n');
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${[sitemapEntry('', 'en/'), ...allProjects('es').map((p) => sitemapEntry(projectDirFor('es', p.id), projectDirFor('en', p.id)))].join('\n')}
+${[sitemapEntry((page) => page.dir), ...allProjects('es').map((p) => sitemapEntry((page) => projectDirFor(page.lang, p.id)))].join('\n')}
 </urlset>
 `;
 await writeFile(new URL('sitemap.xml', projectRoot), sitemap);
 
-console.log(`Generated ${PAGES.map((p) => p.file).join(' and ')}, ${projectPages} project pages, sitemap.xml and ${fallbackTokens} fallback color tokens: ${projectsData.length} featured projects, ${mlProjectsData.length} ML/data projects and ${moreProjectsData.length} additional repositories.`);
+console.log(`Generated ${PAGES.map((p) => p.file).join(', ')}, ${projectPages} project pages, sitemap.xml and ${fallbackTokens} fallback color tokens: ${projectsData.length} featured projects, ${mlProjectsData.length} ML/data projects and ${moreProjectsData.length} additional repositories.`);

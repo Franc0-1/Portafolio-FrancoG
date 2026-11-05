@@ -4,90 +4,162 @@
     <loc>https://francosgutierrez.dev/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/en/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/" />
+  </url>
+  <url>
+    <loc>https://francosgutierrez.dev/pt/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/proyectos/inventario/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/inventario/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/inventario/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/inventario/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/en/projects/inventario/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/inventario/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/inventario/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/inventario/" />
+  </url>
+  <url>
+    <loc>https://francosgutierrez.dev/pt/projetos/inventario/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/inventario/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/inventario/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/inventario/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/proyectos/actas/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/actas/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/actas/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/actas/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/en/projects/actas/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/actas/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/actas/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/actas/" />
+  </url>
+  <url>
+    <loc>https://francosgutierrez.dev/pt/projetos/actas/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/actas/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/actas/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/actas/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/proyectos/horizonte-global/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/horizonte-global/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/horizonte-global/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/horizonte-global/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/en/projects/horizonte-global/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/horizonte-global/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/horizonte-global/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/horizonte-global/" />
+  </url>
+  <url>
+    <loc>https://francosgutierrez.dev/pt/projetos/horizonte-global/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/horizonte-global/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/horizonte-global/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/horizonte-global/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/proyectos/nacar/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/nacar/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/nacar/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/nacar/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/en/projects/nacar/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/nacar/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/nacar/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/nacar/" />
+  </url>
+  <url>
+    <loc>https://francosgutierrez.dev/pt/projetos/nacar/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/nacar/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/nacar/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/nacar/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/proyectos/cerca/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/cerca/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/cerca/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/cerca/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/en/projects/cerca/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/cerca/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/cerca/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/cerca/" />
+  </url>
+  <url>
+    <loc>https://francosgutierrez.dev/pt/projetos/cerca/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/cerca/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/cerca/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/cerca/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/proyectos/image-classification/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/image-classification/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/image-classification/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/image-classification/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/en/projects/image-classification/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/image-classification/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/image-classification/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/image-classification/" />
+  </url>
+  <url>
+    <loc>https://francosgutierrez.dev/pt/projetos/image-classification/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/image-classification/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/image-classification/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/image-classification/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/proyectos/home-credit/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/home-credit/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/home-credit/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/home-credit/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/en/projects/home-credit/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/home-credit/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/home-credit/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/home-credit/" />
+  </url>
+  <url>
+    <loc>https://francosgutierrez.dev/pt/projetos/home-credit/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/home-credit/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/home-credit/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/home-credit/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/proyectos/revenue-delivery/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/revenue-delivery/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/revenue-delivery/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/revenue-delivery/" />
   </url>
   <url>
     <loc>https://francosgutierrez.dev/en/projects/revenue-delivery/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/revenue-delivery/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/revenue-delivery/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/revenue-delivery/" />
+  </url>
+  <url>
+    <loc>https://francosgutierrez.dev/pt/projetos/revenue-delivery/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://francosgutierrez.dev/proyectos/revenue-delivery/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://francosgutierrez.dev/en/projects/revenue-delivery/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://francosgutierrez.dev/pt/projetos/revenue-delivery/" />
   </url>
 </urlset>

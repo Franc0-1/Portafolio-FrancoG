@@ -6,8 +6,8 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
-const PUBLIC_FILES = ['index.html', 'en/index.html', '404.html', 'styles.css', 'scripts/main.js', 'scripts/theme-init.js', 'assets/favicon.svg', 'assets/favicon-32.png', 'assets/apple-touch-icon.png', 'robots.txt', 'sitemap.xml', '_headers'];
-const PUBLIC_DIRS = { 'proyectos': ['.html'], 'en/projects': ['.html'], 'assets/fonts': ['.woff2'], 'assets/cv': ['.pdf'], 'assets/screenshots': ['.png', '.webp'], 'assets/ml': ['.png', '.webp'], 'assets/og': ['.png'] };
+const PUBLIC_FILES = ['index.html', 'en/index.html', 'pt/index.html', '404.html', 'styles.css', 'scripts/main.js', 'scripts/theme-init.js', 'assets/favicon.svg', 'assets/favicon-32.png', 'assets/apple-touch-icon.png', 'robots.txt', 'sitemap.xml', '_headers'];
+const PUBLIC_DIRS = { 'proyectos': ['.html'], 'en/projects': ['.html'], 'pt/projetos': ['.html'], 'assets/fonts': ['.woff2'], 'assets/cv': ['.pdf'], 'assets/screenshots': ['.png', '.webp'], 'assets/ml': ['.png', '.webp'], 'assets/og': ['.png'] };
 
 if (relative(root, dist) !== 'dist') throw new Error('Refusing to clean an unexpected dist path.');
 await rm(dist, { recursive: true, force: true });
@@ -22,7 +22,7 @@ const walk = async (dir) => (await readdir(join(root, dir), { withFileTypes: tru
   ...(await files),
   ...(entry.isDirectory() ? await walk(`${dir}/${entry.name}`) : [`${dir}/${entry.name}`]),
 ], Promise.resolve([]));
-const pages = ['index.html', 'en/index.html', '404.html'];
+const pages = ['index.html', 'en/index.html', 'pt/index.html', '404.html'];
 for (const [dir, extensions] of Object.entries(PUBLIC_DIRS)) {
   for (const file of await walk(dir)) {
     if (!extensions.includes(extname(file).toLowerCase())) continue;

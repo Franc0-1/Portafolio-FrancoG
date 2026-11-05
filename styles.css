@@ -683,6 +683,26 @@ body:has(.project-preview[open]) { overflow: hidden; }
   .header-inner { gap: var(--s-4); }
   .wordmark small { display: none; }
 }
+@media (min-width: 821px) and (max-width: 860px) {
+  /* Nav, three languages and the theme button still fit on one line here. */
+  .nav-link { padding-inline: var(--s-2); }
+  .nav-link::after { left: var(--s-2); right: var(--s-2); }
+}
+/* Phones and small tablets: wordmark, languages and theme on one row, the nav on its own row below.
+   The breakpoint is shared with main.js (compactHeader). */
+@media (max-width: 820px) {
+  :root { --header-h: 0px; }
+  html { scroll-padding-top: 12px; }
+  /* Sticky on phones too, but it slides away while scrolling down (see main.js). */
+  .site-header { backdrop-filter: none; background: var(--bg); transition: transform .25s var(--ease), border-color var(--dur) var(--ease); }
+  .site-header.is-hidden { transform: translateY(-100%); }
+  .header-inner { flex-wrap: wrap; gap: 0 var(--s-4); padding-block: var(--s-3) 0; }
+  .lang-switch { margin-left: auto; }
+  /* Three languages, the theme button and the wordmark share one row at 390px. */
+  .lang-switch > * { min-width: 34px; }
+  .lang-switch + .theme-toggle { margin-left: calc(var(--s-2) - var(--s-4)); }
+  .site-nav { order: 3; width: 100%; justify-content: space-between; gap: 0; margin: var(--s-1) 0 0; }
+}
 @media (max-width: 900px) {
   .hero-intro { display: flex; flex-direction: column; min-height: 0; }
   .hero-top { margin-bottom: var(--s-6); }
@@ -719,15 +739,6 @@ body:has(.project-preview[open]) { overflow: hidden; }
   .stack-row dt { font-size: var(--fs-sm); }
 }
 @media (max-width: 640px) {
-  :root { --header-h: 0px; }
-  html { scroll-padding-top: 12px; }
-  /* Sticky on phones too, but it slides away while scrolling down (see main.js). */
-  .site-header { backdrop-filter: none; background: var(--bg); transition: transform .25s var(--ease), border-color var(--dur) var(--ease); }
-  .site-header.is-hidden { transform: translateY(-100%); }
-  .header-inner { flex-wrap: wrap; gap: 0 var(--s-4); padding-block: var(--s-3) 0; }
-  .lang-switch { margin-left: auto; }
-  .lang-switch + .theme-toggle { margin-left: 0; }
-  .site-nav { order: 3; width: 100%; justify-content: space-between; gap: 0; margin: var(--s-1) 0 0; }
   .nav-link { padding: 0 4px; font-size: .8125rem; }
   .nav-link::after { left: 4px; right: 4px; }
   .hero { padding-top: var(--s-2); }
@@ -769,6 +780,8 @@ body:has(.project-preview[open]) { overflow: hidden; }
   .spec dd { font-size: var(--fs-sm); }
 }
 @media (max-width: 360px) {
+  /* The fg. mark stays (the link keeps its accessible name), so the row still fits three languages. */
+  .wordmark-text { display: none; }
   .header-inner { column-gap: var(--s-2); }
   .wordmark { gap: var(--s-2); font-size: .875rem; }
   .lang-switch > * { min-width: 32px; min-height: 34px; }
